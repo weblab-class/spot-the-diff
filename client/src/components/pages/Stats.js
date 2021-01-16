@@ -11,9 +11,20 @@ class Stats extends Component {
         this.state = {};
     }
 
+    fetchTopTracks = () => {
+        console.log("fetching top tracks");
+        get("/api/topTracks").then((data) => {
+            console.log(data);
+        }) 
+        
+    }
+
     render() {
         return (
-            <h1>This is the stats page</h1>
+            <div>
+                <h1>This is the stats page</h1>
+                <button onClick={this.fetchTopTracks}>Fetch top tracks</button>
+            </div>
         );
     }
 }
