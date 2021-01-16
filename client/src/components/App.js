@@ -56,7 +56,7 @@ class App extends Component {
       <>
         <NavBar />
         <Router>
-          <Skeleton
+          {/* <Skeleton
             path="/"
             handleLogin={this.handleLogin}
             handleLogout={this.handleLogout}
@@ -67,6 +67,9 @@ class App extends Component {
           <Stats path="/" />
           <About path="/" />
           <Profile path="/" />
+          /> */}
+          <Login 
+            path="/" />
           <NotFound default />
         </Router>
       </>
