@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import { Link } from "@reach/router";
 
 import "./NavBar.css";
 
 class NavBar extends Component {
     constructor(props) {
-    super(props);
+        super(props);
     }
 
     render() {
@@ -12,9 +13,9 @@ class NavBar extends Component {
         <nav className="NavBar-container">
             <p className="NavBar-text NavBar-left">Currently Playing: </p>
             <div className="NavBar-right">
-                <p className="NavBar-text">Home</p>
-                <p className="NavBar-text">Stats</p>
-                <p className="NavBar-text">About</p>
+                <Link to="/" className="NavBar-text"> Home </Link>
+                <Link to="/" className="NavBar-text"> Stats </Link>
+                <Link to="/" className="NavBar-text"> About </Link>
             </div>
         </nav>
     );
