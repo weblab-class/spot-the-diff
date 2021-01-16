@@ -22,7 +22,14 @@ const router = express.Router();
 const socketManager = require("./server-socket");
 
 var SpotifyWebApi = require('spotify-web-api-node');
-scopes = ['user-read-private', 'user-read-email','playlist-modify-public','playlist-modify-private', 'user-read-recently-played', 'user-top-read']
+scopes = ['user-read-private', 
+          'user-read-email',
+          'playlist-modify-public',
+          'playlist-modify-private', 
+          'user-read-recently-played', 
+          'user-top-read',
+          'user-read-currently-playing',
+          'user-read-playback-state']
 
 require('dotenv').config();
 
