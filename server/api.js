@@ -29,7 +29,7 @@ require('dotenv').config();
 var spotifyApi = new SpotifyWebApi({
   clientId: process.env.SPOTIFY_API_ID,
   clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
-  redirectUri: process.env.CALLBACK_URL,
+  redirectUri: process.env.CALLBACK_URI,
 });
 
 /* GET home page. */
@@ -42,7 +42,7 @@ router.get('/', function(req, res, next) {
 router.get('/spotify-login', (req,res) => {
   var html = spotifyApi.createAuthorizeURL(scopes)
   console.log(html)
-  res.send(html+"&show_dialog=true")  
+  res.send({url:html})  
 })
 
 router.get('/callback', async (req,res) => {
