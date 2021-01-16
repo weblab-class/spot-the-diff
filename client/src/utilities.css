@@ -18,17 +18,52 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
 
 :root {
-  --primary: #396dff;
-  --primary--dim: #6987db;
-  --darkgrey: #d4d4d4;
-  --medgrey: #e0e0e0;
-  --grey: #f7f7f7;
-  --white: #fff;
-
+  --background_color: #FFFFFF;
   --xs: 4px;
   --s: 8px;
   --m: 16px;
   --l: 24px;
+
+  --text-family: Source Sans Pro;
+  --text-style: normal;
+  --text-weight: normal;
+  --text-color: #C4C4C4;
+}
+
+.xl-text {
+  font-family: text-family;
+  font-style: text-style;
+  font-weight: text-weight;
+  font-size: 36px;
+  line-height: 45px;
+  color: text-color;
+}
+
+.l-text {
+  font-family: text-family;
+  font-style: text-style;
+  font-weight: text-weight;
+  font-size: 24px;
+  line-height: 30px;
+  color: text-color;
+}
+
+.m-text {
+  font-family: text-family;
+  font-style: text-style;
+  font-weight: text-weight;
+  font-size: 18px;
+  line-height: 23px;
+  color: text-color;
+}
+
+.s-text {
+  font-family: text-family;
+  font-style: text-style;
+  font-weight: text-weight;
+  font-size: 14px;
+  line-height: 18px;
+  color: text-color;
 }
 
 body {
