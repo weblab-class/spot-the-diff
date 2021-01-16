@@ -4,6 +4,10 @@ import NotFound from "./pages/NotFound.js";
 import Skeleton from "./pages/Skeleton.js";
 import Login from "./pages/Login.js";
 import NavBar from "./modules/NavBar.js";
+import About from "./pages/About.js"
+import Home from "./pages/Home.js"
+import Profile from "./pages/Profile.js"
+import Stats from "./pages/Profile.js"
 
 import "../utilities.css";
 import "./App.css";
@@ -59,6 +63,10 @@ class App extends Component {
             userId={this.state.userId}
           />
           <Login path="/login" />
+          <Home path="/" />
+          <Stats path="/" />
+          <About path="/" />
+          <Profile path="/" />
           <NotFound default />
         </Router>
       </>
