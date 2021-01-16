@@ -3,6 +3,7 @@ import GoogleLogin, { GoogleLogout } from "react-google-login";
 
 import "../../utilities.css";
 import "./Skeleton.css";
+import { get, post } from "../../utilities";
 
 //TODO: REPLACE WITH YOUR OWN CLIENT_ID
 const GOOGLE_CLIENT_ID = "121479668229-t5j82jrbi9oejh7c8avada226s75bopn.apps.googleusercontent.com";
@@ -18,6 +19,19 @@ class Skeleton extends Component {
     // remember -- api calls go here!
   }
 
+  handleLogin = () => {
+    get("/api/spotify-login").then((data) => {
+      console.log(data.url);
+      window.location.href = data.url;
+    })
+  }  
+
+  fetchPlaylists = () => {
+    get("/api/playlists").then((data) => {
+      console.log(data);
+    })
+  }
+  
   render() {
     return (
       <>
@@ -53,6 +67,8 @@ class Skeleton extends Component {
           <li>Add a favicon to your website at the path client/dist/favicon.ico</li>
           <li>Update website title in client/dist/index.html</li>
         </ul>
+        <button onClick={this.handleLogin}>Login here pls</button>
+        <button onClick={this.fetchPlaylists}>Fetch playlists</button>
       </>
     );
   }
