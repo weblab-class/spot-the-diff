@@ -8,9 +8,7 @@ import "./Login.css";
 class Login extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            user: undefined,
-        };
+        this.state = {};
     }
 
     handleLogin = () => {
@@ -28,12 +26,14 @@ class Login extends Component {
     
     render() {
         return (
-            <div>
-                <h1>welcome! login to spotify to get started.</h1>
-                <h3>or, learn more about us first.</h3>
-                <button onClick={this.handleLogin}>Login here pls</button>
-                <button onClick={this.fetchPlaylists}>Fetch playlists</button>
-            </div>
+            <>
+                <div className='Login-container'>
+                    <h1 className='u-textCenter'>welcome! login to spotify to get started.</h1>
+                    <h3 className='u-textCenter'>or, learn more about us first.</h3>
+                    <button onClick={this.handleLogin}>Login here pls</button>
+                    <button onClick={this.fetchPlaylists}>Fetch playlists</button>
+                </div>
+            </>
         );
     }
 }
