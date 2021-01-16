@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import GoogleLogin, { GoogleLogout } from "react-google-login";
+import { get } from "../../utilities";
 
 import "../../utilities.css";
 import "./Skeleton.css";
@@ -16,6 +17,12 @@ class Skeleton extends Component {
 
   componentDidMount() {
     // remember -- api calls go here!
+  }
+
+  handleLogin = () => { 
+    get("/api/spotify-login").then((data) => { console.log((data)) 
+      window.location.href = data.url;
+    }) 
   }
 
   render() {
@@ -53,6 +60,7 @@ class Skeleton extends Component {
           <li>Add a favicon to your website at the path client/dist/favicon.ico</li>
           <li>Update website title in client/dist/index.html</li>
         </ul>
+        <button onClick={this.handleLogin}>Login Here!</button>
       </>
     );
   }
