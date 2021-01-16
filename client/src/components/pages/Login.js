@@ -30,6 +30,13 @@ class Login extends Component {
           console.log(data);
         })
       }
+
+      fetchTopTracks = () => {
+        console.log("fetching top tracks");
+        get("/api/topTracks").then((data) => {
+          console.log(data);
+        }) 
+      }
     
     render() {
         return (
@@ -40,6 +47,7 @@ class Login extends Component {
                     <button onClick={this.handleLogin}>Login here pls</button>
                     <button onClick={this.fetchPlaylists}>Fetch playlists</button>
                     <button onClick={this.fetchRecent}>Fetch recent</button>
+                    <button onClick={this.fetchTopTracks}>Fetch top tracks</button>
                 </div>
             </>
         );
