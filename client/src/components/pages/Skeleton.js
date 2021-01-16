@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import GoogleLogin, { GoogleLogout } from "react-google-login";
-import { get } from "../../utilities";
+import { get, post } from "../../utilities";
 
 import "../../utilities.css";
 import "./Skeleton.css";
-import { get, post } from "../../utilities";
 
 //TODO: REPLACE WITH YOUR OWN CLIENT_ID
 const GOOGLE_CLIENT_ID = "121479668229-t5j82jrbi9oejh7c8avada226s75bopn.apps.googleusercontent.com";
