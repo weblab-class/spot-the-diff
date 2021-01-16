@@ -47,6 +47,7 @@ class NavBar extends Component {
                 {/* TODO: constantly check for playback without button - with socket? */}
                 <button onClick={this.getCurrentPlayback}>click for current playback</button>
                 <div className="NavBar-right">
+                    <Link to="/" className="NavBar-text"> Login </Link>
                     <Link to="/home" className="NavBar-text"> Home </Link>
                     <Link to="/profile" className="NavBar-text"> Profile </Link>
                     <Link to="/stats" className="NavBar-text"> Stats </Link>
