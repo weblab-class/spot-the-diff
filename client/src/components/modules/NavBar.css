@@ -1,0 +1,27 @@
+.NavBar-container {
+    background-color: #36393B;
+    margin-top: 0px;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    box-shadow: 1px 1px 3px 3px #c0c0c0;
+}
+
+.NavBar-text {
+    margin-top: 0px;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    color: white;
+}
+
+.NavBar-left {
+    flex: 1.5;
+    margin-left: 10px;
+}
+
+.NavBar-right {
+    flex: 0.5;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
