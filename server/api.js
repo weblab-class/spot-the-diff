@@ -32,11 +32,6 @@ var spotifyApi = new SpotifyWebApi({
   redirectUri: process.env.CALLBACK_URI,
 });
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
-
 // button on front end should call & query API for this func
 
 router.get('/spotify-login', (req,res) => {
@@ -62,20 +57,21 @@ router.get('/callback', async (req,res) => {
 
 router.post("/login", auth.login);
 router.post("/logout", auth.logout);
-router.get("/whoami", (req, res) => {
-  if (!req.user) {
-    // not logged in
-    return res.send({});
-  }
+// router.get("/whoami", (req, res) => {
+//   if (!req.user) {
+//     // not logged in
+//     return res.send({});
+//   }
 
-  res.send(req.user);
-});
+//   res.send(req.user);
+// });
 
 router.post("/initsocket", (req, res) => {
   // do nothing if user not logged in
   if (req.user) socketManager.addUser(req.user, socketManager.getSocketFromSocketID(req.body.socketid));
   res.send({});
 });
+
 
 // |------------------------------|
 // | write your API methods below!|
@@ -141,6 +137,12 @@ router.get('/whoami', (req, res) => {
     console.log('Something went wrong!', err);
   });
 })
+
+/* GET home page. */
+router.get('/', function(req, res, next) {
+  res.render('index', { title: 'Express' });
+});
+
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {

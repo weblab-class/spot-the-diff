@@ -8,18 +8,24 @@ class Profile extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            user: undefined,
             playlists: [],
         };
     }
 
     componentDidMount() {
         get("/api/playlists").then((data) => {
-            console.log(data.items);
+            // console.log(data.items);
             let newPlaylists = data.items;
             this.setState((prevState) => ({
                 playlists: prevState.playlists.concat(newPlaylists)
             }));
         })
+        document.title = "Profile Page";
+        <div>"Your Home Page!"</div>
+        get("/api/whoami").then(console.log("yolo"));
+        // get(`/api/whoami`, { userid: this.props.body }).then((user) => this.setState({ user: user }));
+
     }
 
     render() {
@@ -29,7 +35,7 @@ class Profile extends Component {
             <>
                 <h1>This is the profile page</h1>
                 <div>
-                    {JSON.stringify(this.state.playlists)}
+                    {console.log("hello")};
                 </div>
             </>
         );
