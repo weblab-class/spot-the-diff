@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import GoogleLogin, { GoogleLogout } from "react-google-login";
 import { get, post} from "../../utilities";
-
 import "../../utilities.css";
 import "./Skeleton.css";
 

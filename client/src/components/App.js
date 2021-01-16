@@ -52,13 +52,14 @@ class App extends Component {
       <>
         <NavBar />
         <Router>
-          <Skeleton
+          {/* <Skeleton
             path="/"
             handleLogin={this.handleLogin}
             handleLogout={this.handleLogout}
             userId={this.state.userId}
-          />
-          <Login path="/login" />
+          /> */}
+          <Login 
+            path="/" />
           <NotFound default />
         </Router>
       </>
