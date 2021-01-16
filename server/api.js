@@ -21,6 +21,7 @@ const router = express.Router();
 //initialize socket
 const socketManager = require("./server-socket");
 
+
 router.post("/login", auth.login);
 router.post("/logout", auth.logout);
 router.get("/whoami", (req, res) => {
