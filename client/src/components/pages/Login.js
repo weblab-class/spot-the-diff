@@ -23,6 +23,13 @@ class Login extends Component {
           console.log(data);
         })
       }
+
+      fetchRecent = () => {
+        console.log("fetching recent");
+        get("/api/recent").then((data) => {
+          console.log(data);
+        })
+      }
     
     render() {
         return (
@@ -32,6 +39,7 @@ class Login extends Component {
                     <h3 className='u-textCenter'>or, learn more about us first.</h3>
                     <button onClick={this.handleLogin}>Login here pls</button>
                     <button onClick={this.fetchPlaylists}>Fetch playlists</button>
+                    <button onClick={this.fetchRecent}>Fetch recent</button>
                 </div>
             </>
         );

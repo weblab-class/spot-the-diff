@@ -22,7 +22,7 @@ const router = express.Router();
 const socketManager = require("./server-socket");
 
 var SpotifyWebApi = require('spotify-web-api-node');
-scopes = ['user-read-private', 'user-read-email','playlist-modify-public','playlist-modify-private']
+scopes = ['user-read-private', 'user-read-email','playlist-modify-public','playlist-modify-private', 'user-read-recently-played']
 
 require('dotenv').config();
 
@@ -89,6 +89,20 @@ router.get('/playlists', async (req,res) => {
   } catch (err) {
     res.status(400).send(err)
   }
+});
+
+router.get('/recent', (req, res) => {
+  console.log('in api');
+  spotifyApi.getMyRecentlyPlayedTracks({
+    limit : 20
+  }).then(function(data) {
+    // Output items
+    console.log("Your 20 most recently played tracks are:");
+    data.body.items.forEach(item => console.log(item.track));
+    res.send(data.body.items)
+  }, function(err) {
+    console.log('Something went wrong!', err);
+  });
 });
 
 // anything else falls to this "not found" case

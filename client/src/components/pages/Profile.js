@@ -3,6 +3,8 @@ import { get, post } from "../../utilities";
 
 import "../../utilities.css";
 
+import "./Profile.css";
+
 class Profile extends Component {
     constructor(props) {
         super(props);
