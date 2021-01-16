@@ -115,6 +115,21 @@ router.get('/topTracks', (req, res) => {
   });
 })
 
+router.get('/currentPlayback', (req, res) => {
+  spotifyApi.getMyCurrentPlaybackState()
+  .then(function(data) {
+    // Output items
+    if (data.body && data.body.is_playing) {
+      console.log("User is currently playing something!");
+      res.send(data);
+    } else {
+      console.log("User is not playing anything, or doing so in private.");
+    }
+  }, function(err) {
+    console.log('Something went wrong!', err);
+  });
+})
+
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
   console.log(`API route not found: ${req.method} ${req.url}`);
