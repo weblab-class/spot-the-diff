@@ -127,6 +127,7 @@ router.get('/currentPlayback', (req, res) => {
       res.send({ data: data.body });
     } else {
       console.log("User is not playing anything, or doing so in private.");
+      res.send({ data: null})
     }
   }, function(err) {
     console.log('Something went wrong!', err);
