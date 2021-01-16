@@ -117,7 +117,7 @@ router.get('/currentPlayback', (req, res) => {
     // Output items
     if (data.body && data.body.is_playing) {
       console.log("User is currently playing something!");
-      res.send(data.body);
+      res.send({ data: data.body });
     } else {
       console.log("User is not playing anything, or doing so in private.");
     }
@@ -132,7 +132,7 @@ router.get('/whoami', (req, res) => {
   spotifyApi.getMe()
   .then(function(data) {
     console.log('Some information about the authenticated user', data.body);
-    res.send(data.body);
+    res.send({data: data.body});
   }, function(err) {
     console.log('Something went wrong!', err);
   });

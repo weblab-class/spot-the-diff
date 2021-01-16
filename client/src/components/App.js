@@ -30,10 +30,10 @@ class App extends Component {
 
   componentDidMount() {
     console.log('in componentDidMount');
-    // get("/api/whoami").then((data) => {
-    //   // console.log('here');
-    //   // console.log(data);
-    // });
+    get("/api/whoami").then((data) => {
+      console.log('here');
+      console.log(data);
+    });
   }
 
   handleLogin = (res) => {
