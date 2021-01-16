@@ -7,7 +7,7 @@ import NavBar from "./modules/NavBar.js";
 import About from "./pages/About.js"
 import Home from "./pages/Home.js"
 import Profile from "./pages/Profile.js"
-import Stats from "./pages/Profile.js"
+import Stats from "./pages/Stats.js"
 
 import "../utilities.css";
 import "./App.css";
@@ -68,9 +68,11 @@ class App extends Component {
           <About path="/" />
           <Profile path="/" />
           /> */}
-          <Login 
-            path="/" />
+          <Login path="/" />
           <Profile path="/profile" />
+          <Stats path="/stats" />
+          <About path="/about" />
+          <Home path="/home" />
           <NotFound default />
         </Router>
       </>
