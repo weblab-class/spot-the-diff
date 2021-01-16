@@ -29,11 +29,10 @@ class App extends Component {
   }
 
   componentDidMount() {
-    get("/api/whoami").then((user) => {
-      if (user._id) {
-        // they are registed in the database, and currently logged in.
-        this.setState({ userId: user._id });
-      }
+    console.log('in componentDidMount');
+    get("/api/whoami").then((data) => {
+      console.log('here');
+      console.log(data);
     });
   }
 
