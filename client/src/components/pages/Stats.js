@@ -16,9 +16,14 @@ class Stats extends Component {
     fetchTopTracks = () => {
         console.log("fetching top tracks");
         get("/api/topTracks").then((data) => {
-            console.log(data);
-            let topTitles = data.map(song => song.name);
-            console.log("next")
+            let topTitles = [];
+            data.forEach(function (item, i) {
+                let title = {
+                    name: item.name,
+                    image: item.album.images[0].url,
+                }
+                topTitles.push(title)
+            });
             console.log(topTitles)
             this.setState( { topTracks: topTitles})
         }) 
@@ -30,8 +35,11 @@ class Stats extends Component {
             <div>
                 <h1>This is the stats page</h1>
                 <button onClick={this.fetchTopTracks}>Fetch top tracks</button>
-                {this.state.topTracks.map((song) => (
-                    <p>{song}</p>
+                {this.state.topTracks.map((title) => (
+                    <div>
+                        <p>{title.name}</p>
+                        <img src={title.image}/>
+                    </div>
                 ))}
             </div>
         );
