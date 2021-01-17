@@ -23,7 +23,7 @@ class Profile extends Component {
         })
         document.title = "Profile Page";
         <div>"Your Home Page!"</div>
-        get("/api/whoami").then(console.log("yolo"));
+        get("/api/getMe").then(console.log("yolo"));
         // get(`/api/whoami`, { userid: this.props.body }).then((user) => this.setState({ user: user }));
 
     }

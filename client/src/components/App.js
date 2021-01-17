@@ -30,9 +30,9 @@ class App extends Component {
 
   componentDidMount() {
     console.log('in componentDidMount');
-    get("/api/whoami").then((data) => {
+    get("/api/getMe").then((data) => {
       console.log('here');
-      console.log(data);
+      console.log(data.body);
     });
   }
 

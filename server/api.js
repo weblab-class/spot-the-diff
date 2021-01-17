@@ -21,7 +21,7 @@ const router = express.Router();
 //initialize socket
 const socketManager = require("./server-socket");
 
-var SpotifyWebApi = require('spotify-web-api-node');
+const SpotifyWebApi = require('spotify-web-api-node');
 scopes = ['user-read-private', 
           'user-read-email',
           'playlist-modify-public',
@@ -33,7 +33,7 @@ scopes = ['user-read-private',
 
 require('dotenv').config();
 
-var spotifyApi = new SpotifyWebApi({
+const spotifyApi = new SpotifyWebApi({
   clientId: process.env.SPOTIFY_API_ID,
   clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
   redirectUri: process.env.CALLBACK_URI,
@@ -42,28 +42,30 @@ var spotifyApi = new SpotifyWebApi({
 // button on front end should call & query API for this func
 
 router.get('/spotify-login', (req,res) => {
-  var html = spotifyApi.createAuthorizeURL(scopes)
-  console.log(html)
-  res.send({url:html})  
+  // var html = spotifyApi.createAuthorizeURL(scopes)
+  // console.log(html)
+  // res.send({url:html})
+  auth.spotifyLogin(req, res, spotifyApi)
 })
 
 router.get('/callback', async (req,res) => {
-  const { code } = req.query;
-  console.log(code)
-  try {
-    var data = await spotifyApi.authorizationCodeGrant(code)
-    const { access_token, refresh_token } = data.body;
-    spotifyApi.setAccessToken(access_token);
-    spotifyApi.setRefreshToken(refresh_token);
+  // const { code } = req.query;
+  // console.log(code)
+  // try {
+  //   var data = await spotifyApi.authorizationCodeGrant(code)
+  //   const { access_token, refresh_token } = data.body;
+  //   spotifyApi.setAccessToken(access_token);
+  //   spotifyApi.setRefreshToken(refresh_token);
 
-    res.redirect('http://localhost:5000');
-  } catch(err) {
-    res.redirect('/#/error/invalid token');
-  }
+  //   res.redirect('http://localhost:5000');
+  // } catch(err) {
+  //   res.redirect('/#/error/invalid token');
+  // }
+  auth.callback(req, res, spotifyApi)
 });
 
-router.post("/login", auth.login);
-router.post("/logout", auth.logout);
+// router.post("/login", auth.login);
+// router.post("/logout", auth.logout);
 // router.get("/whoami", (req, res) => {
 //   if (!req.user) {
 //     // not logged in
@@ -72,6 +74,29 @@ router.post("/logout", auth.logout);
 
 //   res.send(req.user);
 // });
+router.get('/getMe', (req, res) => {
+  console.log('in who am i get request');
+  // Get the authenticated user
+  spotifyApi.getMe()
+  .then(function(data) {
+    console.log('Some information about the authenticated user', data.body);
+    res.send(data);
+  }, function(err) {
+    console.log('Something went wrong!', err);
+  });
+})
+
+router.post("/logout", (req, res) => { auth.logout(req, res, spotifyApi) });
+
+// do we need whoami? don't think so...
+router.get("/whoami", (req, res) => {
+  if (!req.user) {
+    // not logged in
+    return res.send({});
+  }
+
+  res.send(req.user);
+});
 
 router.post("/initsocket", (req, res) => {
   // do nothing if user not logged in
@@ -134,17 +159,6 @@ router.get('/currentPlayback', (req, res) => {
   });
 })
 
-router.get('/whoami', (req, res) => {
-  console.log('in who am i get request');
-  // Get the authenticated user
-  spotifyApi.getMe()
-  .then(function(data) {
-    console.log('Some information about the authenticated user', data.body);
-    res.send({data: data.body});
-  }, function(err) {
-    console.log('Something went wrong!', err);
-  });
-})
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
