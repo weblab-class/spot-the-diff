@@ -30,23 +30,37 @@ class App extends Component {
 
   componentDidMount() {
     console.log('in componentDidMount');
-    get("/api/getMe").then((data) => {
-      console.log('here');
-      console.log(data.body);
+    
+
+    get("/api/whoami").then((user) => {
+      console.log('in whoami')
+      if (user._id) {
+        // they are registed in the database, and currently logged in.
+        console.log('user id is', user._id);
+        this.setState({ userId: user._id });
+      }
     });
   }
 
-  handleLogin = (res) => {
-    console.log(`Logged in as ${res.profileObj.name}`);
-    const userToken = res.tokenObj.id_token;
-    post("/api/login", { token: userToken }).then((user) => {
-      this.setState({ userId: user._id });
-      post("/api/initsocket", { socketid: socket.id });
-    });
-  };
+  // handleLogin = (res) => {
+  //   console.log(`Logged in as ${res.profileObj.name}`);
+  //   const userToken = res.tokenObj.id_token;
+  //   post("/api/login", { token: userToken }).then((user) => {
+  //     this.setState({ userId: user._id });
+  //     post("/api/initsocket", { socketid: socket.id });
+  //   });
+  // };
+
+  handleLogin = () => {
+    get("/api/spotify-login").then((data) => {
+      console.log(data.url);
+      window.location.href = data.url;
+    })
+  }  
 
   handleLogout = () => {
     this.setState({ userId: undefined });
+    console.log("logging out");
     post("/api/logout");
   };
 
@@ -67,7 +81,12 @@ class App extends Component {
           <About path="/" />
           <Profile path="/" />
           /> */}
-          <Login path="/" />
+          <Login 
+            path="/" 
+            handleLogin={this.handleLogin}
+            handleLogout={this.handleLogout}
+            userId={this.state.userId}
+          />
           <Profile path="/profile" />
           <Stats path="/stats" />
           <About path="/about" />

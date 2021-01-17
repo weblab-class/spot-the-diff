@@ -11,25 +11,30 @@ class Login extends Component {
         this.state = {};
     }
 
-    handleLogin = () => {
-        get("/api/spotify-login").then((data) => {
-          console.log(data.url);
-          window.location.href = data.url;
-        })
-      }  
     
-      fetchPlaylists = () => {
-        get("/api/playlists").then((data) => {
-          console.log(data);
-        })
-      }
+    componentDidMount() {
+      // api calls
+    }
 
-      fetchRecent = () => {
-        console.log("fetching recent");
-        get("/api/recent").then((data) => {
-          console.log(data);
-        })
-      }
+    getMe = () => {
+      get("/api/getMe").then((data) => {
+        console.log('here');
+        console.log(data.body);
+      });
+    }
+
+    fetchPlaylists = () => {
+      get("/api/playlists").then((data) => {
+        console.log(data);
+      })
+    }
+
+    fetchRecent = () => {
+      console.log("fetching recent");
+      get("/api/recent").then((data) => {
+        console.log(data);
+      })
+    }
     
     render() {
         return (
@@ -37,9 +42,13 @@ class Login extends Component {
                 <div className='Login-container'>
                     <h1 className='u-textCenter'>welcome! login to spotify to get started.</h1>
                     <h3 className='u-textCenter'>or, learn more about us first.</h3>
-                    <button onClick={this.handleLogin}>Login here pls</button>
                     <button onClick={this.fetchPlaylists}>Fetch playlists</button>
                     <button onClick={this.fetchRecent}>Fetch recent</button>
+                    <button onClick={this.getMe}>getMe</button>
+
+                    <button onClick={this.props.handleLogin}>spotify login</button>
+                    <button onClick={this.props.handleLogout}>logout</button>
+                    {this.props.userId ? <div>check your console log and explore the object there for user {this.props.userId}</div> : <div></div>}
                 </div>
             </>
         );

@@ -75,7 +75,7 @@ router.get('/callback', async (req,res) => {
 //   res.send(req.user);
 // });
 router.get('/getMe', (req, res) => {
-  console.log('in who am i get request');
+  console.log('in getme request');
   // Get the authenticated user
   spotifyApi.getMe()
   .then(function(data) {
@@ -90,11 +90,11 @@ router.post("/logout", (req, res) => { auth.logout(req, res, spotifyApi) });
 
 // do we need whoami? don't think so...
 router.get("/whoami", (req, res) => {
+  console.log('in whoami')
   if (!req.user) {
     // not logged in
     return res.send({});
   }
-
   res.send(req.user);
 });
 
