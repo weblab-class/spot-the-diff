@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { get, post } from "../../utilities";
 
 import "../../utilities.css";
+import TopTracks from "../modules/TopTracks";
 
 import "./Stats.css";
 
@@ -13,7 +14,7 @@ class Stats extends Component {
         };
     }
 
-    fetchTopTracks = () => {
+    componentDidMount() {
         console.log("fetching top tracks");
         get("/api/topTracks").then((data) => {
             let topTitles = [];
@@ -27,20 +28,13 @@ class Stats extends Component {
             console.log(topTitles)
             this.setState( { topTracks: topTitles})
         }) 
-
     }
 
     render() {
         return (
             <div>
                 <h1>This is the stats page</h1>
-                <button onClick={this.fetchTopTracks}>Fetch top tracks</button>
-                {this.state.topTracks.map((title) => (
-                    <div>
-                        <p>{title.name}</p>
-                        <img src={title.image}/>
-                    </div>
-                ))}
+                <TopTracks data={this.state.topTracks} />
             </div>
         );
     }

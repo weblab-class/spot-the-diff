@@ -133,7 +133,7 @@ router.get('/recent', (req, res) => {
 });
 
 router.get('/topTracks', (req, res) => {
-  spotifyApi.getMyTopTracks()
+  spotifyApi.getMyTopTracks({ limit: 6, offset: 0 })
   .then(function(data) {
     let topTracks = data.body.items;
     console.log(topTracks);
