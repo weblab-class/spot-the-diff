@@ -37,8 +37,8 @@ class Stats extends Component {
             // post("/api/user-topArtists", data);
         });
 
+        // gets other user's top artists
         get("/api/user-topArtists", { otherId: this.state.otherId }).then((data) => {
-            console.log('got other user data');
             console.log('other user data: ', data.artists);
         })
     }

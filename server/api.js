@@ -172,22 +172,45 @@ router.get('/topTracks', (req, res) => {
 
 // Gets a user's top artists, and saves them to mongo database
 router.get('/topArtists', (req, res) => {
+  
+  TopArtists.findOne({ userId: req.user.spotifyId}).then((data) => {
+    // check if artistlist is 
+    // if response is defined, call spotify api
+
+  })
+  
   /* Get a User’s Top Artists*/
   spotifyApi.getMyTopArtists()
   .then(function(data) {
     let topArtists = data.body.items;
     // console.log(topArtists);
 
-    // save top artists to database
-    const artists = new TopArtists({
-      userId: req.user.spotifyId,
-      artistList: topArtists,
-    })
-    artists.save().then(() => {
-      console.log(artists.userId);
-      console.log('artists saved to mongo');
-      res.send(topArtists);
-    })
+    // check if user exists in database: if yes, update their document
+    // if not, add a new document
+    TopArtists.findOne({ userId: req.user.spotifyId }).then((data) => {
+      if (data && data.artistList !== topArtists) {
+        // update their document
+        data.artistList = topArtists;
+        data.save().then(() => {
+          console.log(data.userId);
+          console.log('user already exists, updated document');
+          res.send(topArtists);
+        })
+      }
+      else {
+        //add a new document
+        const artists = new TopArtists({
+          userId: req.user.spotifyId,
+          artistList: topArtists,
+        });
+        artists.save().then(() => {
+          console.log(artists.userId);
+          console.log('new user! artists saved to mongo');
+          res.send(topArtists);
+        })
+      }
+    });
+    
     
   }, function(err) {
     console.log('Something went wrong!', err);
