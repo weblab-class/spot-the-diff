@@ -4,6 +4,10 @@ import { get, post } from "../../utilities";
 
 import "./NavBar.css";
 
+/**
+ * Proptypes
+ * @param {string} userId
+ */
 class NavBar extends Component {
     constructor(props) {
         super(props);
@@ -42,15 +46,24 @@ class NavBar extends Component {
 
         return (
             <nav className="NavBar-container">
-                <p className="NavBar-text NavBar-left">Currently Playing: </p>
-                <p className="NavBar-text NavBar-left">{currentSong}</p>
-                {/* TODO: constantly check for playback without button - with socket? */}
-                <button onClick={this.getCurrentPlayback}>click for current playback</button>
+                {this.props.userId ? 
+                    <>
+                    <p className="NavBar-text NavBar-left">Currently Playing: </p>
+                    <p className="NavBar-text NavBar-left">{currentSong}</p>
+                    {/* TODO: constantly check for playback without button - with socket? */}
+                    <button onClick={this.getCurrentPlayback}>click for current playback</button>
+                    </> : <></>
+                }
+                
                 <div className="NavBar-right">
                     <Link to="/" className="NavBar-text"> Login </Link>
-                    <Link to="/home" className="NavBar-text"> Home </Link>
-                    <Link to="/profile" className="NavBar-text"> Profile </Link>
-                    <Link to="/stats" className="NavBar-text"> Stats </Link>
+                    {this.props.userId ? 
+                        <>
+                        <Link to="/home" className="NavBar-text"> Home </Link>
+                        <Link to="/profile" className="NavBar-text"> Profile </Link>
+                        <Link to="/stats" className="NavBar-text"> Stats </Link>
+                        </> : <></>
+                    }
                     <Link to="/about" className="NavBar-text"> About </Link>
                 </div>
             </nav>

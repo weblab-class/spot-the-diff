@@ -5,6 +5,12 @@ import { get, post } from "../../utilities";
 import "../../utilities.css";
 import "./Login.css";
 
+/**
+ * Proptypes
+ * @param {string} userId
+ * @param {() => ()} handleLogin
+ * @param {() => ()} handleLogout
+ */
 class Login extends Component {
     constructor(props) {
         super(props);
