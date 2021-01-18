@@ -12,7 +12,8 @@ class Stats extends Component {
         this.state = {
             topTracks: [],
             // initialize to cheery hp userId
-            otherId: '6600381665f79ea15fba43deb',
+            // otherId: '6600381665f79ea15fba43deb',
+            otherId: 'helen_hu',
         };
     }
 
@@ -38,7 +39,7 @@ class Stats extends Component {
 
         get("/api/user-topArtists", { otherId: this.state.otherId }).then((data) => {
             console.log('got other user data');
-            console.log('other user data: ', data);
+            console.log('other user data: ', data.artists);
         })
     }
 

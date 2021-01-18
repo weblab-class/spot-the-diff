@@ -163,7 +163,7 @@ router.get('/topTracks', (req, res) => {
   spotifyApi.getMyTopTracks({ limit: 6, offset: 0 })
   .then(function(data) {
     let topTracks = data.body.items;
-    console.log(topTracks);
+    // console.log(topTracks);
     res.send(topTracks);
   }, function(err) {
     console.log('Something went wrong!', err);
@@ -176,14 +176,15 @@ router.get('/topArtists', (req, res) => {
   spotifyApi.getMyTopArtists()
   .then(function(data) {
     let topArtists = data.body.items;
-    console.log(topArtists);
+    // console.log(topArtists);
 
     // save top artists to database
     const artists = new TopArtists({
-      userId: req.query.userId,
+      userId: req.user.spotifyId,
       artistList: topArtists,
     })
     artists.save().then(() => {
+      console.log(artists.userId);
       console.log('artists saved to mongo');
       res.send(topArtists);
     })
@@ -198,9 +199,14 @@ router.get('/user-topArtists', (req, res) => {
   const targetId = req.query.otherId;
   console.log(targetId);
   const query = { userId: targetId };
-  TopArtists.find(query).then((data) => {
-    console.log(data);
-    res.send(data);
+
+  TopArtists.findOne(query).then((data) => {
+    console.log('fetching other top artists');
+    console.log(data.artistList);
+    res.send({ artists: data.artistList });
+  }).catch((err) => {
+    console.log(err);
+    res.send({});
   })
 
 })
