@@ -77,6 +77,7 @@ class App extends Component {
             handleLogout={this.handleLogout}
             userId={this.state.userId}
           />
+          {/* TODO: replace w '/profile:userId' and change accordingly in navbar.js */}
           <Profile path="/profile" />
           <Stats path="/stats" />
           <About path="/about" />

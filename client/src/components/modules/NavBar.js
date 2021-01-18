@@ -60,7 +60,7 @@ class NavBar extends Component {
                     {this.props.userId ? 
                         <>
                         <Link to="/home" className="NavBar-text"> Home </Link>
-                        <Link to="/profile" className="NavBar-text"> Profile </Link>
+                        <Link to='/profile' className="NavBar-text"> Profile </Link>
                         <Link to="/stats" className="NavBar-text"> Stats </Link>
                         </> : <></>
                     }

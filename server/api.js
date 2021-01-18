@@ -89,7 +89,7 @@ router.get('/getMe', (req, res) => {
   spotifyApi.getMe()
   .then(function(data) {
     console.log('Some information about the authenticated user', data.body);
-    res.send(data);
+    res.send(data.body);
   }, function(err) {
     console.log('Something went wrong!', err);
   });
