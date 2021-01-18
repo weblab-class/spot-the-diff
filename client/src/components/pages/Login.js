@@ -46,9 +46,10 @@ class Login extends Component {
                     <button onClick={this.fetchRecent}>Fetch recent</button>
                     <button onClick={this.getMe}>getMe</button>
 
-                    <button onClick={this.props.handleLogin}>spotify login</button>
-                    <button onClick={this.props.handleLogout}>logout</button>
                     {this.props.userId ? <div>check your console log and explore the object there for user {this.props.userId}</div> : <div></div>}
+                    {this.props.userId ? 
+                      <button onClick={this.props.handleLogout}>logout</button> :
+                      <button onClick={this.props.handleLogin}>login</button>}
                 </div>
             </>
         );

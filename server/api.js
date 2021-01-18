@@ -74,6 +74,15 @@ router.get('/callback', async (req,res) => {
 
 //   res.send(req.user);
 // });
+
+// do we need something like this where we pull it from mongo?? is tihs the same thing as /getMe???
+router.get("/user", (req, res) => {
+  User.findById(req.query.userid).then((user) => {
+    res.send(user);
+  });
+});
+
+
 router.get('/getMe', (req, res) => {
   console.log('in getme request');
   // Get the authenticated user
