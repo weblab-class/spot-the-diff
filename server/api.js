@@ -11,6 +11,7 @@ const express = require("express");
 
 // import models so we can interact with the database
 const User = require("./models/user");
+const Badge = require("./models/badge");
 
 // import authentication library
 const auth = require("./auth");
@@ -167,6 +168,17 @@ router.get('/currentPlayback', (req, res) => {
     console.log('Something went wrong!', err);
   });
 })
+
+router.get('/badges', (req, res) => {
+  // sends back all badges belong to that user (see badge.js for mongoose schema)
+})
+
+router.post('/badges', (req, res) => {
+  // posts a new badge for that user
+})
+
+
+
 
 
 /* GET home page. */
