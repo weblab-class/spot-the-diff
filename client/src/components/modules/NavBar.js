@@ -20,13 +20,14 @@ class NavBar extends Component {
     getCurrentPlayback = () => {
         console.log('in get current playback');
         get('/api/currentPlayback').then(data => {
-            console.log(data);
+            const playback = data.playback;
+            console.log(playback);
 
-            if (data) {
+            if (playback) {
                 console.log('playing')
                 this.setState({
                     isPlaying: true,
-                    currentlyPlaying: data,
+                    currentlyPlaying: playback,
                 });
             }
             // not currently playing, i.e. data is null
@@ -42,14 +43,22 @@ class NavBar extends Component {
     }
 
     render() {
-        let currentSong = this.state.isPlaying ? this.state.currentlyPlaying.item.name : 'start playing a song!';
+        let title;
+        if (!this.state.isPlaying) {
+            title = 'start playing a song!';
+        }
+        else {
+            const currentSong = this.state.currentlyPlaying.item.name;
+            const currentArtist = this.state.currentlyPlaying.item.artists[0].name;
+            title = currentSong + " - " + currentArtist;
+        }
 
         return (
             <nav className="NavBar-container">
                 {this.props.userId ? 
                     <>
                     <p className="NavBar-text NavBar-left">Currently Playing: </p>
-                    <p className="NavBar-text NavBar-left">{currentSong}</p>
+                    <p className="NavBar-text NavBar-left">{title}</p>
                     {/* TODO: constantly check for playback without button - with socket? */}
                     <button onClick={this.getCurrentPlayback}>click for current playback</button>
                     </> : <></>

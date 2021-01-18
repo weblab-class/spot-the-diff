@@ -158,10 +158,10 @@ router.get('/currentPlayback', (req, res) => {
     // Output items
     if (data.body && data.body.is_playing) {
       console.log("User is currently playing something!");
-      res.send(data.body);
+      res.send({ playback: data.body });
     } else {
       console.log("User is not playing anything, or doing so in private.");
-      res.send(null);
+      res.send({ playback: null });
     }
   }, function(err) {
     console.log('Something went wrong!', err);
