@@ -7,12 +7,23 @@
     box-shadow: 1px 1px 3px 3px #c0c0c0;
 }
 
-.NavBar-text {
+.NavBar-text-left {
     margin-top: 0px;
     margin-right: 10px;
     padding-top: 20px;
     padding-bottom: 30px;
     color: white;
+    text-decoration: none;
+}
+
+.NavBar-text-loggedout {
+    margin-top: 0px;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    color: white;
+    text-align: center;
+    margin-left: 450px;
+    text-decoration: none;
 }
 
 .NavBar-button{

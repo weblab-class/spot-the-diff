@@ -57,23 +57,27 @@ class NavBar extends Component {
             <nav className="NavBar-container">
                 {this.props.userId ? 
                     <>
-                    <p className="NavBar-text NavBar-left">Currently Playing: </p>
-                    <div className="NavBar-text NavBar-song">{title}</div>
+                    <p className="NavBar-text-left NavBar-left">Currently Playing: </p>
+                    <div className="NavBar-text-left NavBar-song">{title}</div>
                     {/* TODO: constantly check for playback without button - with socket? */}
                     <button onClick={this.getCurrentPlayback} className="NavBar-button">click for current playback</button>
                     </> : <></>
                 }
                 
                 <div className="NavBar-right">
-                    <Link to="/" className="NavBar-text"> Login </Link>
-                    {this.props.userId ? 
-                        <>
-                        <Link to="/home" className="NavBar-text"> Home </Link>
-                        <Link to='/profile' className="NavBar-text"> Profile </Link>
-                        <Link to="/stats" className="NavBar-text"> Stats </Link>
-                        </> : <></>
-                    }
-                    <Link to="/about" className="NavBar-text"> About </Link>
+                    {this.props.userId ? (
+                    <>
+                        <Link to="/" className="NavBar-text-left"> Home </Link>
+                        <Link to="/about" className="NavBar-text-left"> About </Link>
+                        <Link to='/profile' className="NavBar-text-left"> Profile </Link>
+                        <Link to="/stats" className="NavBar-text-left"> Stats </Link>
+                    </>
+                    ): (
+                    <>
+                        <Link to="/" className="NavBar-text-loggedout"> Home </Link>
+                        <Link to="/about" className="NavBar-text-loggedout"> About </Link>
+                    </>
+                    )}
                 </div>
             </nav>
         );
