@@ -170,6 +170,7 @@ router.get('/topTracks', (req, res) => {
   });
 })
 
+// Gets a user's top artists, and saves them to mongo database
 router.get('/topArtists', (req, res) => {
   /* Get a User’s Top Artists*/
   spotifyApi.getMyTopArtists()
@@ -194,6 +195,14 @@ router.get('/topArtists', (req, res) => {
 
 router.get('/user-topArtists', (req, res) => {
   // get top artists from a specific user
+  const targetId = req.query.otherId;
+  console.log(targetId);
+  const query = { userId: targetId };
+  TopArtists.find(query).then((data) => {
+    console.log(data);
+    res.send(data);
+  })
+
 })
 
 router.post('/user-topArtists', (req, res) => {
