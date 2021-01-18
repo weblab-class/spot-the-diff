@@ -60,7 +60,7 @@ class NavBar extends Component {
                     <p className="NavBar-text NavBar-left">Currently Playing: </p>
                     <p className="NavBar-text NavBar-left">{title}</p>
                     {/* TODO: constantly check for playback without button - with socket? */}
-                    <button onClick={this.getCurrentPlayback}>click for current playback</button>
+                    <button onClick={this.getCurrentPlayback} className="NavBar-button">click for current playback</button>
                     </> : <></>
                 }
                 
