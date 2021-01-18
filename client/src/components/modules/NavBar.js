@@ -58,7 +58,7 @@ class NavBar extends Component {
                 {this.props.userId ? 
                     <>
                     <p className="NavBar-text NavBar-left">Currently Playing: </p>
-                    <p className="NavBar-text NavBar-left">{title}</p>
+                    <div className="NavBar-text NavBar-song">{title}</div>
                     {/* TODO: constantly check for playback without button - with socket? */}
                     <button onClick={this.getCurrentPlayback} className="NavBar-button">click for current playback</button>
                     </> : <></>

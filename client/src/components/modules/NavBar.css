@@ -25,6 +25,11 @@
     margin-left: 10px;
 }
 
+.NavBar-song{
+    flex: 1.5;
+    margin-left: -685px;
+}
+
 .NavBar-right {
     flex: 0.5;
     display: flex;
