@@ -173,13 +173,6 @@ router.get('/topTracks', (req, res) => {
 // Gets a user's top artists, and saves them to mongo database
 router.get('/topArtists', (req, res) => {
   
-  TopArtists.findOne({ userId: req.user.spotifyId}).then((data) => {
-    // check if artistlist is 
-    // if response is defined, call spotify api
-
-  })
-  
-  /* Get a User’s Top Artists*/
   spotifyApi.getMyTopArtists()
   .then(function(data) {
     let topArtists = data.body.items;
@@ -210,8 +203,6 @@ router.get('/topArtists', (req, res) => {
         })
       }
     });
-    
-    
   }, function(err) {
     console.log('Something went wrong!', err);
   });
