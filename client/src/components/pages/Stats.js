@@ -27,7 +27,12 @@ class Stats extends Component {
             });
             console.log(topTitles)
             this.setState( { topTracks: topTitles})
-        }) 
+        });
+
+        get("/api/topArtists").then((data) => {
+            console.log('top artists: ', data);
+            // post("/api/user-topArtists", data);
+        });
     }
 
     render() {
