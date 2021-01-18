@@ -55,11 +55,11 @@ class Profile extends Component {
         return (
             <>
                 <div className="Profile-container">
-                    <h1>This is the profile page</h1>
+                    <h1> All about you</h1>
                     <h2>hi, {username}!</h2>
                     <img src={userIcon} />
                 </div>
-                <div>
+                <div className="Profile-container">
                     <h2>Your playlists look good</h2>
                 </div>
             </>

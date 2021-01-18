@@ -9,7 +9,7 @@ class About extends Component {
 
     render() {
         return (
-            <h1>This is the about page</h1>
+            <h1 className='u-centertext'>We are a team of three music lovers aiming to revolutionize the Spotify listening experience!</h1>
         );
     }
 }

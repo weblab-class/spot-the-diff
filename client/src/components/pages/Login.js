@@ -46,16 +46,18 @@ class Login extends Component {
         return (
             <>
                 <div className='Login-container'>
-                    <h1 className='u-textCenter'>welcome! login to spotify to get started.</h1>
-                    <h3 className='u-textCenter'>or, learn more about us first.</h3>
-                    <button onClick={this.fetchPlaylists}>Fetch playlists</button>
-                    <button onClick={this.fetchRecent}>Fetch recent</button>
-                    <button onClick={this.getMe}>getMe</button>
-
-                    {this.props.userId ? <div>check your console log and explore the object there for user {this.props.userId}</div> : <div></div>}
                     {this.props.userId ? 
-                      <button onClick={this.props.handleLogout}>logout</button> :
-                      <button onClick={this.props.handleLogin}>login</button>}
+                      <>
+                      <h1 className='u-textCenter'>checkout your listening info below!</h1>
+                      <button onClick={this.fetchPlaylists}>Fetch playlists</button>
+                      <button onClick={this.fetchRecent}>Fetch recent</button>
+                      <button onClick={this.getMe}>getMe</button>
+                      <button onClick={this.props.handleLogout}>logout here</button>
+                      </> :
+                      <>
+                      <h1 className='u-textCenter'>welcome! login to spotify below to get started.</h1>
+                      <button onClick={this.props.handleLogin}>login here</button> </>}
+                    {this.props.userId ? <div>check your console log and explore the object there for user {this.props.userId}</div> : <div></div>}
                 </div>
             </>
         );
