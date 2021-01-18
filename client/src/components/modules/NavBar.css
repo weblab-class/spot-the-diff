@@ -28,7 +28,6 @@
 
 .NavBar-button{
     margin-right: 10px;
-    margin-left: 10px;
 }
 
 .NavBar-left {
@@ -38,7 +37,7 @@
 
 .NavBar-song{
     flex: 1.5;
-    margin-left: -685px;
+    margin-left: -670px;
 }
 
 .NavBar-right {

@@ -15,9 +15,9 @@
 */
 
 /* TODO: REPLACE WITH YOUR OWN FONT! */
-@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 /* @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap'); */
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;400&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;400&display=swap'); */
 
 :root {
   --background_color: #FFFFFF;
@@ -26,7 +26,7 @@
   --m: 16px;
   --l: 24px;
 
-  --text-family: Source Sans Pro;
+  --text-family: 'Roboto', sans-serif; 
   --text-style: normal;
   --text-weight: normal;
   --text-color: #C4C4C4;
@@ -71,8 +71,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Source Sans Pro',
-  sans-serif;
+  font-family: text-family;
   font-weight: 500;
 }
 
@@ -109,10 +108,6 @@ form {
   text-align: center;
 }
 
-.u-textCenter {
-  text-align: center;
-}
-
 .u-relative {
   position: relative;
 }
@@ -129,4 +124,8 @@ form {
 
 .u-link:hover {
   color: var(--primary--dim);
+}
+
+.u-vertical-center{
+  margin:auto;
 }

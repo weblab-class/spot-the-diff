@@ -57,8 +57,8 @@ class NavBar extends Component {
             <nav className="NavBar-container">
                 {this.props.userId ? 
                     <>
-                    <p className="NavBar-text-left NavBar-left">Currently Playing: </p>
-                    <div className="NavBar-text-left NavBar-song">{title}</div>
+                    <p className="NavBar-text-left NavBar-left m-text">Currently Playing:  </p>
+                    <div className="NavBar-text-left NavBar-song m-text">{title}</div>
                     {/* TODO: constantly check for playback without button - with socket? */}
                     <button onClick={this.getCurrentPlayback} className="NavBar-button">click for current playback</button>
                     </> : <></>
@@ -67,15 +67,15 @@ class NavBar extends Component {
                 <div className="NavBar-right">
                     {this.props.userId ? (
                     <>
-                        <Link to="/" className="NavBar-text-left"> Home </Link>
-                        <Link to="/about" className="NavBar-text-left"> About </Link>
-                        <Link to='/profile' className="NavBar-text-left"> Profile </Link>
-                        <Link to="/stats" className="NavBar-text-left"> Stats </Link>
+                        <Link to="/" className="NavBar-text-left m-text"> Home </Link>
+                        <Link to="/about" className="NavBar-text-left m-text"> About </Link>
+                        <Link to='/profile' className="NavBar-text-left m-text"> Profile </Link>
+                        <Link to="/stats" className="NavBar-text-left m-text"> Stats </Link>
                     </>
                     ): (
                     <>
-                        <Link to="/" className="NavBar-text-loggedout"> Home </Link>
-                        <Link to="/about" className="NavBar-text-loggedout"> About </Link>
+                        <Link to="/" className="NavBar-text-loggedout m-text"> Home </Link>
+                        <Link to="/about" className="NavBar-text-loggedout m-text"> About </Link>
                     </>
                     )}
                 </div>

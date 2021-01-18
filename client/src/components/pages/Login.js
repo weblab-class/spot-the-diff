@@ -48,14 +48,15 @@ class Login extends Component {
                 <div className='Login-container'>
                     {this.props.userId ? 
                       <>
-                      <h1 className='u-textCenter'>checkout your listening info below!</h1>
+                      <h1 className='u-centertext'>checkout your listening info below!</h1>
                       <button onClick={this.fetchPlaylists}>Fetch playlists</button>
                       <button onClick={this.fetchRecent}>Fetch recent</button>
                       <button onClick={this.getMe}>getMe</button>
                       <button onClick={this.props.handleLogout}>logout here</button>
                       </> :
                       <>
-                      <h1 className='u-textCenter'>welcome! login to spotify below to get started.</h1>
+                      <h1 className='u-centertext .xl-text'>welcome!</h1>
+                      <h2> login to spotify below to get started</h2>
                       <button onClick={this.props.handleLogin}>login here</button> </>}
                     {this.props.userId ? <div>check your console log and explore the object there for user {this.props.userId}</div> : <div></div>}
                 </div>
