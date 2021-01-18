@@ -13,6 +13,7 @@ const express = require("express");
 const User = require("./models/user");
 const Badge = require("./models/badge");
 const TopArtists = require("./models/top-artists");
+const TopTracks = require("./models/top-tracks")
 
 // import authentication library
 const auth = require("./auth");
@@ -163,8 +164,17 @@ router.get('/topTracks', (req, res) => {
   spotifyApi.getMyTopTracks({ limit: 6, offset: 0 })
   .then(function(data) {
     let topTracks = data.body.items;
-    // console.log(topTracks);
-    res.send(topTracks);
+
+    const tracks = new TopTracks({
+      spotifyId: "helloooo",
+      artistList: topTracks,
+    });
+
+    tracks.save().then(() => {
+      console.log('tracks saved to mongo');
+      res.send(topTracks);
+    })
+
   }, function(err) {
     console.log('Something went wrong!', err);
   });
@@ -203,6 +213,18 @@ router.get('/topArtists', (req, res) => {
         })
       }
     });
+    
+
+    // // save top artists to database
+    // const artists = new TopArtists({
+    //   userId: req.query.userId,
+    //   artistList: topArtists,
+    // })
+    // artists.save().then(() => {
+    //   console.log('artists saved to mongo');
+    //   res.send(topArtists);
+    // })
+    
   }, function(err) {
     console.log('Something went wrong!', err);
   });

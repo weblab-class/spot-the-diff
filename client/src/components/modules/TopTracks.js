@@ -14,12 +14,12 @@ class TopTracks extends Component {
 
         return (
             <>
-                {this.props.data.map((title, i) => (
-                        <div>
-                            <p>{title.name}</p>
-                            <img src={title.image}/>
-                        </div>
-                ))}
+            {this.props.data.map((title, i) => (
+                <div>
+                    <p>{title.name}</p>
+                    <img src={title.image}/>
+                </div>
+            ))}
             </>
         );
     }
