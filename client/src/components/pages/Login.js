@@ -25,7 +25,7 @@ class Login extends Component {
     getMe = () => {
       get("/api/getMe").then((data) => {
         console.log('here');
-        console.log(data.body);
+        console.log(data);
       });
     }
 

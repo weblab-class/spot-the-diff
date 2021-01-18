@@ -22,14 +22,14 @@ class NavBar extends Component {
         get('/api/currentPlayback').then(data => {
             console.log(data);
 
-            if (data.data) {
+            if (data) {
                 console.log('playing')
                 this.setState({
                     isPlaying: true,
-                    currentlyPlaying: data.data,
+                    currentlyPlaying: data,
                 });
             }
-            // not currently playing, i.e. data.data is null
+            // not currently playing, i.e. data is null
             else {
                 console.log('not playing')
                 this.setState({
