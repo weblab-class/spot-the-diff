@@ -11,6 +11,8 @@ class Stats extends Component {
         super(props);
         this.state = {
             topTracks: [],
+            // initialize to cheery hp userId
+            otherId: '6600381665f79ea15fba43deb',
         };
     }
 
@@ -27,7 +29,17 @@ class Stats extends Component {
             });
             console.log(topTitles)
             this.setState( { topTracks: topTitles})
-        }) 
+        });
+
+        get("/api/topArtists").then((data) => {
+            console.log('top artists: ', data);
+            // post("/api/user-topArtists", data);
+        });
+
+        get("/api/user-topArtists", { otherId: this.state.otherId }).then((data) => {
+            console.log('got other user data');
+            console.log('other user data: ', data);
+        })
     }
 
     render() {

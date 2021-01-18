@@ -12,6 +12,7 @@ const express = require("express");
 // import models so we can interact with the database
 const User = require("./models/user");
 const Badge = require("./models/badge");
+const TopArtists = require("./models/top-artists");
 
 // import authentication library
 const auth = require("./auth");
@@ -142,17 +143,6 @@ router.get('/recent', (req, res) => {
   });
 });
 
-router.get('/topTracks', (req, res) => {
-  spotifyApi.getMyTopTracks({ limit: 6, offset: 0 })
-  .then(function(data) {
-    let topTracks = data.body.items;
-    console.log(topTracks);
-    res.send(topTracks);
-  }, function(err) {
-    console.log('Something went wrong!', err);
-  });
-})
-
 router.get('/currentPlayback', (req, res) => {
   spotifyApi.getMyCurrentPlaybackState()
   .then(function(data) {
@@ -168,6 +158,57 @@ router.get('/currentPlayback', (req, res) => {
     console.log('Something went wrong!', err);
   });
 })
+
+router.get('/topTracks', (req, res) => {
+  spotifyApi.getMyTopTracks({ limit: 6, offset: 0 })
+  .then(function(data) {
+    let topTracks = data.body.items;
+    console.log(topTracks);
+    res.send(topTracks);
+  }, function(err) {
+    console.log('Something went wrong!', err);
+  });
+})
+
+// Gets a user's top artists, and saves them to mongo database
+router.get('/topArtists', (req, res) => {
+  /* Get a User’s Top Artists*/
+  spotifyApi.getMyTopArtists()
+  .then(function(data) {
+    let topArtists = data.body.items;
+    console.log(topArtists);
+
+    // save top artists to database
+    const artists = new TopArtists({
+      userId: req.query.userId,
+      artistList: topArtists,
+    })
+    artists.save().then(() => {
+      console.log('artists saved to mongo');
+      res.send(topArtists);
+    })
+    
+  }, function(err) {
+    console.log('Something went wrong!', err);
+  });
+})
+
+router.get('/user-topArtists', (req, res) => {
+  // get top artists from a specific user
+  const targetId = req.query.otherId;
+  console.log(targetId);
+  const query = { userId: targetId };
+  TopArtists.find(query).then((data) => {
+    console.log(data);
+    res.send(data);
+  })
+
+})
+
+router.post('/user-topArtists', (req, res) => {
+  // post top artists for a specific user
+})
+
 
 router.get('/badges', (req, res) => {
   // sends back all badges belong to that user (see badge.js for mongoose schema)
