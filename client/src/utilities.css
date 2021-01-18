@@ -105,6 +105,10 @@ form {
   font-weight: 600;
 }
 
+.u-centertext {
+  text-align: center;
+}
+
 .u-textCenter {
   text-align: center;
 }
