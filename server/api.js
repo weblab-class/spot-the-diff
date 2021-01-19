@@ -87,11 +87,11 @@ router.get("/user", (req, res) => {
 
 
 router.get('/getMe', (req, res) => {
-  console.log('in getme request');
+  // console.log('in getme request');
   // Get the authenticated user
   spotifyApi.getMe()
   .then(function(data) {
-    console.log('Some information about the authenticated user', data.body);
+    // console.log('Some information about the authenticated user', data.body);
     res.send(data.body);
   }, function(err) {
     console.log('Something went wrong!', err);
@@ -102,7 +102,7 @@ router.post("/logout", (req, res) => { auth.logout(req, res, spotifyApi) });
 
 // do we need whoami? don't think so...
 router.get("/whoami", (req, res) => {
-  console.log('in whoami')
+  // console.log('in whoami')
   if (!req.user) {
     // not logged in
     return res.send({});
@@ -124,7 +124,7 @@ router.post("/initsocket", (req, res) => {
 router.get('/playlists', async (req,res) => {
   try {
     var result = await spotifyApi.getUserPlaylists();
-    console.log(result.body);
+    // console.log(result.body);
     res.status(200).send(result.body);
   } catch (err) {
     res.status(400).send(err)
@@ -136,8 +136,8 @@ router.get('/recent', (req, res) => {
     limit : 20
   }).then(function(data) {
     // Output items
-    console.log("Your 20 most recently played tracks are:");
-    data.body.items.forEach(item => console.log(item.track));
+    // console.log("Your 20 most recently played tracks are:");
+    // data.body.items.forEach(item => console.log(item.track));
     res.send(data.body.items)
   }, function(err) {
     console.log('Something went wrong!', err);
@@ -149,10 +149,10 @@ router.get('/currentPlayback', (req, res) => {
   .then(function(data) {
     // Output items
     if (data.body && data.body.is_playing) {
-      console.log("User is currently playing something!");
+      // console.log("User is currently playing something!");
       res.send({ playback: data.body });
     } else {
-      console.log("User is not playing anything, or doing so in private.");
+      // console.log("User is not playing anything, or doing so in private.");
       res.send({ playback: null });
     }
   }, function(err) {
@@ -204,23 +204,30 @@ router.get('/topTracks', (req, res) => {
 
 // Gets a user's top artists, and saves them to mongo database
 router.get('/topArtists', (req, res) => {
+  
+  // run this to clear your top artists (kinda dangerous)
+  // TopArtists.deleteMany({ userId: req.user.spotifyId }).then(() => {
+  //   console.log('deleted everyones topartists');
+  // });
+
+
   /* Get a User’s Top Artists*/
   spotifyApi.getMyTopArtists().then((data) => {
     const topArtists = data.body.items;
-    console.log('my top artists', topArtists);
+    // console.log('my top artists', topArtists);
 
     // check if user exists in database: if yes, update their document
     // if not, add a new document
     TopArtists.findOne({ userId: req.user.spotifyId }).then((doc) => {
       console.log(req.user.spotifyId + '\n');
       if (doc) {
-        console.log('alr in database: ', doc.artistList);
-        console.log('new artistlist: ', topArtists);
+        // console.log('alr in database: ', doc.artistList);
+        // console.log('new artistlist: ', topArtists);
         if (doc.artistList !== topArtists) {
           // update their document
           doc.artistList = topArtists;
           doc.save().then(() => {
-            console.log(doc.userId);
+            // console.log(doc.userId);
             console.log('user already exists, updated top artists');
             res.send(topArtists);
           })
@@ -256,7 +263,7 @@ router.get('/user-topArtists', (req, res) => {
 
   TopArtists.findOne(query).then((data) => {
     console.log('fetching other top artists');
-    console.log(data.artistList);
+    // console.log(data.artistList);
     res.send({ artists: data.artistList });
   }).catch((err) => {
     console.log(err);
@@ -267,12 +274,12 @@ router.get('/user-topArtists', (req, res) => {
 router.get('/user-topTracks', (req, res) => {
   // get top tracks from a specific user
   const targetId = req.query.otherId;
-  console.log(targetId);
+  console.log('target id: ', targetId);
   const query = { userId: targetId };
 
   TopTracks.findOne(query).then((data) => {
     console.log('fetching other top tracks');
-    console.log(data.trackList);
+    // console.log(data.trackList);
     res.send({ tracks: data.trackList });
   }).catch((err) => {
     console.log(err);
