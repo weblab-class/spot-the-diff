@@ -34,7 +34,7 @@ class Profile extends Component {
                 playlists: prevState.playlists.concat(newPlaylists)
             }));
         });
-        document.title = "Profile Page";
+        // document.title = "Profile Page";
         // <div>"Your Home Page!"</div>
 
         get("/api/getMe").then((data) => {
@@ -55,8 +55,8 @@ class Profile extends Component {
         return (
             <>
                 <div className="Profile-container">
-                    <h1> All about you</h1>
-                    <h2>hi, {username}!</h2>
+                    <h1> All about {username}</h1>
+                    {/* <h2>hi, {username}!</h2> */}
                     <img src={userIcon} />
                 </div>
                 <div className="Profile-container">
