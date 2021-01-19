@@ -8,7 +8,9 @@ class Card extends Component {
 
 render() {
     return (
-      <div className="Card-background Card-shape"></div>
+      <div className="Card-shape Card-color">
+        {this.props.children}
+      </div>
     )
     }
 }
