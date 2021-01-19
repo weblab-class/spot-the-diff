@@ -163,7 +163,7 @@ router.get('/currentPlayback', (req, res) => {
 router.get('/topTracks', (req, res) => {
   spotifyApi.getMyTopTracks({ limit: 6, offset: 0 })
   .then(function(data) {
-    const topTracks = data.body.items;
+    let topTracks = data.body.items;
     // let topTitles = [];
 
     // topTracks.forEach(function (item, i) {
