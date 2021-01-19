@@ -39,8 +39,8 @@ render() {
             </ul>
             <label htmlFor="fname">Enter a friend's spotify ID:</label><br/>
             <div>
-                <input type="text" id="fname" name="fname" class="Form-input" value={this.state.value} onChange={this.handleChange} /><br/>
-                <input type="submit" class="Form-submit" value="Enter"></input>
+                <input type="text" id="fname" name="fname" className="Form-input" value={this.state.value} onChange={this.handleChange} /><br/>
+                <input type="submit" className="Form-submit" value="Enter"></input>
             </div>
         </form>
     )

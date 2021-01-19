@@ -59,8 +59,8 @@ class Login extends Component {
                     <>
                     {/* <h1 className='u-centertext l-text'>checkout your listening info below!</h1>
                     <button onClick={this.fetchPlaylists}>Fetch playlists</button>
-                    <button onClick={this.fetchRecent}>Fetch recent</button> */
-                    <button onClick={this.getMe} className="Login-button"><b>Get Me</b></button> }
+                    <button onClick={this.fetchRecent}>Fetch recent</button>
+                    <button onClick={this.getMe} className="Login-button"><b>Get Me</b></button> */}
                     <button onClick={this.props.handleLogout} className="Login-button"><b>Logout</b></button> 
                     <h2> your spotify ID is: {this.props.spotifyId}</h2></> :
                     <>

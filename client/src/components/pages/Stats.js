@@ -113,7 +113,7 @@ class Stats extends Component {
                 {isComparing ? 
                     <>
                     <button onClick={this.handleCompare}>get compatibility!</button>
-                    <h3>your compatibility with {this.state.otherId} is: {this.state.compatibility}%</h3> </> :
+                    <h3>your compatibility with your friend is: {this.state.compatibility}%</h3> </> :
                     <></> }
                 
                 <Form compareArtists={this.getUserArtists} compareTracks={this.getUserTracks} />
