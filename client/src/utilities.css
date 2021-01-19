@@ -20,14 +20,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;400&display=swap');
 
 :root {
-  --background_color: #FFFFFF;
+  --background-color: #FAFAFA;
+  --text-color: #36393B;
+  --accent1: #87CBD4;
+  --accent2: #B7E1CD;
 
+  /* pulled these from skeleton in case we need
   --primary: #396dff;
   --primary--dim: #6987db;
   --darkgrey: #d4d4d4;
   --medgrey: #e0e0e0;
   --grey: #f7f7f7;
   --white: #fff;
+  */
 
   --xs: 4px;
   --s: 8px;
@@ -37,7 +42,8 @@
   --text-family: 'Source Sans Pro', sans-serif; 
   --text-style: normal;
   --text-weight: normal;
-  --text-color: #C4C4C4;
+  /* --text-color: #C4C4C4; */
+  
 }
 
 .xl-text {
