@@ -16,9 +16,10 @@ class Stats extends Component {
             topTracks: [],
             topArtists: [],
             // can test with 'krishnahibye' or 'helen_hu'
-            otherId: 'krishnahibye',
+            otherId: '',
             friendArtists: null,
             friendTracks: null,
+            compatibility: undefined,
         };
     }
 
@@ -74,10 +75,12 @@ class Stats extends Component {
         const tracks_pts = 2*commonTracks.length / (tracksA.length + tracksB.length);
         const artists_pts = 2*commonArtists.length / (artistsA.length + artistsB.length);
 
-        const total_pts = tracks_pts + artists_pts;
+        const total_pts = 100 * (tracks_pts + artists_pts)/2;
 
         console.log(total_pts);
-        return total_pts;
+        this.setState({
+            compatibility: total_pts,
+        });
     }
 
     render() {
@@ -85,9 +88,11 @@ class Stats extends Component {
             return <div> Loading! </div>;
         }
         let compare;
+        let isComparing = false;
         if (!this.state.friendArtists) {
             compare = (<span className="Stats-left">Enter the username of a friend to compare!</span>);
         } else {
+            isComparing = true;
             compare = (
                 <>
                     <div className="flex-column">
@@ -103,7 +108,13 @@ class Stats extends Component {
         return (
             <div>
                 <h1 className='u-centertext .xl-text'>Custom Listening Insights</h1>
-                <button onClick={this.handleCompare}>get compatibility!</button>
+
+                {isComparing ? 
+                    <>
+                    <button onClick={this.handleCompare}>get compatibility!</button>
+                    <h3>your compatibility with {this.state.otherId} is: {this.state.compatibility}%</h3> </> :
+                    <></> }
+                
                 <Form compareArtists={this.getUserArtists} compareTracks={this.getUserTracks} />
                 <div className="flex-row">
                     <div className="flex-column">
