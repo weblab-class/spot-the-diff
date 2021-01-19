@@ -100,7 +100,7 @@ router.get('/getMe', (req, res) => {
 
 router.post("/logout", (req, res) => { auth.logout(req, res, spotifyApi) });
 
-// do we need whoami? don't think so...
+// do we need whoami?
 router.get("/whoami", (req, res) => {
   // console.log('in whoami')
   if (!req.user) {
@@ -160,7 +160,7 @@ router.get('/currentPlayback', (req, res) => {
   });
 })
 
-router.get('/topTracks', (req, res) => {
+router.get('/topTracks', auth.ensureLoggedIn, (req, res) => {
   spotifyApi.getMyTopTracks({ limit: 12, offset: 0 })
   .then(function(data) {
     let topTracks = data.body.items;
@@ -203,7 +203,7 @@ router.get('/topTracks', (req, res) => {
 })
 
 // Gets a user's top artists, and saves them to mongo database
-router.get('/topArtists', (req, res) => {
+router.get('/topArtists', auth.ensureLoggedIn, (req, res) => {
   
   // run this to clear your top artists (kinda dangerous)
   // TopArtists.deleteMany({ userId: req.user.spotifyId }).then(() => {
