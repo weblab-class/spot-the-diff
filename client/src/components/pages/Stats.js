@@ -4,6 +4,7 @@ import { get, post } from "../../utilities";
 import "../../utilities.css";
 import TopTracks from "../modules/TopTracks";
 import Card from "../modules/Card";
+import Form from "../modules/Form"
 
 import "./Stats.css";
 
@@ -48,6 +49,7 @@ class Stats extends Component {
         return (
             <div>
                 <h1>This is the stats page</h1>
+                <Form />
                 <Card>
                     <TopTracks data={this.state.topTracks} />
                 </Card>
