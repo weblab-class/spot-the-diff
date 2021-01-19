@@ -32,19 +32,17 @@ class Login extends Component {
       // });
     }
 
+    // these are for testing purposes
     getMe = () => {
       get("/api/getMe").then((data) => {
-        console.log('here');
-        console.log(data);
+        console.log('in getMe, user data: ', data);
       });
     }
-
     fetchPlaylists = () => {
       get("/api/playlists").then((data) => {
         console.log(data);
       })
     }
-
     fetchRecent = () => {
       console.log("fetching recent");
       get("/api/recent").then((data) => {
@@ -61,8 +59,8 @@ class Login extends Component {
                     <>
                     {/* <h1 className='u-centertext l-text'>checkout your listening info below!</h1>
                     <button onClick={this.fetchPlaylists}>Fetch playlists</button>
-                    <button onClick={this.fetchRecent}>Fetch recent</button>
-                    <button onClick={this.getMe}>getMe</button> */}
+                    <button onClick={this.fetchRecent}>Fetch recent</button> */
+                    <button onClick={this.getMe}>getMe</button> }
                     <button onClick={this.props.handleLogout}>logout here</button> 
                     <h2> your spotify ID is: {this.props.spotifyId}</h2></> :
                     <>

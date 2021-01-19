@@ -100,7 +100,7 @@ router.get('/getMe', (req, res) => {
 
 router.post("/logout", (req, res) => { auth.logout(req, res, spotifyApi) });
 
-// do we need whoami?
+// whoami sends the user object stored in mongo database; i.e. with fields 'name' and 'spotifyId'
 router.get("/whoami", (req, res) => {
   // console.log('in whoami')
   if (!req.user) {
