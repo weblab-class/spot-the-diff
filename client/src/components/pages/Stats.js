@@ -56,6 +56,24 @@ class Stats extends Component {
         })
     }
 
+    handleCompare = () => {
+        const intersect = (arrA, arrB) => {
+            return arrA.filter(x => arrB.some(y => y.id === x.id));
+        }
+        const tracksA = this.state.topTracks;
+        const tracksB = this.state.friendTracks;
+        const artistsA = this.state.topArtists;
+        const artistsB = this.state.friendArtists;
+
+        const commonTracks = intersect(tracksA, tracksB);
+        const commonArtists = intersect(artistsA, artistsB);
+
+        console.log('common tracks: ', commonTracks);
+        console.log('common artists: ', commonArtists);
+
+        
+    }
+
     render() {
         if (!this.state.topTracks || !this.state.topArtists) {
             return <div> Loading! </div>;
@@ -65,18 +83,21 @@ class Stats extends Component {
             compare = (<span className="Stats-left">Enter the username of a friend to compare!</span>);
         } else {
             compare = (
-                <div className="flex-column">
-                    <h2>Friend's Top Tracks</h2>
-                    <TopTracks data={this.state.friendTracks} />
-                    <h2>Friend's Top Artists</h2>
-                    <TopArtists topArtists={this.state.friendArtists} />
-                </div>
+                <>
+                    <div className="flex-column">
+                        <h2>Friend's Top Tracks</h2>
+                        <TopTracks data={this.state.friendTracks} />
+                        <h2>Friend's Top Artists</h2>
+                        <TopArtists topArtists={this.state.friendArtists} />
+                    </div>
+                </>
             )
         }
 
         return (
             <div>
                 <h1 className='u-centertext .xl-text'>Custom Listening Insights</h1>
+                <button onClick={this.handleCompare}>get compatibility!</button>
                 <Form compareArtists={this.getUserArtists} compareTracks={this.getUserTracks} />
                 <div className="flex-row">
                     <div className="flex-column">
