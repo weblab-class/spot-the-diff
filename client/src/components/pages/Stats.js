@@ -3,6 +3,7 @@ import { get, post } from "../../utilities";
 
 import "../../utilities.css";
 import TopTracks from "../modules/TopTracks";
+import TopArtists from "../modules/TopArtists";
 import Card from "../modules/Card";
 
 import "./Stats.css";
@@ -12,6 +13,7 @@ class Stats extends Component {
         super(props);
         this.state = {
             topTracks: [],
+            topArtists: [],
             // can test with 'krishnahibye' or 'helen_hu'
             otherId: 'krishnahibye',
         };
@@ -35,7 +37,9 @@ class Stats extends Component {
 
         get("/api/topArtists").then((data) => {
             console.log('my top artists: ', data);
-            // post("/api/user-topArtists", data);
+            this.setState({
+                topArtists: data,
+            })
         });
 
         // gets other user's top artists
@@ -45,12 +49,18 @@ class Stats extends Component {
     }
 
     render() {
+        if (!this.state.topTracks || !this.state.topArtists) {
+            return <div> Loading! </div>;
+        }
         return (
             <div>
                 <h1>This is the stats page</h1>
                 <Card>
                     <TopTracks data={this.state.topTracks} />
                 </Card>
+                <div>
+                    <TopArtists topArtists={this.state.topArtists} />
+                </div>
             </div>
         );
     }

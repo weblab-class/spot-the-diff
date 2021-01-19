@@ -10,7 +10,7 @@ class TopTracks extends Component {
 
 
     render() {
-        // console.log(this.props.data[1])
+        console.log(this.props.data[1])
 
         return (
             <>
