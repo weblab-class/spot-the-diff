@@ -12,3 +12,8 @@
 .Stats-left {
     text-align: left;
 }
+
+.Stats-space-evenly {
+    display: flex;
+    justify-content: space-evenly;
+}

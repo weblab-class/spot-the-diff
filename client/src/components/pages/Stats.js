@@ -81,7 +81,7 @@ class Stats extends Component {
                 <div className="flex-row">
                     <div className="flex-column">
                         <h2 className='u-centertext'>My Top Tracks</h2>
-                        <TopTracks data={this.state.topTracks} />
+                        <TopTracks data={this.state.topTracks}/>
                         <h2 className='u-centertext'>My Top Artists</h2>
                         <TopArtists topArtists={this.state.topArtists} />
                     </div>
