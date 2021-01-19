@@ -20,6 +20,7 @@ class Form extends Component {
         alert('A name was submitted: ' + this.state.value);
         event.preventDefault();
         this.props.compareArtists(this.state.value);
+        this.props.compareTracks(this.state.value);
     }
 
 render() {

@@ -44,23 +44,7 @@ class Stats extends Component {
             this.setState({
                 topArtists: data,
             })
-        });
-
-        
-    }
-
-    getOtherTopTracks = () => {
-        // gets other user's top tracks
-        get("/api/user-topTracks", { otherId: this.state.otherId }).then((data) => {
-            console.log(this.state.otherId, 'top tracks: ', data.tracks);
-        });
-    }
-
-    getOtherTopArtists = () => {
-        // gets other user's top artists
-        // get("/api/user-topArtists", { otherId: this.state.otherId }).then((data) => {
-        //     console.log(this.state.otherId, 'top artists: ', data.artists);
-        // })
+        }); 
     }
 
     getUserArtists = (userId) => {
@@ -68,6 +52,14 @@ class Stats extends Component {
             console.log("Retrieving friend's favorite artists...")
             console.log(userId, 'top artists: ', data.artists);
             console.log("eyy it worked!")
+        })
+    }
+
+    getUserTracks = (userId) => {
+        get("/api/user-topTracks", { otherId: userId }).then((data) => {
+            console.log("Retrieving friend's favorite tracks...")
+            console.log(userId, 'top tracks: ', data.tracks);
+            console.log("eyy it worked again!")
         })
     }
 
@@ -79,9 +71,7 @@ class Stats extends Component {
             <>
             <div>
                 <h1>This is the stats page</h1>
-                <button onClick={this.getOtherTopArtists}>Get other user's top artists (hardcoded user rn)</button>
-                <button onClick={this.getOtherTopTracks}>Get other user's top tracks (hardcoded user rn)</button>
-                <Form />
+                <Form compareArtists={this.getUserArtists} compareTracks={this.getUserTracks} />
                 <Card>
                     <TopTracks data={this.state.topTracks} />
                 </Card> 
