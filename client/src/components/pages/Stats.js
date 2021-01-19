@@ -22,18 +22,8 @@ class Stats extends Component {
     }
 
     componentDidMount() {
-        console.log("fetching top tracks");
         get("/api/topTracks").then((data) => {
-            console.log(data)
-            // let topTitles = [];
-            // data.forEach(function (item, i) {
-            //     let title = {
-            //         name: item.name,
-            //         image: item.album.images[0].url,
-            //     }
-            //     topTitles.push(title)
-            // });
-            // console.log(topTitles)
+            console.log('my top tracks: ', data);
             this.setState({ 
                 topTracks: data, 
             });

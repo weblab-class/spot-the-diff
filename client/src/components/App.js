@@ -40,6 +40,20 @@ class App extends Component {
         this.setState({ userId: user._id });
       }
     });
+
+    get("/api/topTracks").then((data) => {
+      console.log('my top tracks: ', data);
+      this.setState({ 
+          topTracks: data, 
+      });
+    });
+
+    get("/api/topArtists").then((data) => {
+      console.log('my top artists: ', data);
+      this.setState({
+          topArtists: data,
+      })
+    }); 
   }
 
   // handleLogin = (res) => {
