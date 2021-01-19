@@ -45,20 +45,19 @@ class NavBar extends Component {
     render() {
         let title;
         if (!this.state.isPlaying) {
-            title = 'start playing a song!';
+            title = 'Start playing a song!';
         }
         else {
             const currentSong = this.state.currentlyPlaying.item.name;
             const currentArtist = this.state.currentlyPlaying.item.artists[0].name;
-            title = currentSong + " - " + currentArtist;
+            title = "Currently Playing: " + currentSong + " - " + currentArtist;
         }
 
         return (
             <nav className="NavBar-container">
                 {this.props.userId ? 
                     <>
-                    <p className="NavBar-text-left NavBar-left m-text">Currently Playing:  </p>
-                    <div className="NavBar-text-left NavBar-song m-text">{title}</div>
+                    <p className="NavBar-text-left NavBar-left m-text"> {title} </p>
                     {/* TODO: constantly check for playback without button - with socket? */}
                     <button onClick={this.getCurrentPlayback} className="NavBar-button">click for current playback</button>
                     </> : <></>

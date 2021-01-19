@@ -1,0 +1,23 @@
+.Form-input {
+    border: 0px;
+    box-shadow: 1px 1px 1px 1px #bbb;
+    border-radius: 20px;
+    height: 30px;
+    width: 200px;
+    padding-left: 20px;
+}
+
+.Form-submit {
+    height: 30px;
+    border: 0px;
+    width: 60px;
+    border-radius: 10px;
+}
+
+.Form-submit:hover {
+    background-color: rgb(231, 231, 231);
+}
+
+.Form-div {
+    display: inline-block;
+}
