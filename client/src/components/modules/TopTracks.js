@@ -16,6 +16,9 @@ class TopTracks extends Component {
 
     render() {
         // console.log(this.props.data[1])
+        if (!this.props.data) {
+            return <div>Loading!</div>
+        }
 
         return (
             <div className="TopTracks-grid">
