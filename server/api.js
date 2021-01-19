@@ -161,7 +161,7 @@ router.get('/currentPlayback', (req, res) => {
 })
 
 router.get('/topTracks', (req, res) => {
-  spotifyApi.getMyTopTracks({ limit: 6, offset: 0 })
+  spotifyApi.getMyTopTracks({ limit: 12, offset: 0 })
   .then(function(data) {
     let topTracks = data.body.items;
     // let topTitles = [];
@@ -212,7 +212,7 @@ router.get('/topArtists', (req, res) => {
 
 
   /* Get a User’s Top Artists*/
-  spotifyApi.getMyTopArtists().then((data) => {
+  spotifyApi.getMyTopArtists({ limit: 12, offset: 0 }).then((data) => {
     const topArtists = data.body.items;
     // console.log('my top artists', topArtists);
 

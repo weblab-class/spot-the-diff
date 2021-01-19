@@ -1,9 +1,22 @@
-.TopTrack-image {
-    width: 200px;
-    margin-left: 10px;
-    margin-right: 10px;
+.TopTracks-image {
+    width: 100px;
+    margin-left: 0;
+    margin-right: 0;
 }
 
-.TopTrack-div {
+.TopTracks-div {
     text-align: center;
-} 
+    padding-left: 0px;
+}
+
+.TopTracks-text {
+    margin: 0 0 0 0;
+}
+
+.TopTracks-grid {
+    width: 100px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* grid-gap: 1rem; */
+    /* grid-auto-rows: minmax(50px, auto); */
+}
