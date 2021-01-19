@@ -62,7 +62,7 @@ class Stats extends Component {
         }
         let compare;
         if (!this.state.friendArtists) {
-            compare = (<p>Enter the username of a friend to compare!</p>);
+            compare = (<span className="Stats-left">Enter the username of a friend to compare!</span>);
         } else {
             compare = (
                 <div className="flex-column">
@@ -76,13 +76,13 @@ class Stats extends Component {
 
         return (
             <div>
-                <h1>This is the stats page</h1>
+                <h1 className='u-centertext .xl-text'>Custom Listening Insights</h1>
                 <Form compareArtists={this.getUserArtists} compareTracks={this.getUserTracks} />
                 <div className="flex-row">
                     <div className="flex-column">
-                        <h2>My Top Tracks</h2>
+                        <h2 className='u-centertext'>My Top Tracks</h2>
                         <TopTracks data={this.state.topTracks} />
-                        <h2>My Top Artists</h2>
+                        <h2 className='u-centertext'>My Top Artists</h2>
                         <TopArtists topArtists={this.state.topArtists} />
                     </div>
                     {compare}

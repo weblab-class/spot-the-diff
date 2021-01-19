@@ -6,5 +6,9 @@
 .flex-column {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    /* width: 50%; */
+}
+
+.Stats-left {
+    text-align: left;
 }
