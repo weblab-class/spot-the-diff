@@ -20,8 +20,8 @@ class TopTracks extends Component {
         return (
             <div className="TopTracks-grid">
             {this.props.data.map((trackObj) => (
-                <Card>
-                    <div key={trackObj.id} className="TopTracks-div">
+                <Card key={trackObj.id}>
+                    <div className="TopTracks-div">
                         <img className="TopTracks-image" src={trackObj.album.images[0].url}/>
                         <p className="TopTracks-text">{trackObj.name}</p>
                     </div>

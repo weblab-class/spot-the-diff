@@ -20,8 +20,8 @@ class TopArtists extends Component {
         return (
             <div className="TopArtists-grid">
             {this.props.topArtists.map((artistObj) => (
-                <Card>
-                    <div key={artistObj.id} className="TopArtists-div">
+                <Card key={artistObj.id}>
+                    <div className="TopArtists-div">
                         <img className="TopArtists-image" src={artistObj.images[0].url}/>
                         <p className="TopArtists-text">{artistObj.name}</p>
                     </div>
