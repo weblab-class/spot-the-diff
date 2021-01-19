@@ -99,7 +99,11 @@ class App extends Component {
             spotifyId={this.state.spotifyId}
           />
           {/* <Profile path="/profile/:userId" /> */}
-          <Stats path="/stats/:userId" />
+          <Stats 
+            path="/stats/:userId" 
+            userId={this.state.userId}
+            spotifyId={this.state.spotifyId}
+          />
           <About path="/about" />
           <Home path="/home" />
           <NotFound default />
