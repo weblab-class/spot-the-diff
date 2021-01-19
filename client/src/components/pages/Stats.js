@@ -50,9 +50,9 @@ class Stats extends Component {
 
     getOtherTopTracks = () => {
         // gets other user's top tracks
-        // get("/api/user-topTracks", { otherId: this.state.otherId }).then((data) => {
-        //     console.log(this.state.otherId, 'top tracks: ', data.tracks);
-        // })
+        get("/api/user-topTracks", { otherId: this.state.otherId }).then((data) => {
+            console.log(this.state.otherId, 'top tracks: ', data.tracks);
+        });
     }
 
     getOtherTopArtists = () => {
