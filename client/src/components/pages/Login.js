@@ -8,18 +8,28 @@ import "./Login.css";
 /**
  * Proptypes
  * @param {string} userId
+ * @param {string} spotifyId (like username)
  * @param {() => ()} handleLogin
  * @param {() => ()} handleLogout
  */
 class Login extends Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+          spotifyId: undefined,
+        };
     }
 
     
     componentDidMount() {
       // api calls
+      // get("/api/getMe").then((data) => {
+      //   console.log('here');
+      //   console.log(data);
+      //   this.setState({
+      //     spotifyId: data.id,
+      //   })
+      // });
     }
 
     getMe = () => {
@@ -46,19 +56,19 @@ class Login extends Component {
         return (
             <>
                 <div className='Login-container'>
-                    {this.props.userId ? 
-                      <>
-                      <h1 className='u-centertext l-text'>checkout your listening info below!</h1>
-                      <button onClick={this.fetchPlaylists}>Fetch playlists</button>
-                      <button onClick={this.fetchRecent}>Fetch recent</button>
-                      <button onClick={this.getMe}>getMe</button>
-                      <button onClick={this.props.handleLogout}>logout here</button>
-                      </> :
-                      <>
-                      <h1 className='u-centertext xl-text'>welcome to Spot the Diff!</h1>
-                      <h2> login to spotify below to get started</h2>
-                      <button onClick={this.props.handleLogin}>login here</button> </>}
-                    {this.props.userId ? <div>check your console log and explore the object there for user {this.props.userId}</div> : <div></div>}
+                  <h1 className='u-centertext xl-text'>welcome to Spot the Diff!</h1>
+                  {this.props.userId ? 
+                    <>
+                    {/* <h1 className='u-centertext l-text'>checkout your listening info below!</h1>
+                    <button onClick={this.fetchPlaylists}>Fetch playlists</button>
+                    <button onClick={this.fetchRecent}>Fetch recent</button>
+                    <button onClick={this.getMe}>getMe</button> */}
+                    <button onClick={this.props.handleLogout}>logout here</button> 
+                    <h2> your spotify ID is: {this.props.spotifyId}</h2></> :
+                    <>
+                    <h2> login to spotify below to get started</h2>
+                    <button onClick={this.props.handleLogin}>login here</button> </>}
+                    {/* {this.props.userId ? <div>check your console log and explore the object there for user {this.props.userId}</div> : <div></div>} */}
                 </div>
             </>
         );

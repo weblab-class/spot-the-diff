@@ -25,6 +25,7 @@ class App extends Component {
     super(props);
     this.state = {
       userId: undefined,
+      spotifyId: undefined,
     };
   }
 
@@ -33,11 +34,15 @@ class App extends Component {
     
 
     get("/api/whoami").then((user) => {
-      console.log('in whoami')
+      console.log('in whoami; user data is', user);
       if (user._id) {
         // they are registed in the database, and currently logged in.
         console.log('user id is', user._id);
-        this.setState({ userId: user._id });
+        console.log('spotify id is: ', user.spotifyId);
+        this.setState({ 
+          userId: user._id,
+          spotifyId: user.spotifyId,
+        });
       }
     });
 
@@ -91,6 +96,7 @@ class App extends Component {
             handleLogin={this.handleLogin}
             handleLogout={this.handleLogout}
             userId={this.state.userId}
+            spotifyId={this.state.spotifyId}
           />
           {/* TODO: replace w '/profile:userId' and change accordingly in navbar.js */}
           <Profile path="/profile" />
