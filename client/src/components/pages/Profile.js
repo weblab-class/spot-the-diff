@@ -60,7 +60,7 @@ class Profile extends Component {
                     <img src={userIcon} />
                 </div>
                 <div className="Profile-container">
-                    <h2>Your playlists look good</h2>
+                    <h2>your music taste is fire omg</h2>
                 </div>
             </>
         );

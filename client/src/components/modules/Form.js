@@ -32,7 +32,12 @@ render() {
     
     return (
         <form onSubmit={this.handleSubmit}>
-            <label htmlFor="fname">Enter a friend's username:</label><br/>
+            <h3>To compare your stats with your friends...</h3>
+            <ul>
+                <li>make sure they've logged into our website before</li>
+                <li>your spotify ID can be found on the home page, right under the logout button!</li>
+            </ul>
+            <label htmlFor="fname">Enter a friend's spotify ID:</label><br/>
             <input type="text" id="fname" name="fname" value={this.state.value} onChange={this.handleChange} /><br/>
             <input type="submit"></input>
         </form>

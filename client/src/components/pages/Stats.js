@@ -90,7 +90,8 @@ class Stats extends Component {
         let compare;
         let isComparing = false;
         if (!this.state.friendArtists) {
-            compare = (<span className="Stats-left">Enter the username of a friend to compare!</span>);
+            // compare = (<span className="Stats-left">Enter the username of a friend to compare!</span>);
+            compare = <div></div>;
         } else {
             isComparing = true;
             compare = (
