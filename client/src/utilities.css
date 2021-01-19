@@ -21,6 +21,14 @@
 
 :root {
   --background_color: #FFFFFF;
+
+  --primary: #396dff;
+  --primary--dim: #6987db;
+  --darkgrey: #d4d4d4;
+  --medgrey: #e0e0e0;
+  --grey: #f7f7f7;
+  --white: #fff;
+
   --xs: 4px;
   --s: 8px;
   --m: 16px;
@@ -33,45 +41,45 @@
 }
 
 .xl-text {
-  font-family: text-family;
-  font-style: text-style;
-  font-weight: text-weight;
+  font-family: var(--text-family);
+  font-style: var(--text-style);
+  font-weight: var(--text-weight);
   font-size: 36px;
   line-height: 45px;
-  color: text-color;
+  color: var(--text-color);
 }
 
 .l-text {
-  font-family: text-family;
-  font-style: text-style;
-  font-weight: text-weight;
+  font-family: var(--text-family);
+  font-style: var(--text-style);
+  font-weight: var(--text-weight);
   font-size: 24px;
   line-height: 30px;
-  color: text-color;
+  color: var(--text-color);
 }
 
 .m-text {
-  font-family: text-family;
-  font-style: text-style;
-  font-weight: text-weight;
+  font-family: var(--text-family);
+  font-style: var(--text-style);
+  font-weight: var(--text-weight);
   font-size: 18px;
   line-height: 23px;
-  color: text-color;
+  color: var(--text-color);
 }
 
 .s-text {
-  font-family: text-family;
-  font-style: text-style;
-  font-weight: text-weight;
+  font-family: var(--text-family);
+  font-style: var(--text-style);
+  font-weight: var(--text-weight);
   font-size: 14px;
   line-height: 18px;
-  color: text-color;
+  color: var(--text-color);
 }
 
 body {
   margin: 0;
   padding: 0;
-  font-family: text-family;
+  font-family: var(--text-family);
   font-weight: 500;
 }
 
