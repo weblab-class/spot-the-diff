@@ -71,7 +71,13 @@ class Stats extends Component {
         console.log('common tracks: ', commonTracks);
         console.log('common artists: ', commonArtists);
 
-        
+        const tracks_pts = 2*commonTracks.length / (tracksA.length + tracksB.length);
+        const artists_pts = 2*commonArtists.length / (artistsA.length + artistsB.length);
+
+        const total_pts = tracks_pts + artists_pts;
+
+        console.log(total_pts);
+        return total_pts;
     }
 
     render() {
