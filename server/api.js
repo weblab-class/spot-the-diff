@@ -243,20 +243,6 @@ router.get('/topArtists', (req, res) => {
       }
     });
     
-<<<<<<< Updated upstream
-
-    // // save top artists to database
-    // const artists = new TopArtists({
-    //   userId: req.query.userId,
-    //   artistList: topArtists,
-    // })
-    // artists.save().then(() => {
-    //   console.log('artists saved to mongo');
-    //   res.send(topArtists);
-    // })
-=======
->>>>>>> Stashed changes
-    
   }, function(err) {
     console.log('Something went wrong!', err);
   });

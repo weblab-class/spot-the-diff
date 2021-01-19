@@ -17,7 +17,7 @@ class TopTracks extends Component {
             {this.props.data.map((title, i) => (
                 <div>
                     <p>{title.name}</p>
-                    <img src={title.image}/>
+                    <img className="TopTrack-image" src={title.image}/>
                 </div>
             ))}
             </>
