@@ -163,21 +163,21 @@ router.get('/currentPlayback', (req, res) => {
 router.get('/topTracks', (req, res) => {
   spotifyApi.getMyTopTracks({ limit: 6, offset: 0 })
   .then(function(data) {
-    let topTracks = data.body.items;
-    let topTitles = [];
+    const topTracks = data.body.items;
+    // let topTitles = [];
 
-    topTracks.forEach(function (item, i) {
-        let title = {
-            name: item.name,
-            image: item.album.images[0].url,
-        }
-        topTitles.push(title);
-    });
+    // topTracks.forEach(function (item, i) {
+    //     let title = {
+    //         name: item.name,
+    //         image: item.album.images[0].url,
+    //     }
+    //     topTitles.push(title);
+    // });
 
     TopTracks.findOne({ userId: req.user.spotifyId }).then((data) => {
-      if (data && data.trackList !== topTitles) {
+      if (data && data.trackList !== topTracks) {
         // update their document
-        data.trackList = topTitles;
+        data.trackList = topTracks;
         data.save().then(() => {
           console.log(data.userId);
           console.log('user already exists, updated tracks!');
@@ -188,7 +188,7 @@ router.get('/topTracks', (req, res) => {
         //add a new document
         const tracks = new TopTracks({
           userId: req.user.spotifyId,
-          trackList: topTitles,
+          trackList: topTracks,
         });
 
         tracks.save().then(() => {
@@ -262,7 +262,22 @@ router.get('/user-topArtists', (req, res) => {
     console.log(err);
     res.send({});
   })
+})
 
+router.get('/user-topTracks', (req, res) => {
+  // get top tracks from a specific user
+  const targetId = req.query.otherId;
+  console.log(targetId);
+  const query = { userId: targetId };
+
+  TopTracks.findOne(query).then((data) => {
+    console.log('fetching other top tracks');
+    console.log(data.trackList);
+    res.send({ tracks: data.trackList });
+  }).catch((err) => {
+    console.log(err);
+    res.send({});
+  })
 })
 
 router.post('/user-topArtists', (req, res) => {

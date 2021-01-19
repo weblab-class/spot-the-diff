@@ -14,7 +14,7 @@ class TopArtists extends Component {
 
 
     render() {
-        console.log('in top artists component:', this.props.topArtists);
+        // console.log('in top artists component:', this.props.topArtists);
 
         return (
             <>
