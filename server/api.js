@@ -205,29 +205,31 @@ router.get('/topTracks', (req, res) => {
 // Gets a user's top artists, and saves them to mongo database
 router.get('/topArtists', (req, res) => {
   
-  TopArtists.findOne({ userId: req.user.spotifyId} ).then((data) => {
-    // check if artistlist is 
-    // if response is defined, call spotify api
-
-  })
-  
   /* Get a User’s Top Artists*/
-  spotifyApi.getMyTopArtists()
-  .then(function(data) {
-    let topArtists = data.body.items;
-    // console.log(topArtists);
+  spotifyApi.getMyTopArtists().then((data) => {
+    const topArtists = data.body.items;
+    console.log('my top artists', topArtists);
 
     // check if user exists in database: if yes, update their document
     // if not, add a new document
-    TopArtists.findOne({ userId: req.user.spotifyId }).then((data) => {
-      if (data && data.artistList !== topArtists) {
-        // update their document
-        data.artistList = topArtists;
-        data.save().then(() => {
-          console.log(data.userId);
-          console.log('user already exists, updated document');
-          res.send(topArtists);
-        })
+    TopArtists.findOne({ userId: req.user.spotifyId }).then((doc) => {
+      console.log(req.user.spotifyId + '\n');
+      if (doc) {
+        console.log('alr in database: ', doc.artistList);
+        console.log('new artistlist: ', topArtists);
+        if (doc.artistList !== topArtists) {
+          // update their document
+          doc.artistList = topArtists;
+          doc.save().then(() => {
+            console.log(doc.userId);
+            console.log('user already exists, updated top artists');
+            res.send(topArtists);
+          })
+        }
+        else {
+          console.log('user already exists, top artists havent changed');
+          res.send(doc.artistList);
+        }
       }
       else {
         //add a new document
@@ -242,22 +244,7 @@ router.get('/topArtists', (req, res) => {
         })
       }
     });
-    
-<<<<<<< Updated upstream
-
-    // // save top artists to database
-    // const artists = new TopArtists({
-    //   userId: req.query.userId,
-    //   artistList: topArtists,
-    // })
-    // artists.save().then(() => {
-    //   console.log('artists saved to mongo');
-    //   res.send(topArtists);
-    // })
-=======
->>>>>>> Stashed changes
-    
-  }, function(err) {
+  }).catch((err) => {
     console.log('Something went wrong!', err);
   });
 })
