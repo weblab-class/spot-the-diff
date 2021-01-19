@@ -17,6 +17,7 @@ class Stats extends Component {
             topArtists: [],
             // can test with 'krishnahibye' or 'helen_hu'
             otherId: 'krishnahibye',
+            friendArtists: [],
         };
     }
 
@@ -46,8 +47,16 @@ class Stats extends Component {
         });
 
         // gets other user's top artists
-        get("/api/user-topArtists", { otherId: this.state.otherId }).then((data) => {
-            console.log(this.state.otherId, 'top artists: ', data.artists);
+        // get("/api/user-topArtists", { otherId: this.state.otherId }).then((data) => {
+        //     console.log(this.state.otherId, 'top artists: ', data.artists);
+        // })
+    }
+
+    getUserArtists = (userId) => {
+        get("/api/user-topArtists", { otherId: userId }).then((data) => {
+            console.log("Retrieving friend's favorite artists...")
+            console.log(userId, 'top artists: ', data.artists);
+            console.log("eyy it worked!")
         })
     }
 
@@ -59,7 +68,7 @@ class Stats extends Component {
             <>
             <div>
                 <h1>This is the stats page</h1>
-                <Form />
+                <Form compareArtists={this.getUserArtists} />
                 <Card>
                     <TopTracks data={this.state.topTracks} />
                 </Card> 
