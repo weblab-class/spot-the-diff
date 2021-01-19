@@ -1,7 +1,6 @@
 .Card-shape {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    display: flex;
+    flex-direction: row;
     position: absolute;
     padding: 10px 10px 10px 10px;
 }
