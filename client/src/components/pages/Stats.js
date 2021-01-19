@@ -17,7 +17,8 @@ class Stats extends Component {
             topArtists: [],
             // can test with 'krishnahibye' or 'helen_hu'
             otherId: 'krishnahibye',
-            friendArtists: [],
+            friendArtists: null,
+            friendTracks: null,
         };
     }
 
@@ -42,6 +43,7 @@ class Stats extends Component {
             console.log("Retrieving friend's favorite artists...")
             console.log(userId, 'top artists: ', data.artists);
             console.log("eyy it worked!")
+             this.setState({ friendArtists: data.artists })
         })
     }
 
@@ -50,6 +52,7 @@ class Stats extends Component {
             console.log("Retrieving friend's favorite tracks...")
             console.log(userId, 'top tracks: ', data.tracks);
             console.log("eyy it worked again!")
+            this.setState({ friendTracks: data.tracks })
         })
     }
 
@@ -57,19 +60,34 @@ class Stats extends Component {
         if (!this.state.topTracks || !this.state.topArtists) {
             return <div> Loading! </div>;
         }
+        let compare;
+        if (!this.state.friendArtists) {
+            compare = (<p>Enter the username of a friend to compare!</p>);
+        } else {
+            compare = (
+                <div className="flex-column">
+                    <h2>Friend's Top Tracks</h2>
+                    <TopTracks data={this.state.friendTracks} />
+                    <h2>Friend's Top Artists</h2>
+                    <TopArtists topArtists={this.state.friendArtists} />
+                </div>
+            )
+        }
+
         return (
-            <>
             <div>
                 <h1>This is the stats page</h1>
                 <Form compareArtists={this.getUserArtists} compareTracks={this.getUserTracks} />
-                <Card>
-                    <TopTracks data={this.state.topTracks} />
-                </Card> 
+                <div className="flex-row">
+                    <div className="flex-column">
+                        <h2>My Top Tracks</h2>
+                        <TopTracks data={this.state.topTracks} />
+                        <h2>My Top Artists</h2>
+                        <TopArtists topArtists={this.state.topArtists} />
+                    </div>
+                    {compare}
+                </div>
             </div>
-            <div>
-                <TopArtists topArtists={this.state.topArtists} />
-            </div>
-            </>
         );
     }
 }

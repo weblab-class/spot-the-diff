@@ -1,9 +1,20 @@
 .TopArtists-image {
-    width: 200px;
-    margin-left: 10px;
-    margin-right: 10px;
+    width: 100px;
+    margin-left: 0;
+    margin-right: 0;
 }
 
 .TopArtists-div {
     text-align: center;
+    padding-left: 0px;
 } 
+
+.TopArtists-text {
+    margin: 0 0 0 0;
+}
+
+.TopArtists-grid {
+    width: 100px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
