@@ -174,15 +174,21 @@ router.get('/topTracks', auth.ensureLoggedIn, (req, res) => {
     //     topTitles.push(title);
     // });
 
-    TopTracks.findOne({ userId: req.user.spotifyId }).then((data) => {
-      if (data && data.trackList !== topTracks) {
-        // update their document
-        data.trackList = topTracks;
-        data.save().then(() => {
-          console.log(data.userId);
-          console.log('user already exists, updated tracks!');
-          res.send(topTracks);
-        })
+    TopTracks.findOne({ userId: req.user.spotifyId }).then((doc) => {
+      if (doc) {
+        if (JSON.stringify(doc.trackList) != JSON.stringify(topTracks)) {
+          // update their document
+          doc.trackList = topTracks;
+          doc.save().then(() => {
+            console.log(doc.userId);
+            console.log('user already exists, updated tracks!');
+            res.send(topTracks);
+          })
+        } 
+        else {
+          console.log('user already exists, top tracks havent changed');
+          res.send(doc.trackList);
+        }
       }
       else {
         //add a new document
@@ -221,9 +227,10 @@ router.get('/topArtists', auth.ensureLoggedIn, (req, res) => {
     TopArtists.findOne({ userId: req.user.spotifyId }).then((doc) => {
       console.log(req.user.spotifyId + '\n');
       if (doc) {
-        console.log('alr in database: ', doc.artistList);
-        console.log('new artistlist: ', topArtists);
-        if (doc.artistList !== topArtists) {
+        // console.log('alr in database: ', doc.artistList);
+        // console.log('old list to json: ', JSON.stringify(doc.artistList));
+        // console.log('new list to json: ', JSON.stringify(topArtists));
+        if (JSON.stringify(doc.artistList) != JSON.stringify(topArtists)) {
           // update their document
           doc.artistList = topArtists;
           doc.save().then(() => {
