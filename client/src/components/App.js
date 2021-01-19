@@ -99,7 +99,7 @@ class App extends Component {
             spotifyId={this.state.spotifyId}
           />
           {/* TODO: replace w '/profile:userId' and change accordingly in navbar.js */}
-          <Profile path="/profile" />
+          {/* <Profile path="/profile" /> */}
           <Stats path="/stats" />
           <About path="/about" />
           <Home path="/home" />
