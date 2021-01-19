@@ -56,16 +56,18 @@ class Stats extends Component {
             return <div> Loading! </div>;
         }
         return (
+            <>
             <div>
                 <h1>This is the stats page</h1>
                 <Form />
                 <Card>
                     <TopTracks data={this.state.topTracks} />
-                </Card>
-                <div>
-                    <TopArtists topArtists={this.state.topArtists} />
-                </div>
+                </Card> 
             </div>
+            <div>
+                <TopArtists topArtists={this.state.topArtists} />
+            </div>
+            </>
         );
     }
 }
