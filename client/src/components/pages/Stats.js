@@ -20,6 +20,7 @@ class Stats extends Component {
     componentDidMount() {
         console.log("fetching top tracks");
         get("/api/topTracks").then((data) => {
+            console.log(data)
             let topTitles = [];
             data.forEach(function (item, i) {
                 let title = {

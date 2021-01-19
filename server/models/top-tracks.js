@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
 const TopTracksSchema = new mongoose.Schema({
-    spotifyId: String,
-    tracks: Array,
+    userId: String,
+    trackList: Array,
 });
 
 // compile model from schema

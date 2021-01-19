@@ -164,17 +164,39 @@ router.get('/topTracks', (req, res) => {
   spotifyApi.getMyTopTracks({ limit: 6, offset: 0 })
   .then(function(data) {
     let topTracks = data.body.items;
+    let topTitles = [];
 
-    const tracks = new TopTracks({
-      spotifyId: "helloooo",
-      artistList: topTracks,
+    topTracks.forEach(function (item, i) {
+        let title = {
+            name: item.name,
+            image: item.album.images[0].url,
+        }
+        topTitles.push(title);
     });
 
-    tracks.save().then(() => {
-      console.log('tracks saved to mongo');
-      res.send(topTracks);
-    })
+    TopTracks.findOne({ userId: req.user.spotifyId }).then((data) => {
+      if (data && data.trackList !== topTitles) {
+        // update their document
+        data.trackList = topTitles;
+        data.save().then(() => {
+          console.log(data.userId);
+          console.log('user already exists, updated tracks!');
+          res.send(topTracks);
+        })
+      }
+      else {
+        //add a new document
+        const tracks = new TopTracks({
+          userId: req.user.spotifyId,
+          trackList: topTitles,
+        });
 
+        tracks.save().then(() => {
+          console.log('tracks saved to mongo');
+          res.send(topTracks);
+        })
+      }
+    });
   }, function(err) {
     console.log('Something went wrong!', err);
   });
@@ -183,6 +205,13 @@ router.get('/topTracks', (req, res) => {
 // Gets a user's top artists, and saves them to mongo database
 router.get('/topArtists', (req, res) => {
   
+  TopArtists.findOne({ userId: req.user.spotifyId} ).then((data) => {
+    // check if artistlist is 
+    // if response is defined, call spotify api
+
+  })
+  
+  /* Get a User’s Top Artists*/
   spotifyApi.getMyTopArtists()
   .then(function(data) {
     let topArtists = data.body.items;
@@ -214,6 +243,7 @@ router.get('/topArtists', (req, res) => {
       }
     });
     
+<<<<<<< Updated upstream
 
     // // save top artists to database
     // const artists = new TopArtists({
@@ -224,6 +254,8 @@ router.get('/topArtists', (req, res) => {
     //   console.log('artists saved to mongo');
     //   res.send(topArtists);
     // })
+=======
+>>>>>>> Stashed changes
     
   }, function(err) {
     console.log('Something went wrong!', err);
