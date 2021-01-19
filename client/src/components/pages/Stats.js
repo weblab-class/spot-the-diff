@@ -45,6 +45,17 @@ class Stats extends Component {
             })
         });
 
+        
+    }
+
+    getOtherTopTracks = () => {
+        // gets other user's top tracks
+        // get("/api/user-topTracks", { otherId: this.state.otherId }).then((data) => {
+        //     console.log(this.state.otherId, 'top tracks: ', data.tracks);
+        // })
+    }
+
+    getOtherTopArtists = () => {
         // gets other user's top artists
         get("/api/user-topArtists", { otherId: this.state.otherId }).then((data) => {
             console.log(this.state.otherId, 'top artists: ', data.artists);
@@ -59,6 +70,8 @@ class Stats extends Component {
             <>
             <div>
                 <h1>This is the stats page</h1>
+                <button onClick={this.getOtherTopArtists}>Get other user's top artists (hardcoded user rn)</button>
+                <button onClick={this.getOtherTopTracks}>Get other user's top tracks (hardcoded user rn)</button>
                 <Form />
                 <Card>
                     <TopTracks data={this.state.topTracks} />
