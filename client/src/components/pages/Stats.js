@@ -24,19 +24,19 @@ class Stats extends Component {
     }
 
     componentDidMount() {
-        get("/api/topTracks").then((data) => {
-            console.log('my top tracks: ', data);
-            this.setState({ 
-                topTracks: data, 
-            });
-        });
+        // get("/api/topTracks").then((data) => {
+        //     console.log('my top tracks: ', data);
+        //     this.setState({ 
+        //         topTracks: data, 
+        //     });
+        // });
 
-        get("/api/topArtists").then((data) => {
-            console.log('my top artists: ', data);
-            this.setState({
-                topArtists: data,
-            })
-        }); 
+        // get("/api/topArtists").then((data) => {
+        //     console.log('my top artists: ', data);
+        //     this.setState({
+        //         topArtists: data,
+        //     })
+        // }); 
     }
 
     getUserArtists = (userId) => {
@@ -61,9 +61,9 @@ class Stats extends Component {
         const intersect = (arrA, arrB) => {
             return arrA.filter(x => arrB.some(y => y.id === x.id));
         }
-        const tracksA = this.state.topTracks;
+        const tracksA = this.props.topTracks;
         const tracksB = this.state.friendTracks;
-        const artistsA = this.state.topArtists;
+        const artistsA = this.props.topArtists;
         const artistsB = this.state.friendArtists;
 
         const commonTracks = intersect(tracksA, tracksB);
@@ -86,7 +86,7 @@ class Stats extends Component {
     render() {
         if (!this.props.spotifyId) return <div>Log in before accessing Stats</div>;
 
-        if (!this.state.topTracks || !this.state.topArtists) {
+        if (!this.props.topTracks || !this.props.topArtists) {
             return <div> Loading! </div>;
         }
         let compare;
@@ -127,9 +127,9 @@ class Stats extends Component {
                 <div className="flex-row">
                     <div className="flex-column">
                         <h2 className='u-centertext'>My Top Tracks</h2>
-                        <TopTracks data={this.state.topTracks}/>
+                        <TopTracks data={this.props.topTracks}/>
                         <h2 className='u-centertext'>My Top Artists</h2>
-                        <TopArtists topArtists={this.state.topArtists} />
+                        <TopArtists topArtists={this.props.topArtists} />
                     </div>
                     {compare}
                 </div>

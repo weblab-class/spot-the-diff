@@ -26,6 +26,8 @@ class App extends Component {
     this.state = {
       userId: undefined,
       spotifyId: undefined,
+      topTracks: undefined,
+      topArtists: undefined,
     };
   }
 
@@ -103,6 +105,8 @@ class App extends Component {
             path="/stats/:userId" 
             userId={this.state.userId}
             spotifyId={this.state.spotifyId}
+            topTracks={this.state.topTracks}
+            topArtists={this.state.topArtists}
           />
           <About path="/about" />
           <Home path="/home" />

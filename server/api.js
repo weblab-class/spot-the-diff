@@ -221,8 +221,8 @@ router.get('/topArtists', auth.ensureLoggedIn, (req, res) => {
     TopArtists.findOne({ userId: req.user.spotifyId }).then((doc) => {
       console.log(req.user.spotifyId + '\n');
       if (doc) {
-        // console.log('alr in database: ', doc.artistList);
-        // console.log('new artistlist: ', topArtists);
+        console.log('alr in database: ', doc.artistList);
+        console.log('new artistlist: ', topArtists);
         if (doc.artistList !== topArtists) {
           // update their document
           doc.artistList = topArtists;
