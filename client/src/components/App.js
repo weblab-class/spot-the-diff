@@ -32,8 +32,10 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.log('in componentDidMount');
-    
+    console.log('in App componentDidMount');
+    // get("/api/callback").then(() => {
+    //   console.log('get request to /api/callback');
+    // });
 
     get("/api/whoami").then((user) => {
       console.log('in whoami; user data is', user);
@@ -47,20 +49,25 @@ class App extends Component {
         });
       }
     });
-
     get("/api/topTracks").then((data) => {
       console.log('my top tracks: ', data);
       this.setState({ 
           topTracks: data, 
       });
+    }).catch((err) => {
+      console.log(err);
     });
 
     get("/api/topArtists").then((data) => {
       console.log('my top artists: ', data);
       this.setState({
           topArtists: data,
-      })
+      });
+    }).catch((err) => {
+      console.log(err);
     }); 
+
+    
   }
 
   // handleLogin = (res) => {

@@ -64,7 +64,11 @@ router.get('/callback', async (req,res) => {
   // } catch(err) {
   //   res.redirect('/#/error/invalid token');
   // }
-  auth.callback(req, res, spotifyApi)
+  console.log('in api/callback');
+  auth.callback(req, res, spotifyApi);
+  // res.send({});
+}, function(err) {
+  console.log('Something went wrong!', err);
 });
 
 // router.post("/login", auth.login);
@@ -161,8 +165,7 @@ router.get('/currentPlayback', (req, res) => {
 })
 
 router.get('/topTracks', auth.ensureLoggedIn, (req, res) => {
-  spotifyApi.getMyTopTracks({ limit: 12, offset: 0 })
-  .then(function(data) {
+  spotifyApi.getMyTopTracks({ limit: 12, offset: 0 }).then((data) => {
     let topTracks = data.body.items;
     // let topTitles = [];
 
@@ -203,29 +206,25 @@ router.get('/topTracks', auth.ensureLoggedIn, (req, res) => {
         })
       }
     });
-  }, function(err) {
-    console.log('Something went wrong!', err);
+  }).catch((err) => {
+      console.log('Something went wrong!', err);
   });
 })
 
 // Gets a user's top artists, and saves them to mongo database
 router.get('/topArtists', auth.ensureLoggedIn, (req, res) => {
-  
-  // run this to clear your top artists (kinda dangerous)
-  // TopArtists.deleteMany({ userId: req.user.spotifyId }).then(() => {
-  //   console.log('deleted everyones topartists');
-  // });
 
 
   /* Get a User’s Top Artists*/
   spotifyApi.getMyTopArtists({ limit: 12, offset: 0 }).then((data) => {
     const topArtists = data.body.items;
-    // console.log('my top artists', topArtists);
+    console.log('my top artists', topArtists);
+    // return res.send({});
 
     // check if user exists in database: if yes, update their document
     // if not, add a new document
     TopArtists.findOne({ userId: req.user.spotifyId }).then((doc) => {
-      console.log(req.user.spotifyId + '\n');
+      console.log(req.user.spotifyId);
       if (doc) {
         // console.log('alr in database: ', doc.artistList);
         // console.log('old list to json: ', JSON.stringify(doc.artistList));
