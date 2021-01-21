@@ -46,6 +46,7 @@ class Profile extends Component {
     }
 
     render() {
+        if (!this.props.userId) return <div>Log in before accessing Profile</div>;
         if (!this.state.user) {
             return <div> Loading! </div>;
         }

@@ -98,6 +98,7 @@ class App extends Component {
       <>
         <NavBar 
           userId={this.state.userId}
+          spotifyId={this.state.spotifyId}
         />
         <Router>
           <Login 
@@ -107,11 +108,13 @@ class App extends Component {
             userId={this.state.userId}
             spotifyId={this.state.spotifyId}
           />
-          {/* <Profile path="/profile/:userId" /> */}
+          <Profile 
+            path="/profile/:spotifyId"
+            userId={this.state.userId} 
+          />
           <Stats 
-            path="/stats/:userId" 
+            path="/stats/:spotifyId" 
             userId={this.state.userId}
-            spotifyId={this.state.spotifyId}
             topTracks={this.state.topTracks}
             topArtists={this.state.topArtists}
           />

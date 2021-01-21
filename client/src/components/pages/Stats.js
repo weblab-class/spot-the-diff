@@ -84,7 +84,7 @@ class Stats extends Component {
     }
 
     render() {
-        if (!this.props.spotifyId) return <div>Log in before accessing Stats</div>;
+        if (!this.props.userId) return <div>Log in before accessing Stats</div>;
 
         if (!this.props.topTracks || !this.props.topArtists) {
             return <div> Loading! </div>;
