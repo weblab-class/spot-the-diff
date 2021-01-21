@@ -28,7 +28,9 @@ function getOrCreateUser(user) {
       spotifyId: user.id,
     });
 
-    return newUser.save();
+    return newUser.save().then(() => {
+      console.log('new user saved to database: ', newUser);
+    });
   });
 }
 
@@ -44,6 +46,8 @@ const callback = async (req, res, spotifyApi) => {
   try {
     const data = await spotifyApi.authorizationCodeGrant(code)
     const { access_token, refresh_token } = data.body;
+    console.log('access token: ', access_token);
+    console.log('refresh token: ', refresh_token);
     spotifyApi.setAccessToken(access_token);
     spotifyApi.setRefreshToken(refresh_token);
     spotifyApi.getMe()
@@ -54,12 +58,13 @@ const callback = async (req, res, spotifyApi) => {
         console.log('Something went wrong!', err);
       }).then((user) => {
         req.session.user = user;
-        res.redirect(process.env.REDIRECT_URI);
+        res.redirect(process.env.CALLBACK_URI);
       }).catch((err) => {
         console.log(`Failed to log in: ${err}`);
         res.status(401).send({ err });
       });
   } catch (err) {
+    console.log('error in auth.callback');
     res.redirect('/#/error/invalid token');
   }
 }

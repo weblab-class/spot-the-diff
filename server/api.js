@@ -213,18 +213,17 @@ router.get('/topTracks', auth.ensureLoggedIn, (req, res) => {
 
 // Gets a user's top artists, and saves them to mongo database
 router.get('/topArtists', auth.ensureLoggedIn, (req, res) => {
-
-
   /* Get a User’s Top Artists*/
   spotifyApi.getMyTopArtists({ limit: 12, offset: 0 }).then((data) => {
+    console.log('getting top artists for clientid: ', spotifyApi.getClientId());
     const topArtists = data.body.items;
-    console.log('my top artists', topArtists);
+    console.log('my top artists', topArtists.length);
     // return res.send({});
 
     // check if user exists in database: if yes, update their document
     // if not, add a new document
     TopArtists.findOne({ userId: req.user.spotifyId }).then((doc) => {
-      console.log(req.user.spotifyId);
+      console.log('finding top artists for: ', req.user.spotifyId);
       if (doc) {
         // console.log('alr in database: ', doc.artistList);
         // console.log('old list to json: ', JSON.stringify(doc.artistList));
