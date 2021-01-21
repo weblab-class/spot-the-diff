@@ -57,15 +57,16 @@ const callback = async (req, res, spotifyApi) => {
       }, (err) => {
         console.log('Something went wrong!', err);
       }).then((user) => {
+        console.log('in then 2');
         req.session.user = user;
-        res.redirect(process.env.CALLBACK_URI);
+        res.redirect(process.env.CALLBACK_URI); // localhost:5000/
       }).catch((err) => {
         console.log(`Failed to log in: ${err}`);
         res.status(401).send({ err });
       });
   } catch (err) {
     console.log('error in auth.callback');
-    res.redirect('/#/error/invalid token');
+    res.redirect('/#/error/invalid token'); // what is this
   }
 }
 
