@@ -23,6 +23,13 @@
     margin-right: auto;
 }
 
+.Stats-centering-tracks{
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
+
 .Stats-center-text{
     text-align: center;
 }
