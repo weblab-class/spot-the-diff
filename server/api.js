@@ -357,6 +357,32 @@ router.post('/addFriend', auth.ensureLoggedIn, (req, res) => {
   })
 })
 
+router.get('/recommendations', (req, res) => {
+  const loggedInSpotifyApi = new SpotifyWebApi({
+    clientId: process.env.SPOTIFY_API_ID,
+    clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
+    redirectUri: process.env.CALLBACK_URI,
+  });
+  loggedInSpotifyApi.setAccessToken(req.user.accessToken);
+
+  // Get Recommendations Based on Seeds
+  loggedInSpotifyApi.getRecommendations({
+    seed_artists: req.query.seedArtists,
+    seed_genres: req.query.seedGenres,
+    seed_tracks: req.query.seedTracks
+  })
+  .then(function(data) {
+  let recommendations = data.body;
+  console.log(recommendations);
+  res.send(recommendations);
+  }, function(err) {
+  console.log("Something went wrong!", err);
+  res.send({});
+  });
+})
+
+
+
 router.post('/user-topArtists', (req, res) => {
   // post top artists for a specific user
 })

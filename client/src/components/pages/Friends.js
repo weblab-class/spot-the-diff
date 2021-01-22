@@ -27,6 +27,9 @@ class Friends extends Component {
             friendArtists: null,
             friendTracks: null,
             compatibility: undefined,
+            commonTracks: [],
+            commonArtists: [],
+            commonGenres: [],
         };
     }
 
@@ -93,10 +96,28 @@ class Friends extends Component {
         console.log(total_pts);
         this.setState({
             compatibility: total_pts,
+            commonTracks: commonTracks,
+            commonArtists: commonArtists,
+            commonGenres: commonGenres,
         });
     }
 
+    getPlaylist = () => {
+        const seed = {
+            seedArtists: this.state.commonArtists.map(x => x.id),
+            seedTracks: this.state.commonTracks.map(x => x.id),
+            seedGenres: this.state.commonGenres,
+        }
+        console.log(seed);
+        get("/api/recommendations", seed).then(data => {
+            console.log(data);
+        })
+    }
+
+
     render(){
+        if (!this.props.userId) return <div>Log in before accessing Stats</div>;
+
         let compare;
         let isComparing = false;
         if (!this.state.friendArtists) {
@@ -120,6 +141,7 @@ class Friends extends Component {
             {isComparing ? 
                 <>
                 <button onClick={this.handleCompare}>get compatibility!</button>
+                <button onClick={this.getPlaylist}>get a custom playlist that both you and your friend would like!</button>
                 <h3>your compatibility with your friend is: {this.state.compatibility}%</h3> </> :
                 <></> }
             <h3>To compare your stats with your friends...</h3>
