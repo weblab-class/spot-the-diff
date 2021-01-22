@@ -69,7 +69,7 @@ class NavBar extends Component {
                         <Link to="/" className="NavBar-text-left m-text"> Home </Link>
                         <Link to="/about" className="NavBar-text-left m-text"> About </Link>
                         <Link to={`/profile/${this.props.spotifyId}`} className="NavBar-text-left m-text"> Profile </Link>
-                        <Link to={`/stats/${this.props.spotifyId}`} className="NavBar-text-left m-text"> Stats </Link>
+                        <Link to={`/stats`} className="NavBar-text-left m-text"> Stats </Link>
                     </>
                     ): (
                     <>

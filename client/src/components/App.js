@@ -112,7 +112,7 @@ class App extends Component {
             userId={this.state.userId} 
           />
           <Stats 
-            path="/stats/:spotifyId" 
+            path="/stats" 
             userId={this.state.userId}
             topTracks={this.state.topTracks}
             topArtists={this.state.topArtists}
