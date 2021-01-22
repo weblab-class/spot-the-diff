@@ -30,9 +30,19 @@ class Friends extends Component {
             commonTracks: [],
             commonArtists: [],
             commonGenres: [],
+            genreSeeds: [],
+            playlist: undefined,
         };
     }
 
+    componentDidMount() {
+        get("/api/genreSeeds").then((data) => {
+            console.log(data);
+            this.setState({
+                genreSeeds: data.genres,
+            })
+        })
+    }
     getUserArtists = (userId) => {
         get("/api/user-topArtists", { otherId: userId }).then((data) => {
             console.log("Retrieving friend's favorite artists...")
@@ -103,14 +113,40 @@ class Friends extends Component {
     }
 
     getPlaylist = () => {
+        let seedGenres = this.state.commonGenres.filter(x => this.state.genreSeeds.includes(x));
+        let seedTracks = this.state.commonTracks.map(x => x.id);
+        let seedArtists = this.state.commonArtists.map(x => x.id);
+
+        while (seedGenres.length + seedTracks.length + seedArtists.length > 5) {
+            // do some processing
+            if (seedGenres.length > 2) {
+                seedGenres = seedGenres.slice(0, 2);
+            }
+            else if (seedArtists.length > 2) {
+                seedArtists = seedArtists.slice(0, 2);
+            }
+            else if (seedTracks.length > 1) {
+                seedTracks = seedTracks.slice(0, 1);
+            }
+        }
         const seed = {
-            seedArtists: this.state.commonArtists.map(x => x.id),
-            seedTracks: this.state.commonTracks.map(x => x.id),
-            seedGenres: this.state.commonGenres,
+            seedTracks: seedTracks, // 1
+            seedArtists: seedArtists, // 2
+            seedGenres: seedGenres, // 2
         }
         console.log(seed);
         get("/api/recommendations", seed).then(data => {
-            console.log(data);
+            let tracks = data.tracks;
+            console.log('tracks ', tracks)
+            get("/api/createPlaylist").then(playlist => {
+                console.log('my new playlist: ', playlist)
+                tracks = tracks.map(x => x.uri);
+                console.log(tracks);
+                console.log(typeof tracks)
+                get("/api/addToPlaylist", {userId: this.props.userId, playlistId: playlist.id, tracks: tracks}).then(newPlaylist => {
+                    console.log("my new filled playlist: ", newPlaylist)
+                })
+            })
         })
     }
 

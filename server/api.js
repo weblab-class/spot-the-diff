@@ -381,6 +381,57 @@ router.get('/recommendations', (req, res) => {
   });
 })
 
+router.get('/genreSeeds', (req, res) => {
+  // Get available genre seeds
+  spotifyApi.getAvailableGenreSeeds()
+  .then(function(data) {
+    let genreSeeds = data.body;
+    console.log(genreSeeds);
+    res.send(genreSeeds);
+  }, function(err) {
+    console.log('Something went wrong!', err);
+    res.send({});
+  });
+})
+
+router.get('/createPlaylist', (req, res) => {
+  const loggedInSpotifyApi = new SpotifyWebApi({
+    clientId: process.env.SPOTIFY_API_ID,
+    clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
+    redirectUri: process.env.CALLBACK_URI,
+  });
+  loggedInSpotifyApi.setAccessToken(req.user.accessToken);
+  spotifyApi.createPlaylist('My playlist', { 'description': 'My description'})
+  .then(function(data) {
+    console.log('Created playlist!');
+    res.send(data.body);
+  }, function(err) {
+    console.log('Something went wrong!', err);
+    res.send({});
+  });
+})
+
+router.get('/addToPlaylist', (req, res) => {
+  const loggedInSpotifyApi = new SpotifyWebApi({
+    clientId: process.env.SPOTIFY_API_ID,
+    clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
+    redirectUri: process.env.CALLBACK_URI,
+  });
+  loggedInSpotifyApi.setAccessToken(req.user.accessToken);
+  // Add tracks to a playlist
+  console.log(typeof req.query.playlistId)
+  console.log(typeof req.query.tracks);
+  // spotify:playlist:5ttaqINieVfSWhm94Yaufq
+  loggedInSpotifyApi.addTracksToPlaylist(req.query.playlistId, req.query.tracks)
+  .then(function(data) {
+    console.log('Added tracks to playlist!');
+    res.send(data)
+  }, function(err) {
+    console.log('Something went wrong!', err);
+    res.send({})
+  });
+})
+
 
 
 router.post('/user-topArtists', (req, res) => {
