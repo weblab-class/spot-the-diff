@@ -91,11 +91,20 @@ router.get("/user", (req, res) => {
 
 
 router.get('/getMe', (req, res) => {
+  const loggedInSpotifyApi = new SpotifyWebApi({
+    clientId: process.env.SPOTIFY_API_ID,
+    clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
+    redirectUri: process.env.CALLBACK_URI,
+  });
+  // console.log(req.user)
+  // const loggedInSpotifyApi = new SpotifyWebApi();
+  loggedInSpotifyApi.setAccessToken(req.user.accessToken);
+  
   // console.log('in getme request');
   // Get the authenticated user
-  spotifyApi.getMe()
-  .then(function(data) {
-    // console.log('Some information about the authenticated user', data.body);
+  // spotifyApi.getMe()
+  loggedInSpotifyApi.getMe().then(function(data) {
+    console.log('Some information about the authenticated user', data.body);
     res.send(data.body);
   }, function(err) {
     console.log('Something went wrong!', err);
@@ -126,8 +135,14 @@ router.post("/initsocket", (req, res) => {
 // |------------------------------|
 
 router.get('/playlists', async (req,res) => {
+  const loggedInSpotifyApi = new SpotifyWebApi({
+    clientId: process.env.SPOTIFY_API_ID,
+    clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
+    redirectUri: process.env.CALLBACK_URI,
+  });
+  loggedInSpotifyApi.setAccessToken(req.user.accessToken);
   try {
-    var result = await spotifyApi.getUserPlaylists();
+    var result = await loggedInSpotifyApi.getUserPlaylists();
     // console.log(result.body);
     res.status(200).send(result.body);
   } catch (err) {
@@ -136,7 +151,13 @@ router.get('/playlists', async (req,res) => {
 });
 
 router.get('/recent', (req, res) => {
-  spotifyApi.getMyRecentlyPlayedTracks({
+  const loggedInSpotifyApi = new SpotifyWebApi({
+    clientId: process.env.SPOTIFY_API_ID,
+    clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
+    redirectUri: process.env.CALLBACK_URI,
+  });
+  loggedInSpotifyApi.setAccessToken(req.user.accessToken);
+  loggedInSpotifyApi.getMyRecentlyPlayedTracks({
     limit : 20
   }).then(function(data) {
     // Output items
@@ -149,7 +170,13 @@ router.get('/recent', (req, res) => {
 });
 
 router.get('/currentPlayback', (req, res) => {
-  spotifyApi.getMyCurrentPlaybackState()
+  const loggedInSpotifyApi = new SpotifyWebApi({
+    clientId: process.env.SPOTIFY_API_ID,
+    clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
+    redirectUri: process.env.CALLBACK_URI,
+  });
+  loggedInSpotifyApi.setAccessToken(req.user.accessToken);
+  loggedInSpotifyApi.getMyCurrentPlaybackState()
   .then(function(data) {
     // Output items
     if (data.body && data.body.is_playing) {
@@ -165,7 +192,13 @@ router.get('/currentPlayback', (req, res) => {
 })
 
 router.get('/topTracks', auth.ensureLoggedIn, (req, res) => {
-  spotifyApi.getMyTopTracks({ limit: 12, offset: 0 }).then((data) => {
+  const loggedInSpotifyApi = new SpotifyWebApi({
+    clientId: process.env.SPOTIFY_API_ID,
+    clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
+    redirectUri: process.env.CALLBACK_URI,
+  });
+  loggedInSpotifyApi.setAccessToken(req.user.accessToken);
+  loggedInSpotifyApi.getMyTopTracks({ limit: 12, offset: 0 }).then((data) => {
     let topTracks = data.body.items;
     // let topTitles = [];
 
@@ -213,8 +246,14 @@ router.get('/topTracks', auth.ensureLoggedIn, (req, res) => {
 
 // Gets a user's top artists, and saves them to mongo database
 router.get('/topArtists', auth.ensureLoggedIn, (req, res) => {
+  const loggedInSpotifyApi = new SpotifyWebApi({
+    clientId: process.env.SPOTIFY_API_ID,
+    clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
+    redirectUri: process.env.CALLBACK_URI,
+  });
+  loggedInSpotifyApi.setAccessToken(req.user.accessToken);
   /* Get a User’s Top Artists*/
-  spotifyApi.getMyTopArtists({ limit: 12, offset: 0 }).then((data) => {
+  loggedInSpotifyApi.getMyTopArtists({ limit: 12, offset: 0 }).then((data) => {
     console.log('getting top artists for clientid: ', spotifyApi.getClientId());
     const topArtists = data.body.items;
     console.log('my top artists', topArtists.length);

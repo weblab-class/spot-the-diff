@@ -18,14 +18,18 @@ function verify(token) {
 }
 
 // gets user from DB, or makes a new account if it doesn't exist yet
-function getOrCreateUser(user) {
+function getOrCreateUser(user, accessToken) {
   // the "sub" field means "subject", which is a unique identifier for each user
   return User.findOne({ spotifyId: user.id }).then((existingUser) => {
-    if (existingUser) return existingUser;
+    if (existingUser) {
+      existingUser.accessToken = accessToken;
+      return existingUser.save();
+    }
 
     const newUser = new User({
       name: user.display_name,
       spotifyId: user.id,
+      accessToken: accessToken,
     });
 
     return newUser.save().then(() => {
@@ -53,7 +57,7 @@ const callback = async (req, res, spotifyApi) => {
     spotifyApi.getMe()
       .then((user) => {
         console.log('Some information about the authenticated user', user.body);
-        return getOrCreateUser(user.body)
+        return getOrCreateUser(user.body, access_token);
       }, (err) => {
         console.log('Something went wrong!', err);
       }).then((user) => {
