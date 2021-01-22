@@ -21,12 +21,12 @@ class Friends extends Component {
         };
     }
 
-getUserArtists = (userId) => {
+    getUserArtists = (userId) => {
         get("/api/user-topArtists", { otherId: userId }).then((data) => {
             console.log("Retrieving friend's favorite artists...")
             console.log(userId, 'top artists: ', data.artists);
             console.log("eyy it worked!")
-             this.setState({ friendArtists: data.artists })
+                this.setState({ friendArtists: data.artists })
         })
     }
 
@@ -37,36 +37,36 @@ getUserArtists = (userId) => {
             console.log("eyy it worked again!")
             this.setState({ friendTracks: data.tracks })
         })
-}
-
-handleCompare = () => {
-    const intersect = (arrA, arrB) => {
-        return arrA.filter(x => arrB.some(y => y.id === x.id));
     }
-    const tracksA = this.props.topTracks;
-    const tracksB = this.state.friendTracks;
-    const artistsA = this.props.topArtists;
-    const artistsB = this.state.friendArtists;
 
-    const commonTracks = intersect(tracksA, tracksB);
-    const commonArtists = intersect(artistsA, artistsB);
+    handleCompare = () => {
+        const intersect = (arrA, arrB) => {
+            return arrA.filter(x => arrB.some(y => y.id === x.id));
+        }
+        const tracksA = this.props.topTracks;
+        const tracksB = this.state.friendTracks;
+        const artistsA = this.props.topArtists;
+        const artistsB = this.state.friendArtists;
 
-    console.log('common tracks: ', commonTracks);
-    console.log('common artists: ', commonArtists);
+        const commonTracks = intersect(tracksA, tracksB);
+        const commonArtists = intersect(artistsA, artistsB);
 
-    const tracks_pts = 2*commonTracks.length / (tracksA.length + tracksB.length);
-    const artists_pts = 2*commonArtists.length / (artistsA.length + artistsB.length);
+        console.log('common tracks: ', commonTracks);
+        console.log('common artists: ', commonArtists);
 
-    const total_pts = 100 * (tracks_pts + artists_pts)/2;
+        const tracks_pts = 2*commonTracks.length / (tracksA.length + tracksB.length);
+        const artists_pts = 2*commonArtists.length / (artistsA.length + artistsB.length);
 
-    console.log(total_pts);
-    this.setState({
-        compatibility: total_pts,
-    });
-}
+        const total_pts = 100 * (tracks_pts + artists_pts)/2;
 
-render(){
-    let compare;
+        console.log(total_pts);
+        this.setState({
+            compatibility: total_pts,
+        });
+    }
+
+    render(){
+        let compare;
         let isComparing = false;
         if (!this.state.friendArtists) {
             // compare = (<span className="Stats-left">Enter the username of a friend to compare!</span>);
@@ -101,7 +101,7 @@ render(){
                 {compare}
             </div>
         )
-}
+    }
 }
 
 export default Friends;
