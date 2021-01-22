@@ -76,17 +76,15 @@ class Stats extends Component {
             <div>
                 <h1 className='u-centertext .xl-text'>Custom Listening Insights</h1>
                 {
-                <div className="flex-row">
-                    <div className="flex-column">
-                        <h2 className='u-centertext'>My Top Tracks</h2>
-                        <TopTracks data={this.props.topTracks}/>
-                        <h2 className='u-centertext'>My Top Artists</h2>
-                        <TopArtists topArtists={this.props.topArtists} />
-                    </div>
-                </div>}
+                    <>
+                    <h2 className="Stats-center-text"> My Top Tracks</h2>
+                    <TopTracks className="Stats-center-flex" data={this.props.topTracks}/>
+                    <h2 className="Stats-center-text">My Top Artists</h2>
+                    <TopArtists topArtists={this.props.topArtists} />
+                    </>}
             </div>
         );
-    }
+                }  
 }
 
 export default Stats;

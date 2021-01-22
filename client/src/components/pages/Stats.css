@@ -1,16 +1,30 @@
 .flex-row {
     display: flex;
     flex-direction: row;
+    height: 100%;
 }
 
 .flex-column {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 100%;
 }
 
 .Stats-left {
     text-align: left;
+}
+
+.Stats-right {
+    text-align: right;
+}
+
+.Stats-center-flex{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.Stats-center-text{
+    text-align: center;
 }
 
 .Stats-space-evenly {
