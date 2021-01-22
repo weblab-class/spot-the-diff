@@ -121,8 +121,8 @@ class App extends Component {
             <Friends 
             path="/friends/:spotifyId" 
             userId={this.state.userId}
-            // topTracks={this.state.topTracks}
-            // topArtists={this.state.topArtists}
+            topTracks={this.state.topTracks}
+            topArtists={this.state.topArtists}
           />
           <About path="/about" />
           <Home path="/home" />
