@@ -8,6 +8,7 @@ import About from "./pages/About.js"
 import Home from "./pages/Home.js"
 import Profile from "./pages/Profile.js"
 import Stats from "./pages/Stats.js"
+import Friends from "./pages/Friends.js"
 
 import "../utilities.css";
 import "./App.css";
@@ -117,6 +118,12 @@ class App extends Component {
             userId={this.state.userId}
             topTracks={this.state.topTracks}
             topArtists={this.state.topArtists}
+          />
+            <Friends 
+            path="/friends/:spotifyId" 
+            userId={this.state.userId}
+            // topTracks={this.state.topTracks}
+            // topArtists={this.state.topArtists}
           />
           <About path="/about" />
           <Home path="/home" />
