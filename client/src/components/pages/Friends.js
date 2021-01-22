@@ -64,6 +64,7 @@ class Friends extends Component {
 
         const artistsA = this.props.topArtists;
         const artistsB = this.state.friendArtists;
+        const totalArtists = artistsA.length + artistsB.length;
 
         const genresA = this.props.getArtistGenres(artistsA);
         const genresB = this.props.getArtistGenres(artistsB);
@@ -81,12 +82,13 @@ class Friends extends Component {
         console.log('common track artists: ', commonTrackArtists);
 
         const tracks_pts = 100 * 2*commonTracks.length / totalTracks;
-        const artists_pts = 100 * 2*commonArtists.length / totalTracks;
+        const artists_pts = 100 * 2*commonArtists.length / (artistsA + artistsB);
 
-        const total_pts = (tracks_pts+artists_pts)/2 
-                        + 5 * 2*commonTrackAlbums.length/totalTracks 
-                        + 4 * 2*commonTrackArtists.length/totalTracks
-                        + 3 * commonGenres.length;
+        const total_pts = 1 * 100*2*commonTracks.length/totalTracks
+                        + 1 * 100*2*commonArtists.length/totalArtists
+                        + 4 * commonTrackAlbums.length 
+                        + 3 * commonTrackArtists.length
+                        + 2 * commonGenres.length;
 
         console.log(total_pts);
         this.setState({
