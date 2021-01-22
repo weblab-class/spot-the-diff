@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import { Router } from "@reach/router";
 import NotFound from "./pages/NotFound.js";
-import Skeleton from "./pages/Skeleton.js";
 import Home from "./pages/Home.js";
 import NavBar from "./modules/NavBar.js";
-import About from "./pages/About.js"
 import Profile from "./pages/Profile.js"
 import Stats from "./pages/Stats.js"
 import Friends from "./pages/Friends.js"
@@ -161,7 +159,6 @@ class App extends Component {
             getTrackAlbums={this.getTrackAlbums}
             getTrackArtists={this.getTrackArtists}
           />
-          <About path="/about" />
           <NotFound default />
         </Router>
       </>

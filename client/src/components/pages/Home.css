@@ -1,0 +1,38 @@
+.Login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.Login-button {
+    height: 40px;
+    border: 0px;
+    width: 240px;
+    border-radius: 10px;
+    margin: 2px;
+    transition: 0.25s;
+    background-color: #1DB954;
+}
+
+.Home-text{
+    position: relative;
+    bottom: -225px;
+}
+
+.Logout-button {
+    height: 40px;
+    border: 0px;
+    width: 240px;
+    border-radius: 10px;
+    margin: 0px;
+    transition: 0.25s;
+    position: relative;
+    bottom:-300px;
+    background-color: #1DB954;
+}
+
+
+.Login-button:hover {
+    background-color: rgb(212, 212, 212);
+}
