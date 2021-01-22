@@ -31,7 +31,7 @@ class Friends extends Component {
             commonArtists: [],
             commonGenres: [],
             genreSeeds: [],
-            playlist: undefined,
+            playlistTracks: undefined,
         };
     }
 
@@ -119,36 +119,49 @@ class Friends extends Component {
 
         while (seedGenres.length + seedTracks.length + seedArtists.length > 5) {
             // do some processing
-            if (seedGenres.length > 2) {
-                seedGenres = seedGenres.slice(0, 2);
+            if (seedGenres.length > 0) {
+                // seedGenres.pop();
+                seedGenres.splice(Math.floor(Math.random()*seedGenres.length), 1);
             }
             else if (seedArtists.length > 2) {
-                seedArtists = seedArtists.slice(0, 2);
+                // seedArtists.pop();
+                seedArtists.splice(Math.floor(Math.random()*seedArtists.length), 1);
             }
-            else if (seedTracks.length > 1) {
-                seedTracks = seedTracks.slice(0, 1);
+            else if (seedTracks.length > 3) {
+                // seedTracks.pop();
+                seedTracks.splice(Math.floor(Math.random()*seedTracks.length), 1);
             }
+            
         }
         const seed = {
-            seedTracks: seedTracks, // 1
+            seedTracks: seedTracks, // 2
             seedArtists: seedArtists, // 2
-            seedGenres: seedGenres, // 2
+            seedGenres: seedGenres, // 1
         }
         console.log(seed);
         get("/api/recommendations", seed).then(data => {
             let tracks = data.tracks;
-            console.log('tracks ', tracks)
-            get("/api/createPlaylist").then(playlist => {
-                console.log('my new playlist: ', playlist)
-                tracks = JSON.stringify(tracks.map(x => x.uri));
-                console.log(tracks);
-                console.log(typeof tracks)
-                get("/api/addToPlaylist", {userId: this.props.userId, playlistId: playlist.id, tracks: tracks}).then(newPlaylist => {
-                    console.log("my new filled playlist: ", newPlaylist)
-                })
+            this.setState({
+                playlistTracks: tracks,
+            }, (() => {
+                console.log('set tracks state to', this.state.playlistTracks);
+            }))
+        })
+    }
+
+    makePlaylist = () => {
+        // if user wants to create playlist
+        get("/api/createPlaylist").then(playlist => {
+            // console.log('my new playlist: ', playlist)
+            let tracks = this.state.playlistTracks;
+            tracks = JSON.stringify(tracks.map(x => x.uri));
+            // console.log(tracks);
+            get("/api/addToPlaylist", {playlistId: playlist.id, tracks: tracks}).then(newPlaylist => {
+                console.log("my new filled playlist: ", newPlaylist)
             })
         })
     }
+    
 
 
     render(){
@@ -172,14 +185,23 @@ class Friends extends Component {
                 </>
             )
         }
+
         return(
             <div>
             {isComparing ? 
-                <>
+            <>
                 <button onClick={this.handleCompare}>get compatibility!</button>
                 <button onClick={this.getPlaylist}>get a custom playlist that both you and your friend would like!</button>
                 <h3>your compatibility with your friend is: {this.state.compatibility}%</h3> </> :
-                <></> }
+            <></> }
+
+            {this.state.playlistTracks ?
+            <>
+                <h3>here's the playlist we made for you! click the button again to refresh the tracklist. we won't get offended ;)</h3>
+                <button onClick={this.makePlaylist}>click here to save this to your spotify!</button>
+                <TopTracks data={this.state.playlistTracks} />
+            </> : <></>}
+
             <h3>To compare your stats with your friends...</h3>
             <ul>
                 <li>make sure they've logged into our website before</li>

@@ -91,7 +91,7 @@ router.get("/user", (req, res) => {
 });
 
 
-router.get('/getMe', (req, res) => {
+router.get('/getMe', auth.ensureLoggedIn, (req, res) => {
   const loggedInSpotifyApi = new SpotifyWebApi({
     clientId: process.env.SPOTIFY_API_ID,
     clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
@@ -135,7 +135,7 @@ router.post("/initsocket", (req, res) => {
 // | write your API methods below!|
 // |------------------------------|
 
-router.get('/playlists', async (req,res) => {
+router.get('/playlists', auth.ensureLoggedIn, async (req,res) => {
   const loggedInSpotifyApi = new SpotifyWebApi({
     clientId: process.env.SPOTIFY_API_ID,
     clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
@@ -151,7 +151,7 @@ router.get('/playlists', async (req,res) => {
   }
 });
 
-router.get('/recent', (req, res) => {
+router.get('/recent', auth.ensureLoggedIn, (req, res) => {
   const loggedInSpotifyApi = new SpotifyWebApi({
     clientId: process.env.SPOTIFY_API_ID,
     clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
@@ -170,7 +170,7 @@ router.get('/recent', (req, res) => {
   });
 });
 
-router.get('/currentPlayback', (req, res) => {
+router.get('/currentPlayback', auth.ensureLoggedIn, (req, res) => {
   const loggedInSpotifyApi = new SpotifyWebApi({
     clientId: process.env.SPOTIFY_API_ID,
     clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
@@ -373,7 +373,7 @@ router.get('/recommendations', (req, res) => {
   })
   .then(function(data) {
   let recommendations = data.body;
-  console.log(recommendations);
+  // console.log(recommendations);
   res.send(recommendations);
   }, function(err) {
   console.log("Something went wrong!", err);
@@ -386,7 +386,7 @@ router.get('/genreSeeds', (req, res) => {
   spotifyApi.getAvailableGenreSeeds()
   .then(function(data) {
     let genreSeeds = data.body;
-    console.log(genreSeeds);
+    // console.log(genreSeeds);
     res.send(genreSeeds);
   }, function(err) {
     console.log('Something went wrong!', err);
@@ -419,11 +419,6 @@ router.get('/addToPlaylist', (req, res) => {
   });
   loggedInSpotifyApi.setAccessToken(req.user.accessToken);
   // Add tracks to a playlist
-  console.log(typeof req.query.playlistId)
-  console.log(typeof req.query.tracks);
-  const tracks = ["spotify:track:67kXYrMTQbS7MVbXyGyxHm", "spotify:track:6HnQzGWoTHyx71PLbaphGS", "spotify:track:5fCDWDX2Kv9jc1s7nZfzOi", "spotify:track:0roOLcll6SSTYZwsQFmXqP", "spotify:track:7zC6xvBPnIC92K06pMpstY", "spotify:track:6J4SJGJzFtOSHAk9smrsGe", "spotify:track:5B7K0zs5gkaueWXzgd0vk7", "spotify:track:7Acvy2L38SCipAeMPOK8Ro", "spotify:track:0b9oOr2ZgvyQu88wzixux9", "spotify:track:2PudJHuPDFyXomHjmwTxqG", "spotify:track:2FVpOsjT1iquZ3SpCjZ9Ne", "spotify:track:1uDjaezEbalGyGnuH80zDK", "spotify:track:33wLcS13MVJfGUoYmkDR8D", "spotify:track:1lNHWPDvKEbamKezpLq7HW", "spotify:track:4JUPEh2DVSXFGExu4Uxevz", "spotify:track:5WSdMcWTKRdN1QYVJHJWxz", "spotify:track:4hMYovC1APX8ojuANCoeuF", "spotify:track:6wNeKPXF0RDKyvfKfri5hf", "spotify:track:7uzSBQFXE98drAzMN6Jg5D", "spotify:track:2ZwIO3ufWLFYxtEoam9ydu"]
-  // spotify:playlist:5ttaqINieVfSWhm94Yaufq
-  console.log("req query: ", req.query)
   loggedInSpotifyApi.addTracksToPlaylist(req.query.playlistId, JSON.parse(req.query.tracks))
   .then(function(data) {
     console.log('Added tracks to playlist!');
