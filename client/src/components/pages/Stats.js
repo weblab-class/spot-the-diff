@@ -39,49 +39,49 @@ class Stats extends Component {
         // }); 
     }
 
-    getUserArtists = (userId) => {
-        get("/api/user-topArtists", { otherId: userId }).then((data) => {
-            console.log("Retrieving friend's favorite artists...")
-            console.log(userId, 'top artists: ', data.artists);
-            console.log("eyy it worked!")
-             this.setState({ friendArtists: data.artists })
-        })
-    }
+    // getUserArtists = (userId) => {
+    //     get("/api/user-topArtists", { otherId: userId }).then((data) => {
+    //         console.log("Retrieving friend's favorite artists...")
+    //         console.log(userId, 'top artists: ', data.artists);
+    //         console.log("eyy it worked!")
+    //          this.setState({ friendArtists: data.artists })
+    //     })
+    // }
 
-    getUserTracks = (userId) => {
-        get("/api/user-topTracks", { otherId: userId }).then((data) => {
-            console.log("Retrieving friend's favorite tracks...")
-            console.log(userId, 'top tracks: ', data.tracks);
-            console.log("eyy it worked again!")
-            this.setState({ friendTracks: data.tracks })
-        })
-    }
+    // getUserTracks = (userId) => {
+    //     get("/api/user-topTracks", { otherId: userId }).then((data) => {
+    //         console.log("Retrieving friend's favorite tracks...")
+    //         console.log(userId, 'top tracks: ', data.tracks);
+    //         console.log("eyy it worked again!")
+    //         this.setState({ friendTracks: data.tracks })
+    //     })
+    // }
 
-    handleCompare = () => {
-        const intersect = (arrA, arrB) => {
-            return arrA.filter(x => arrB.some(y => y.id === x.id));
-        }
-        const tracksA = this.props.topTracks;
-        const tracksB = this.state.friendTracks;
-        const artistsA = this.props.topArtists;
-        const artistsB = this.state.friendArtists;
+    // handleCompare = () => {
+    //     const intersect = (arrA, arrB) => {
+    //         return arrA.filter(x => arrB.some(y => y.id === x.id));
+    //     }
+    //     const tracksA = this.props.topTracks;
+    //     const tracksB = this.state.friendTracks;
+    //     const artistsA = this.props.topArtists;
+    //     const artistsB = this.state.friendArtists;
 
-        const commonTracks = intersect(tracksA, tracksB);
-        const commonArtists = intersect(artistsA, artistsB);
+    //     const commonTracks = intersect(tracksA, tracksB);
+    //     const commonArtists = intersect(artistsA, artistsB);
 
-        console.log('common tracks: ', commonTracks);
-        console.log('common artists: ', commonArtists);
+    //     console.log('common tracks: ', commonTracks);
+    //     console.log('common artists: ', commonArtists);
 
-        const tracks_pts = 2*commonTracks.length / (tracksA.length + tracksB.length);
-        const artists_pts = 2*commonArtists.length / (artistsA.length + artistsB.length);
+    //     const tracks_pts = 2*commonTracks.length / (tracksA.length + tracksB.length);
+    //     const artists_pts = 2*commonArtists.length / (artistsA.length + artistsB.length);
 
-        const total_pts = 100 * (tracks_pts + artists_pts)/2;
+    //     const total_pts = 100 * (tracks_pts + artists_pts)/2;
 
-        console.log(total_pts);
-        this.setState({
-            compatibility: total_pts,
-        });
-    }
+    //     console.log(total_pts);
+    //     this.setState({
+    //         compatibility: total_pts,
+    //     });
+    // }
 
     render() {
         if (!this.props.userId) return <div>Log in before accessing Stats</div>;
