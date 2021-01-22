@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./Form.css";
+import { get, post } from "../../utilities";
 
 /**
  * Proptypes
@@ -17,6 +18,13 @@ class Form extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    addFriend = (userId) => {
+        console.log('in correct function!')
+        post("/api/addFriend", {
+            userId: userId
+        })
+    }
+
     handleChange(event) {
         this.setState({value : event.target.value});
     }
@@ -26,6 +34,8 @@ class Form extends Component {
         event.preventDefault();
         this.props.compareArtists(this.state.value);
         this.props.compareTracks(this.state.value);
+        console.log('handlesubmit')
+        this.addFriend(this.state.value)
     }
 
 render() {

@@ -14,6 +14,7 @@ const User = require("./models/user");
 const Badge = require("./models/badge");
 const TopArtists = require("./models/top-artists");
 const TopTracks = require("./models/top-tracks")
+const Friends = require("./models/friends")
 
 // import authentication library
 const auth = require("./auth");
@@ -328,6 +329,31 @@ router.get('/user-topTracks', (req, res) => {
   }).catch((err) => {
     console.log(err);
     res.send({});
+  })
+})
+
+router.post('/addFriend', auth.ensureLoggedIn, (req, res) => {
+  const targetId = req.user.spotifyId;
+  const query = { userId : targetId };
+  console.log('inside api')
+
+  Friends.findOne(query).then((doc) => {
+    if (doc) {
+      let friends = doc.friendsList;
+      doc.friendsList = [...friends, [req.body.userId, 0]]
+      console.log(req.body.userId)
+      doc.save();
+      console.log('we have fetched your friend list' );
+    } else {
+      console.log('oop couldnt find your friend')
+      const friends = new Friends({
+        userId: req.user.spotifyId,
+        friendsList: [[ req.body.userId, 1 ]],
+      });
+      friends.save().then(() => {
+        console.log('created new friend')
+      });
+    }
   })
 })
 
