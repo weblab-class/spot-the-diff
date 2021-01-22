@@ -63,7 +63,9 @@ class Stats extends Component {
                     <TopTracks className="Stats-center-flex" data={this.props.topTracks}/>
                     </div>
                     <h2 className="Stats-center-text">My Top Artists</h2>
-                    <TopArtists topArtists={this.props.topArtists} />
+                    <div className="Stats-centering-tracks">
+                    <TopArtists className="Stats-center-flex" topArtists={this.props.topArtists} />
+                    </div>
                     </>}
             </div>
         );
