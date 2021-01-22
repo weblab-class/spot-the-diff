@@ -102,6 +102,7 @@ class App extends Component {
         })
     })
     console.log(artistGenres);
+    return artistGenres;
   }
   getTrackArtists = (trackList) => {
       let trackArtists = []
@@ -113,6 +114,7 @@ class App extends Component {
           })
       })
       console.log(trackArtists);
+      return trackArtists;
   }
   getTrackAlbums = (trackList) => {
       let trackAlbums = []
@@ -122,6 +124,7 @@ class App extends Component {
           }
       })
       console.log(trackAlbums);
+      return trackAlbums;
   }
 
   render() {

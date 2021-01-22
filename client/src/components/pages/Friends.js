@@ -9,6 +9,15 @@ import Form from "../modules/Form"
 
 import "./Friends.css";
 
+/**
+ * Proptypes
+ * @param {String} userId
+ * @param {array} topTracks
+ * @param {array} topArtists
+ * @param {function} getArtistGenres
+ * @param {function} getTrackAlbums
+ * @param {function} getTrackArtists
+ */
 class Friends extends Component {
     constructor(props) {
         super(props);
@@ -38,27 +47,46 @@ class Friends extends Component {
             this.setState({ friendTracks: data.tracks })
         })
     }
+    intersect_id = (arrA, arrB) => {
+        // returns the elements with same ids
+        return arrA.filter(eleA => arrB.some(eleB => eleB.id === eleA.id));
+    }
+
     intersect = (arrA, arrB) => {
         // returns the elements in both arrays
-        return arrA.filter(eleA => arrB.some(eleB => eleB.id === eleA.id));
+        return arrA.filter(eleA => arrB.some(eleB => eleB === eleA));
     }
 
     handleCompare = () => {
         const tracksA = this.props.topTracks;
         const tracksB = this.state.friendTracks;
+        const totalTracks = tracksA.length + tracksB.length;
+
         const artistsA = this.props.topArtists;
         const artistsB = this.state.friendArtists;
 
-        const commonTracks = this.intersect(tracksA, tracksB);
-        const commonArtists = this.intersect(artistsA, artistsB);
+        const genresA = this.props.getArtistGenres(artistsA);
+        const genresB = this.props.getArtistGenres(artistsB);
+
+        const commonTracks = this.intersect_id(tracksA, tracksB);
+        const commonArtists = this.intersect_id(artistsA, artistsB);
+        const commonGenres = this.intersect(genresA, genresB);
+        const commonTrackAlbums = this.intersect(this.props.getTrackAlbums(tracksA), this.props.getTrackAlbums(tracksB));
+        const commonTrackArtists = this.intersect(this.props.getTrackArtists(tracksA), this.props.getTrackArtists(tracksB));
 
         console.log('common tracks: ', commonTracks);
         console.log('common artists: ', commonArtists);
+        console.log('common genres: ', commonGenres);
+        console.log('common track albums: ', commonTrackAlbums);
+        console.log('common track artists: ', commonTrackArtists);
 
-        const tracks_pts = 2*commonTracks.length / (tracksA.length + tracksB.length);
-        const artists_pts = 2*commonArtists.length / (artistsA.length + artistsB.length);
+        const tracks_pts = 100 * 2*commonTracks.length / totalTracks;
+        const artists_pts = 100 * 2*commonArtists.length / totalTracks;
 
-        const total_pts = 100 * (tracks_pts + artists_pts)/2;
+        const total_pts = (tracks_pts+artists_pts)/2 
+                        + 5 * 2*commonTrackAlbums.length/totalTracks 
+                        + 4 * 2*commonTrackArtists.length/totalTracks
+                        + 3 * commonGenres.length;
 
         console.log(total_pts);
         this.setState({
