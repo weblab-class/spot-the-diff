@@ -140,7 +140,7 @@ class Friends extends Component {
             console.log('tracks ', tracks)
             get("/api/createPlaylist").then(playlist => {
                 console.log('my new playlist: ', playlist)
-                tracks = tracks.map(x => x.uri);
+                tracks = JSON.stringify(tracks.map(x => x.uri));
                 console.log(tracks);
                 console.log(typeof tracks)
                 get("/api/addToPlaylist", {userId: this.props.userId, playlistId: playlist.id, tracks: tracks}).then(newPlaylist => {
