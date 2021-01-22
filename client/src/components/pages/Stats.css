@@ -26,8 +26,7 @@
 .Stats-centering-tracks{
     width: 100vw;
     display: flex;
-    align-items: center;
-    align-content: center;
+    justify-content: center;
 }
 
 .Stats-center-text{
