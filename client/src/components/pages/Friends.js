@@ -38,18 +38,19 @@ class Friends extends Component {
             this.setState({ friendTracks: data.tracks })
         })
     }
+    intersect = (arrA, arrB) => {
+        // returns the elements in both arrays
+        return arrA.filter(eleA => arrB.some(eleB => eleB.id === eleA.id));
+    }
 
     handleCompare = () => {
-        const intersect = (arrA, arrB) => {
-            return arrA.filter(x => arrB.some(y => y.id === x.id));
-        }
         const tracksA = this.props.topTracks;
         const tracksB = this.state.friendTracks;
         const artistsA = this.props.topArtists;
         const artistsB = this.state.friendArtists;
 
-        const commonTracks = intersect(tracksA, tracksB);
-        const commonArtists = intersect(artistsA, artistsB);
+        const commonTracks = this.intersect(tracksA, tracksB);
+        const commonArtists = this.intersect(artistsA, artistsB);
 
         console.log('common tracks: ', commonTracks);
         console.log('common artists: ', commonArtists);

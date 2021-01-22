@@ -14,6 +14,9 @@ import "./Stats.css";
  * @param {String} userId
  * @param {array} topTracks
  * @param {array} topArtists
+ * @param {function} getArtistGenres
+ * @param {function} getTrackAlbums
+ * @param {function} getTrackArtists
  */
 class Stats extends Component {
     constructor(props) {
@@ -30,37 +33,14 @@ class Stats extends Component {
     componentDidMount() {
     }
 
-    getArtistGenres = (artistList) => {
-        let artistGenres = []
-        artistList.forEach(artist => {
-            artist.genres.forEach(genre => {
-                if (!artistGenres.includes(genre)) {
-                    artistGenres.push(genre);
-                }
-            })
-        })
-        console.log(artistGenres);
+    onArtistGenres = () => {
+        this.props.getArtistGenres(this.props.topArtists);
     }
-    getTrackArtists = (trackList) => {
-        let trackArtists = []
-        trackList.forEach(track => {
-            track.artists.forEach(artist => {
-                console.log(artist)
-                if (!trackArtists.includes(artist.name)) {
-                    trackArtists.push(artist.name);
-                }
-            })
-        })
-        console.log(trackArtists);
+    onTrackArtists = () => {
+        this.props.getTrackArtists(this.props.topTracks);
     }
-    getTrackAlbums = (trackList) => {
-        let trackAlbums = []
-        trackList.forEach(track => {
-            if (!trackAlbums.includes(track.album.name)) {
-                trackAlbums.push(track.album.name);
-            }
-        })
-        console.log(trackAlbums);
+    onTrackAlbums = () => {
+        this.props.getTrackAlbums(this.props.topTracks);
     }
 
     render() {
@@ -72,9 +52,9 @@ class Stats extends Component {
 
         return (
             <div>
-                <button onClick={this.getArtistGenres(this.props.topArtists)}>get artist genres</button> 
-                <button onClick={this.getTrackArtists(this.props.topTracks)}>get track artists</button>
-                <button onClick={this.getTrackAlbums(this.props.topTracks)}>get track albums</button>
+                <button onClick={this.onArtistGenres}>get artist genres</button> 
+                <button onClick={this.onTrackArtists}>get track artists</button>
+                <button onClick={this.onTrackAlbums}>get track albums</button>
                 <h1 className='u-centertext .xl-text'>Custom Listening Insights</h1>
                 {
                 <div className="flex-row">

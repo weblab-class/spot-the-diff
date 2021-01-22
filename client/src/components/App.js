@@ -92,6 +92,38 @@ class App extends Component {
     post("/api/logout");
   };
 
+  getArtistGenres = (artistList) => {
+    let artistGenres = []
+    artistList.forEach(artist => {
+        artist.genres.forEach(genre => {
+            if (!artistGenres.includes(genre)) {
+                artistGenres.push(genre);
+            }
+        })
+    })
+    console.log(artistGenres);
+  }
+  getTrackArtists = (trackList) => {
+      let trackArtists = []
+      trackList.forEach(track => {
+          track.artists.forEach(artist => {
+              if (!trackArtists.includes(artist.name)) {
+                  trackArtists.push(artist.name);
+              }
+          })
+      })
+      console.log(trackArtists);
+  }
+  getTrackAlbums = (trackList) => {
+      let trackAlbums = []
+      trackList.forEach(track => {
+          if (!trackAlbums.includes(track.album.name)) {
+              trackAlbums.push(track.album.name);
+          }
+      })
+      console.log(trackAlbums);
+  }
+
   render() {
     return (
       <>
@@ -116,12 +148,18 @@ class App extends Component {
             userId={this.state.userId}
             topTracks={this.state.topTracks}
             topArtists={this.state.topArtists}
+            getArtistGenres={this.getArtistGenres}
+            getTrackAlbums={this.getTrackAlbums}
+            getTrackArtists={this.getTrackArtists}
           />
           <Friends 
             path="/friends/:spotifyId" 
             userId={this.state.userId}
             topTracks={this.state.topTracks}
             topArtists={this.state.topArtists}
+            getArtistGenres={this.getArtistGenres}
+            getTrackAlbums={this.getTrackAlbums}
+            getTrackArtists={this.getTrackArtists}
           />
           <About path="/about" />
           <NotFound default />
