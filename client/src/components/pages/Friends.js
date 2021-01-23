@@ -215,7 +215,8 @@ class Friends extends Component {
         this.getFriendList();
 
         return(
-            <div>
+            <div className="Friends-page">
+            <div className="Friends-leftSide">
             {isComparing ? 
             <>
                 <button onClick={this.handleCompare}>get compatibility!</button>
@@ -238,7 +239,11 @@ class Friends extends Component {
             </ul>
             <Form compareArtists={this.getUserArtists} compareTracks={this.getUserTracks} pickFriend={this.updateSelectedFriend} />
             {compare}
-            <p>{this.displayFriends()}</p>
+            </div>
+            <div className="Friends-rightSide">
+                <h2>Friends</h2>
+                <p>{this.displayFriends()}</p>
+            </div>
             </div>
         )
     }

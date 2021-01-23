@@ -1,0 +1,18 @@
+.Friends-page {
+    display: flex;
+    flex-direction: row;
+}
+
+.Friends-leftSide {
+    flex: 1.7;
+}
+
+.Friends-rightSide {
+    flex: 0.3;
+    box-shadow: 1px 1px 1px 2px #bbb;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+}

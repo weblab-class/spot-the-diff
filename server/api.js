@@ -199,7 +199,7 @@ router.get('/topTracks', auth.ensureLoggedIn, (req, res) => {
     redirectUri: process.env.CALLBACK_URI,
   });
   loggedInSpotifyApi.setAccessToken(req.user.accessToken);
-  loggedInSpotifyApi.getMyTopTracks({ limit: 12, offset: 0 }).then((data) => {
+  loggedInSpotifyApi.getMyTopTracks({ limit: 15, offset: 0 }).then((data) => {
     let topTracks = data.body.items;
     // let topTitles = [];
 
@@ -254,7 +254,7 @@ router.get('/topArtists', auth.ensureLoggedIn, (req, res) => {
   });
   loggedInSpotifyApi.setAccessToken(req.user.accessToken);
   /* Get a User’s Top Artists*/
-  loggedInSpotifyApi.getMyTopArtists({ limit: 12, offset: 0 }).then((data) => {
+  loggedInSpotifyApi.getMyTopArtists({ limit: 15, offset: 0 }).then((data) => {
     console.log('getting top artists for clientid: ', spotifyApi.getClientId());
     const topArtists = data.body.items;
     console.log('my top artists', topArtists.length);
