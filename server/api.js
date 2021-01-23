@@ -338,13 +338,29 @@ router.post('/addFriend', auth.ensureLoggedIn, (req, res) => {
   console.log('inside api')
 
   Friends.findOne(query).then((doc) => {
-    if (doc) {
+    // user has an ongoing friends list
+    if (doc) { 
       let friends = doc.friendsList;
-      doc.friendsList = [...friends, { userId: req.body.userId, rating: 0}]
-      console.log(req.body.userId)
-      doc.save();
-      console.log('we have fetched your friend list' );
+      let foundFriend = false
+      for (i = 0; i < friends.length; i++) {
+        friend = friends[i];
+        if (friend.userId === req.body.userId) {
+          console.log('found friend');
+          foundFriend = true;
+          break;
+        }
+      }
+      if (foundFriend == false && doc) {
+        doc.friendsList = [...friends, { userId: req.body.userId, rating: 0}]
+        console.log(req.body.userId)
+        doc.save();
+        console.log('we have fetched your friend list' );
+      } else { 
+        // friend already exists in user's list 
+        console.log('do nothing')
+      }
     } else {
+      // user doesn't't have a friends list
       console.log('oop couldnt find your friend')
       const friends = new Friends({
         userId: req.user.spotifyId,
