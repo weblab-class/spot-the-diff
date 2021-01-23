@@ -455,6 +455,7 @@ router.post('/addRating', auth.ensureLoggedIn, (req, res) => {
     // console.log(req.body.rating)
     friends[friendLoc].rating = req.body.rating;
     // console.log(friends)
+    friends.sort(compare);
     doc.friendsList = friends
     doc.save().then((doc) => {
       console.log(doc)
@@ -463,6 +464,16 @@ router.post('/addRating', auth.ensureLoggedIn, (req, res) => {
     })
   })
 })
+
+compare = (a, b) => {
+  let comparison = 0;
+  if (a.rating > b.rating) {
+    comparison = -1;
+  } else {
+    comparison = 1;
+  }
+  return comparison;
+}
 
 router.post('/user-topArtists', (req, res) => {
   // post top artists for a specific user
