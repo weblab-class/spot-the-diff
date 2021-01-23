@@ -32,6 +32,7 @@ class Friends extends Component {
             commonGenres: [],
             genreSeeds: [],
             playlistTracks: undefined,
+            friends: [],
         };
     }
 
@@ -173,6 +174,19 @@ class Friends extends Component {
             })
         })
     }
+
+    getFriendList = () => {
+        get("/api/friendRanking").then(list => {
+            this.setState({ friends: list })
+        })
+    }
+
+    displayFriends = () => {
+        let display = this.state.friends.map((friendObj) => (
+            <p key={friendObj._id}><b>{friendObj.userId}</b> {friendObj.rating}</p>
+        ))
+        return display
+    }
     
 
 
@@ -198,6 +212,8 @@ class Friends extends Component {
             )
         }
 
+        this.getFriendList();
+
         return(
             <div>
             {isComparing ? 
@@ -221,7 +237,8 @@ class Friends extends Component {
                 <li style={{color: '#87CBD4' }}>no friends yet? no worries, we'll be your friend! try putting in this ID: llr5ecqygx3g5iqkx9lfnqzmt</li>
             </ul>
             <Form compareArtists={this.getUserArtists} compareTracks={this.getUserTracks} pickFriend={this.updateSelectedFriend} />
-                {compare}
+            {compare}
+            <p>{this.displayFriends()}</p>
             </div>
         )
     }

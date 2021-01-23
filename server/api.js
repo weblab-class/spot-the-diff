@@ -475,6 +475,12 @@ compare = (a, b) => {
   return comparison;
 }
 
+router.get('/friendRanking', (req, res) => {
+  const targetId = req.user.spotifyId;
+  const query = { userId: targetId };
+  Friends.findOne(query).then((doc) => res.send(doc.friendsList))
+})
+
 router.post('/user-topArtists', (req, res) => {
   // post top artists for a specific user
 })
