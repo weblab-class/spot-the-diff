@@ -340,7 +340,7 @@ router.post('/addFriend', auth.ensureLoggedIn, (req, res) => {
   Friends.findOne(query).then((doc) => {
     if (doc) {
       let friends = doc.friendsList;
-      doc.friendsList = [...friends, [req.body.userId, 0]]
+      doc.friendsList = [...friends, { userId: req.body.userId, rating: 0}]
       console.log(req.body.userId)
       doc.save();
       console.log('we have fetched your friend list' );
@@ -348,7 +348,7 @@ router.post('/addFriend', auth.ensureLoggedIn, (req, res) => {
       console.log('oop couldnt find your friend')
       const friends = new Friends({
         userId: req.user.spotifyId,
-        friendsList: [[ req.body.userId, 1 ]],
+        friendsList: [{ userId: req.body.userId, rating: 0 }],
       });
       friends.save().then(() => {
         console.log('created new friend')
@@ -430,6 +430,39 @@ router.get('/addToPlaylist', (req, res) => {
 })
 
 
+
+router.post('/addRating', auth.ensureLoggedIn, (req, res) => {
+  const targetId = req.user.spotifyId;
+  const query = { userId: targetId };
+
+  Friends.findOne(query).then((doc) => {
+  //   doc.friendsList.filter((friend) => friend[0] === req.body.userId).map((friends) => {
+  //     let friend = friends[0]
+  //     friend[1] = req.body.rating;
+  //     friend.save().then(() => res.send(doc.friendsList))
+  //   })});
+
+    let friends = doc.friendsList;
+    let friendLoc = null;
+    for (i = 0; i < friends.length; i++) {
+      friend = friends[i];
+      if (friend.userId === req.body.userId)  {
+        friendLoc = i;
+        console.log('found friend');
+        break;
+      }
+    } 
+    // console.log(req.body.rating)
+    friends[friendLoc].rating = req.body.rating;
+    // console.log(friends)
+    doc.friendsList = friends
+    doc.save().then((doc) => {
+      console.log(doc)
+      console.log(doc.friendsList[friendLoc].rating)
+      res.send(friends)
+    })
+  })
+})
 
 router.post('/user-topArtists', (req, res) => {
   // post top artists for a specific user

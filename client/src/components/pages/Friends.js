@@ -23,7 +23,7 @@ class Friends extends Component {
         super(props);
         this.state = {
             // can test with 'krishnahibye' or 'helen_hu'
-            otherId: '',
+            otherId: null,
             friendArtists: null,
             friendTracks: null,
             compatibility: undefined,
@@ -60,6 +60,16 @@ class Friends extends Component {
             this.setState({ friendTracks: data.tracks })
         })
     }
+
+    addRating = (score) => {
+        console.log("in addRating function")
+        post("/api/addRating", { userId: this.state.otherId, rating: score })
+    }
+
+    updateSelectedFriend = (userId) => {
+        this.setState({ otherId: userId});
+    }
+
     intersect_id = (arrA, arrB) => {
         // returns the elements with same ids
         return arrA.filter(eleA => arrB.some(eleB => eleB.id === eleA.id));
@@ -110,6 +120,8 @@ class Friends extends Component {
             commonArtists: commonArtists,
             commonGenres: commonGenres,
         });
+
+        this.addRating(total_pts);
     }
 
     getPlaylist = () => {
@@ -208,7 +220,7 @@ class Friends extends Component {
                 <li>your spotify ID can be found on the home page, right under the logout button!</li>
                 <li style={{color: '#87CBD4' }}>no friends yet? no worries, we'll be your friend! try putting in this ID: llr5ecqygx3g5iqkx9lfnqzmt</li>
             </ul>
-            <Form compareArtists={this.getUserArtists} compareTracks={this.getUserTracks} />
+            <Form compareArtists={this.getUserArtists} compareTracks={this.getUserTracks} pickFriend={this.updateSelectedFriend} />
                 {compare}
             </div>
         )

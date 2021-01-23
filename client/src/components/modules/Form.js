@@ -34,6 +34,7 @@ class Form extends Component {
         event.preventDefault();
         this.props.compareArtists(this.state.value);
         this.props.compareTracks(this.state.value);
+        this.props.pickFriend(this.state.value);
         console.log('handlesubmit')
         this.addFriend(this.state.value)
     }
