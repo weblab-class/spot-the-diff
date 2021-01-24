@@ -13,7 +13,7 @@ import "./Stats.css";
  * Proptypes
  * @param {String} userId
  * @param {array} topTracks, topTracksShort, topTracksLong
- * @param {array} topArtists
+ * @param {array} topArtists, topArtistsShort, topArtistsLong
  * @param {function} getArtistGenres
  * @param {function} getTrackAlbums
  * @param {function} getTrackArtists
@@ -102,7 +102,7 @@ class Stats extends Component {
                     </>}
             </div>
         );
-                }  
+    }  
 }
 
 export default Stats;
