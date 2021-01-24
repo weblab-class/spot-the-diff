@@ -25,6 +25,8 @@ class App extends Component {
       userId: undefined,
       spotifyId: undefined,
       topTracks: undefined,
+      topTracksShort: null,
+      topTracksLong: null,
       topArtists: undefined,
     };
   }
@@ -50,10 +52,17 @@ class App extends Component {
 
     const timeRanges = ['short_term', 'medium_term', 'long_term'];
     for (const timeRange of timeRanges) {
+      let key = 'topTracks';
+      if (timeRange === 'short_term') {
+        key = key+'Short';
+      }
+      else if (timeRange === 'long_term') {
+        key = key+'Long';
+      }
       get("/api/topTracks", {timeRange: timeRange}).then((data) => {
         console.log('my top tracks: ', data);
         this.setState({ 
-            topTracks: data, 
+            [key]: data, 
         });
       }).catch((err) => {
         console.log(err);
@@ -152,6 +161,8 @@ class App extends Component {
             path="/stats" 
             userId={this.state.userId}
             topTracks={this.state.topTracks}
+            topTracksShort={this.state.topTracksShort}
+            topTracksLong={this.state.topTracksLong}
             topArtists={this.state.topArtists}
             getArtistGenres={this.getArtistGenres}
             getTrackAlbums={this.getTrackAlbums}

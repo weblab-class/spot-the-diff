@@ -12,7 +12,7 @@ import "./Stats.css";
 /**
  * Proptypes
  * @param {String} userId
- * @param {array} topTracks
+ * @param {array} topTracks, topTracksShort, topTracksLong
  * @param {array} topArtists
  * @param {function} getArtistGenres
  * @param {function} getTrackAlbums
@@ -27,12 +27,30 @@ class Stats extends Component {
             friendArtists: null,
             friendTracks: null,
             compatibility: undefined,
+            timeRange: 'med',
         };
     }
 
     componentDidMount() {
     }
 
+    onShort = () => {
+        this.setState({
+            timeRange: 'short',
+        })
+    }
+    onMed = () => {
+        this.setState({
+            timeRange: 'med',
+        })
+    }
+    onLong = () => {
+        this.setState({
+            timeRange: 'long',
+        })
+    }
+
+    // these r for testing
     onArtistGenres = () => {
         this.props.getArtistGenres(this.props.topArtists);
     }
@@ -50,17 +68,29 @@ class Stats extends Component {
             return <div> Loading! </div>;
         }
 
+        let topTracks;
+        let topArtists;
+        if (this.state.timeRange === 'short') {
+            topTracks = this.props.topTracksShort;
+        }
+        else if (this.state.timeRange === 'long') {
+            topTracks = this.props.topTracksLong;
+        }
+        else {
+            topTracks = this.props.topTracks;
+        }
+
         return (
             <div>
-                {/* <button onClick={this.onArtistGenres}>get artist genres</button> 
-                <button onClick={this.onTrackArtists}>get track artists</button>
-                <button onClick={this.onTrackAlbums}>get track albums</button> */}
+                <button onClick={this.onShort}>4 weeks</button> 
+                <button onClick={this.onMed}>6 months</button>
+                <button onClick={this.onLong}>all time</button>
                 <h1 className='u-centertext .xl-text'>Custom Listening Insights</h1>
                 {
                     <>
                     <h2 className="Stats-center-text"> My Top Tracks</h2>
                     <div className="Stats-centering-tracks">
-                    <TopTracks className="Stats-center-flex" data={this.props.topTracks}/>
+                    <TopTracks className="Stats-center-flex" data={topTracks}/>
                     </div>
                     <h2 className="Stats-center-text">My Top Artists</h2>
                     <div className="Stats-centering-tracks">
