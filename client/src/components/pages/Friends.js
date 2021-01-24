@@ -24,6 +24,7 @@ class Friends extends Component {
         this.state = {
             // can test with 'krishnahibye' or 'helen_hu'
             otherId: null,
+            friendName: null,
             friendArtists: null,
             friendTracks: null,
             compatibility: undefined,
@@ -68,7 +69,13 @@ class Friends extends Component {
     }
 
     updateSelectedFriend = (userId) => {
-        this.setState({ otherId: userId});
+        get("/api/getUser", {userId}).then((data) => {
+            console.log(data);
+            this.setState({ 
+                otherId: userId,
+                friendName: data.display_name,
+            });
+        })
     }
 
     intersect_id = (arrA, arrB) => {
@@ -116,7 +123,7 @@ class Friends extends Component {
 
         console.log(total_pts);
         this.setState({
-            compatibility: total_pts,
+            compatibility: total_pts.toFixed(2),
             commonTracks: commonTracks,
             commonArtists: commonArtists,
             commonGenres: commonGenres,
@@ -164,7 +171,7 @@ class Friends extends Component {
 
     makePlaylist = () => {
         // if user wants to create playlist
-        get("/api/createPlaylist").then(playlist => {
+        get("/api/createPlaylist", {friendName: this.state.friendName, score: this.state.compatibility}).then(playlist => {
             // console.log('my new playlist: ', playlist)
             let tracks = this.state.playlistTracks;
             tracks = JSON.stringify(tracks.map(x => x.uri));
@@ -187,25 +194,32 @@ class Friends extends Component {
         ))
         return display
     }
-    
 
-
-    render(){
+    render() {
         if (!this.props.userId) return <div>Log in before accessing Stats</div>;
 
+        let friendName;
+        if (!this.state.friendName) {
+            friendName = "your friend";
+        }
+        else {
+            friendName = <span style={{color: '#B7E1CD' }}>{this.state.friendName}</span>;
+        }
         let compare;
         let isComparing = false;
         if (!this.state.friendArtists) {
             // compare = (<span className="Stats-left">Enter the username of a friend to compare!</span>);
+            
             compare = <div></div>;
         } else {
+            
             isComparing = true;
             compare = (
                 <>
                     <div className="flex-column">
-                        <h2>Friend's Top Tracks</h2>
+                        <h2>{friendName}'s Top Tracks</h2>
                         <TopTracks data={this.state.friendTracks} />
-                        <h2>Friend's Top Artists</h2>
+                        <h2>{friendName}'s Top Artists</h2>
                         <TopArtists topArtists={this.state.friendArtists} />
                     </div>
                 </>
@@ -220,8 +234,8 @@ class Friends extends Component {
             {isComparing ? 
             <>
                 <button onClick={this.handleCompare}>get compatibility!</button>
-                <button onClick={this.getPlaylist}>get a custom playlist that both you and your friend would like!</button>
-                <h3>your compatibility with your friend is: {this.state.compatibility}%</h3> </> :
+                <button onClick={this.getPlaylist}>get a custom playlist that both you and {friendName} would like!</button>
+                <h3>your compatibility with {friendName} is: {this.state.compatibility}%</h3> </> :
             <></> }
 
             {this.state.playlistTracks ?

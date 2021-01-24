@@ -417,7 +417,10 @@ router.get('/createPlaylist', (req, res) => {
     redirectUri: process.env.CALLBACK_URI,
   });
   loggedInSpotifyApi.setAccessToken(req.user.accessToken);
-  spotifyApi.createPlaylist('My playlist', { 'description': 'My description'})
+
+  const playlistName = `${req.user.name} and ${req.query.friendName}'s playlist`;
+  const playlistDescription = `your compatibility was ${req.query.score}%!`
+  spotifyApi.createPlaylist(playlistName, { 'description': playlistDescription})
   .then(function(data) {
     console.log('Created playlist!');
     res.send(data.body);
@@ -441,6 +444,15 @@ router.get('/addToPlaylist', (req, res) => {
     res.send(data)
   }, function(err) {
     console.log('Something went wrong!', err);
+    res.send({})
+  });
+})
+
+router.get('/getUser', (req, res) => {
+  spotifyApi.getUser(req.query.userId).then((data) => {
+    res.send(data.body);
+  }).catch(err => {
+    console.log('something went wrong in /api/getUser')
     res.send({})
   });
 })
