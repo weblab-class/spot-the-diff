@@ -199,7 +199,9 @@ router.get('/topTracks', auth.ensureLoggedIn, (req, res) => {
     redirectUri: process.env.CALLBACK_URI,
   });
   loggedInSpotifyApi.setAccessToken(req.user.accessToken);
-  loggedInSpotifyApi.getMyTopTracks({ limit: 15, offset: 0 }).then((data) => {
+  
+  loggedInSpotifyApi.getMyTopTracks({ 'time_range': req.query.timeRange, limit: 15, offset: 0 }).then((data) => {
+    // console.log(data);
     let topTracks = data.body.items;
     // let topTitles = [];
 
@@ -211,7 +213,7 @@ router.get('/topTracks', auth.ensureLoggedIn, (req, res) => {
     //     topTitles.push(title);
     // });
 
-    TopTracks.findOne({ userId: req.user.spotifyId }).then((doc) => {
+    TopTracks.findOne({ userId: req.user.spotifyId, timeRange: req.query.timeRange }).then((doc) => {
       if (doc) {
         if (JSON.stringify(doc.trackList) != JSON.stringify(topTracks)) {
           // update their document
@@ -232,6 +234,7 @@ router.get('/topTracks', auth.ensureLoggedIn, (req, res) => {
         const tracks = new TopTracks({
           userId: req.user.spotifyId,
           trackList: topTracks,
+          timeRange: req.query.timeRange,
         });
 
         tracks.save().then(() => {
@@ -241,7 +244,7 @@ router.get('/topTracks', auth.ensureLoggedIn, (req, res) => {
       }
     });
   }).catch((err) => {
-      console.log('Something went wrong!', err);
+      console.log('Something went wrong in /api/topTracks!', err);
   });
 })
 

@@ -47,14 +47,18 @@ class App extends Component {
         });
       }
     });
-    get("/api/topTracks").then((data) => {
-      console.log('my top tracks: ', data);
-      this.setState({ 
-          topTracks: data, 
+
+    const timeRanges = ['short_term', 'medium_term', 'long_term'];
+    for (const timeRange of timeRanges) {
+      get("/api/topTracks", {timeRange: timeRange}).then((data) => {
+        console.log('my top tracks: ', data);
+        this.setState({ 
+            topTracks: data, 
+        });
+      }).catch((err) => {
+        console.log(err);
       });
-    }).catch((err) => {
-      console.log(err);
-    });
+    }
 
     get("/api/topArtists").then((data) => {
       console.log('my top artists: ', data);
