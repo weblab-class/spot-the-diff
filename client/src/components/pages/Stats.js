@@ -72,12 +72,15 @@ class Stats extends Component {
         let topArtists;
         if (this.state.timeRange === 'short') {
             topTracks = this.props.topTracksShort;
+            topArtists = this.props.topArtistsShort;
         }
         else if (this.state.timeRange === 'long') {
             topTracks = this.props.topTracksLong;
+            topArtists = this.props.topArtistsLong;
         }
         else {
             topTracks = this.props.topTracks;
+            topArtists = this.props.topArtists;
         }
 
         return (
@@ -94,7 +97,7 @@ class Stats extends Component {
                     </div>
                     <h2 className="Stats-center-text">My Top Artists</h2>
                     <div className="Stats-centering-tracks">
-                    <TopArtists className="Stats-center-flex" topArtists={this.props.topArtists} />
+                    <TopArtists className="Stats-center-flex" topArtists={topArtists} />
                     </div>
                     </>}
             </div>

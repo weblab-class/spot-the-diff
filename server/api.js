@@ -220,12 +220,12 @@ router.get('/topTracks', auth.ensureLoggedIn, (req, res) => {
           doc.trackList = topTracks;
           doc.save().then(() => {
             console.log(doc.userId);
-            console.log('user already exists, updated tracks!');
+            console.log('user & time already exists, updated tracks!');
             res.send(topTracks);
           })
         } 
         else {
-          console.log('user already exists, top tracks havent changed');
+          console.log('user & time already exists, top tracks havent changed');
           res.send(doc.trackList);
         }
       }
@@ -257,7 +257,7 @@ router.get('/topArtists', auth.ensureLoggedIn, (req, res) => {
   });
   loggedInSpotifyApi.setAccessToken(req.user.accessToken);
   /* Get a User’s Top Artists*/
-  loggedInSpotifyApi.getMyTopArtists({ limit: 15, offset: 0 }).then((data) => {
+  loggedInSpotifyApi.getMyTopArtists({ 'time_range': req.query.timeRange, limit: 15, offset: 0 }).then((data) => {
     console.log('getting top artists for clientid: ', spotifyApi.getClientId());
     const topArtists = data.body.items;
     console.log('my top artists', topArtists.length);
@@ -265,23 +265,20 @@ router.get('/topArtists', auth.ensureLoggedIn, (req, res) => {
 
     // check if user exists in database: if yes, update their document
     // if not, add a new document
-    TopArtists.findOne({ userId: req.user.spotifyId }).then((doc) => {
+    TopArtists.findOne({ userId: req.user.spotifyId, timeRange: req.query.timeRange }).then((doc) => {
       console.log('finding top artists for: ', req.user.spotifyId);
       if (doc) {
-        // console.log('alr in database: ', doc.artistList);
-        // console.log('old list to json: ', JSON.stringify(doc.artistList));
-        // console.log('new list to json: ', JSON.stringify(topArtists));
         if (JSON.stringify(doc.artistList) != JSON.stringify(topArtists)) {
           // update their document
           doc.artistList = topArtists;
           doc.save().then(() => {
             // console.log(doc.userId);
-            console.log('user already exists, updated top artists');
+            console.log('user & time already exists, updated top artists');
             res.send(topArtists);
           })
         }
         else {
-          console.log('user already exists, top artists havent changed');
+          console.log('user & time already exists, top artists havent changed');
           res.send(doc.artistList);
         }
       }
@@ -290,10 +287,11 @@ router.get('/topArtists', auth.ensureLoggedIn, (req, res) => {
         const artists = new TopArtists({
           userId: req.user.spotifyId,
           artistList: topArtists,
+          timeRange: req.query.timeRange,
         });
         artists.save().then(() => {
           console.log(artists.userId);
-          console.log('new user! artists saved to mongo');
+          console.log('artists saved to mongo');
           res.send(topArtists);
         })
       }

@@ -28,6 +28,8 @@ class App extends Component {
       topTracksShort: null,
       topTracksLong: null,
       topArtists: undefined,
+      topArtistsShort: null,
+      topArtistsLong: null,
     };
   }
 
@@ -68,15 +70,23 @@ class App extends Component {
         console.log(err);
       });
     }
-
-    get("/api/topArtists").then((data) => {
-      console.log('my top artists: ', data);
-      this.setState({
-          topArtists: data,
+    for (const timeRange of timeRanges) {
+      let key = 'topArtists';
+      if (timeRange === 'short_term') {
+        key = key+'Short';
+      }
+      else if (timeRange === 'long_term') {
+        key = key+'Long';
+      }
+      get("/api/topArtists", {timeRange: timeRange}).then((data) => {
+        console.log('my top artists: ', data);
+        this.setState({
+            [key]: data,
+        });
+      }).catch((err) => {
+        console.log(err);
       });
-    }).catch((err) => {
-      console.log(err);
-    }); 
+    }
     
   }
 
@@ -164,6 +174,8 @@ class App extends Component {
             topTracksShort={this.state.topTracksShort}
             topTracksLong={this.state.topTracksLong}
             topArtists={this.state.topArtists}
+            topArtistsShort={this.state.topArtistsShort}
+            topArtistsLong={this.state.topArtistsLong}
             getArtistGenres={this.getArtistGenres}
             getTrackAlbums={this.getTrackAlbums}
             getTrackArtists={this.getTrackArtists}
