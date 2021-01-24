@@ -121,7 +121,7 @@ class Friends extends Component {
                         + 3 * commonTrackArtists.length
                         + 2 * commonGenres.length;
 
-        console.log(total_pts);
+        // console.log(total_pts);
         this.setState({
             compatibility: total_pts.toFixed(2),
             commonTracks: commonTracks,
@@ -129,13 +129,18 @@ class Friends extends Component {
             commonGenres: commonGenres,
         });
 
-        this.addRating(total_pts);
+        this.addRating(total_pts.toFixed(2));
     }
 
     getPlaylist = () => {
         let seedGenres = this.state.commonGenres.filter(x => this.state.genreSeeds.includes(x));
         let seedTracks = this.state.commonTracks.map(x => x.id);
         let seedArtists = this.state.commonArtists.map(x => x.id);
+
+        // cap genres at one
+        while (seedGenres.length > 1) {
+            seedGenres.splice(Math.floor(Math.random()*seedGenres.length), 1);
+        }
 
         while (seedGenres.length + seedTracks.length + seedArtists.length > 5) {
             // do some processing
@@ -190,7 +195,9 @@ class Friends extends Component {
 
     displayFriends = () => {
         let display = this.state.friends.map((friendObj) => (
-            <p key={friendObj._id}><b>{friendObj.userId}</b> {friendObj.rating}</p>
+            <div key={friendObj._id}>
+                <p><b>{friendObj.userId}</b> {friendObj.rating}</p>
+            </div>
         ))
         return display
     }
@@ -256,7 +263,7 @@ class Friends extends Component {
             </div>
             <div className="Friends-rightSide">
                 <h2>Friends</h2>
-                <p>{this.displayFriends()}</p>
+                <div>{this.displayFriends()}</div>
             </div>
             </div>
         )

@@ -52,9 +52,9 @@ class Stats extends Component {
 
         return (
             <div>
-                <button onClick={this.onArtistGenres}>get artist genres</button> 
+                {/* <button onClick={this.onArtistGenres}>get artist genres</button> 
                 <button onClick={this.onTrackArtists}>get track artists</button>
-                <button onClick={this.onTrackAlbums}>get track albums</button>
+                <button onClick={this.onTrackAlbums}>get track albums</button> */}
                 <h1 className='u-centertext .xl-text'>Custom Listening Insights</h1>
                 {
                     <>
