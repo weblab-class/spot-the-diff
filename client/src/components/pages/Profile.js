@@ -56,9 +56,9 @@ class Profile extends Component {
         return (
             <>
                 <div className="Profile-container">
-                    <h1> All about {username}</h1>
-                    {/* <h2>hi, {username}!</h2> */}
-                    <img src={userIcon} />
+                <h1 className="Profile-text"> All about {username}</h1>
+                {/* <h2>hi, {username}!</h2> */}
+                <img src={userIcon} className="Profile-picture" />
                 </div>
                 <div className="Profile-container">
                     <h2>your music taste is fire omg</h2>

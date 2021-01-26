@@ -59,15 +59,15 @@ class NavBar extends Component {
                     <>
                     <p className="NavBar-text-left NavBar-left m-text"> {title} </p>
                     {/* TODO: constantly check for playback without button - with socket? */}
-                    <button onClick={this.getCurrentPlayback} className="NavBar-button">click for current playback</button>
+                    <button onClick={this.getCurrentPlayback} className="NavBar-button NavBar-playback">Click for Current Playback</button>
                     </> : <></>
                 }
                 
                 <div className="NavBar-right">
-                    <Link to="/" className="NavBar-text-left m-text"> Home </Link>
                     {this.props.userId ? (
                     <>
                         {/* <Link to="/about" className="NavBar-text-left m-text"> About </Link> */}
+                        <Link to="/" className="NavBar-text-left m-text"> Home </Link>
                         <Link to={`/profile/${this.props.spotifyId}`} className="NavBar-text-left m-text"> Profile </Link>
                         <Link to={`/stats`} className="NavBar-text-left m-text"> Stats </Link>
                         <Link to={`/friends/${this.props.spotifyId}`} className="NavBar-text-left m-text"> Friends </Link>

@@ -41,3 +41,11 @@
     flex-direction: row;
     justify-content: space-around;
 }
+
+.NavBar-playback {
+    display: block;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding: 5px 3px 5px 3px;
+    height: fit-content;
+}

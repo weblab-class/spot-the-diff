@@ -5,46 +5,37 @@
 .Login-container {
     display: flex;
     justify-content: center;
-    align-items: center;
     flex-direction: row;
-    min-height: 84vh;
+    min-height: 90vh;
+    align-items: center;
 }
 
-.Login-button {
+.Home-button {
     height: 40px;
     border: 0px;
     width: 240px;
     border-radius: 10px;
-    margin: 2px;
     transition: 0.25s;
     background-color: #1DB954;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.Home-text{
-    position: relative;
-    bottom: -225px;
-}
-
-.Logout-button {
-    height: 40px;
-    border: 0px;
-    width: 240px;
-    border-radius: 10px;
-    margin: 0px;
-    transition: 0.25s;
-    position: relative;
-    bottom:-300px;
-    background-color: #1DB954;
-}
-
-
-.Login-button:hover {
+.Home-button:hover {
     background-color: rgb(212, 212, 212);
 }
 
-.Home-description {
+.Home-section1 {
     display: flex;
     flex-direction: column;
+    flex: 1.0;
+}
+
+.Home-section2 {
+    display: flex;
+    flex-direction: column;
+    flex: 1.0;
 }
 
 .Home-image {
@@ -67,4 +58,9 @@
     /* font-family: 'Playfair Display', serif; */
     font-family: 'Barlow', sans-serif;
     font-size: 20px;
+}
+
+.Home-text {
+    display: block;
+    text-align: center;
 }
