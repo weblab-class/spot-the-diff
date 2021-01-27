@@ -27,14 +27,15 @@
     color:#FFFFFF;
     text-align:center;
     transition: all 0.2s;
-    background-color: #292929;
+    /* background-color: #292929; */
     animation: bouncy 5s infinite linear;
     position: relative;
+    background: #1DB954;
 }
 
 .Home-button:hover {
     /* background-color: rgb(212, 212, 212); */
-    color: #000000;
+    color: black;
     background-color: #FFFFFF;
 }
 
