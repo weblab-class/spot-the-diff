@@ -386,6 +386,8 @@ router.post('/addFriend', auth.ensureLoggedIn, (req, res) => {
         console.log('created new friend')
       });
     }
+  }).catch(err => {
+    console.log('error in /api/addFriend: ', err);
   })
 })
 
@@ -515,8 +517,8 @@ router.post('/addRating', auth.ensureLoggedIn, (req, res) => {
       console.log('couldnt find friends in api/addRating');
       return res.send({});
     }
-
-    
+  }).catch(err => {
+    console.log('error in /api/addRating: ', err);
   })
 })
 
@@ -536,9 +538,11 @@ router.get('/friendRanking', (req, res) => {
   Friends.findOne(query).then((doc) => {
     if (!doc) {
       console.log('couldnt find friends in api/friendRanking');
-      res.send({});
+      return res.send({});
     }
     res.send(doc.friendsList);
+  }).catch(err => {
+    console.log('error in /api/friendRanking: ', err);
   })
 })
 
