@@ -144,36 +144,29 @@ class Friends extends Component {
         }
         console.log(artistsB);
 
-        const tracks_pts = 100 * 2*commonTracks.length / totalTracks;
-        const artists_pts = 100 * 2*commonArtists.length / (artistsA + artistsB);
-
-        let total_pts = 1 * 100*2*commonTracks.length/totalTracks
-                        + 1 * 100*2*commonArtists.length/totalArtists
-                        + 4 * commonTrackAlbums.length 
-                        + 3 * commonTrackArtists.length
+        let total_pts = 1.5 * 100*2*commonTracks.length/totalTracks
+                        + 2 * 100*2*commonArtists.length/totalArtists
+                        + 5 * commonTrackAlbums.length 
+                        + 4 * commonTrackArtists.length
                         + 2 * commonGenres.length;
-        
+
+        total_pts = Math.round(total_pts);
         if (total_pts >= 100)
         {
             total_pts = 100;
         }
 
         let message;
-
-        if (total_pts === 100)
-        {
+        if (total_pts === 100) {
             message = "hot diggity dog! almost like you two are the same person... 👀"
         }
-        else if (total_pts >= 75)
-        {
+        else if (total_pts >= 75) {
             message = "You two are destined to be together for life. "
         }
-        else if (total_pts >= 50)
-        {
+        else if (total_pts >= 50) {
             message = "Solid above average. ";
         }
-        else if (total_pts >= 35)
-        {
+        else if (total_pts >= 35) {
             message = "opposites attract?";
         }
         else if (total_pts >= 10) {
@@ -187,7 +180,7 @@ class Friends extends Component {
 
         // console.log(total_pts);
         this.setState({
-            compatibility: total_pts.toFixed(2),
+            compatibility: total_pts,
             compatibilityMessage:message,
             commonTracks: commonTracks,
             commonArtists: commonArtists,
@@ -197,7 +190,7 @@ class Friends extends Component {
             friendArtists: artistsB,
         });
 
-        this.addRating(total_pts.toFixed(2));
+        this.addRating(total_pts);
     }
 
     getPlaylist = () => {
@@ -275,15 +268,9 @@ class Friends extends Component {
         try{
              display = this.state.friends.map((friendObj) => (
                 <div key={friendObj._id}>
-<<<<<<< HEAD
-                    <div>{friendObj.friendName} [{friendObj.userId}]</div>
-                    {/* <div> {friendObj.friendName} ({friendObj.userId}) {friendObj.rating}</div>  */}
-                    <div>{friendObj.rating}%</div>
-=======
                     {/* <div>{friendObj.friendName} [{friendObj.userId}]</div> */}
-                    <div><b>{friendObj.friendName}</b> [{friendObj.userId}] | <b>{friendObj.rating}</b></div> 
+                    <div><b>{friendObj.friendName}</b> [{friendObj.userId}] | <b>{friendObj.rating}%</b></div> 
                     {/* <div>{friendObj.rating}%</div> */}
->>>>>>> 9987f3c0a9a4dd9e3e0bb8952c4121ac23d0e512
                 </div>
             ))    
         }
