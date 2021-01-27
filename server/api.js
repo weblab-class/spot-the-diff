@@ -444,8 +444,8 @@ router.get('/createPlaylist', (req, res) => {
   loggedInSpotifyApi.setAccessToken(req.user.accessToken);
 
   const playlistName = `${req.user.name} and ${req.query.friendName}'s playlist`;
-  const playlistDescription = `your compatibility was ${req.query.score}%!`
-  spotifyApi.createPlaylist(playlistName, { 'description': playlistDescription})
+  const playlistDescription = `your compatibility was ${req.query.score}%!`;
+  loggedInSpotifyApi.createPlaylist(playlistName, { 'description': playlistDescription})
   .then(function(data) {
     console.log('Created playlist!');
     res.send(data.body);
