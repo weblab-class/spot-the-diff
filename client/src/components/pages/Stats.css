@@ -79,3 +79,11 @@
 .Stats-page {
     align-items: center;
 }
+.Stats-img {
+    border-radius: 50%;
+    max-width: 15%;
+    height:auto;
+}
+.Stats-header {
+    text-align: center;
+}

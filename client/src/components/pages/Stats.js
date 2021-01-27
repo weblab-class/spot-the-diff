@@ -98,8 +98,14 @@ class Stats extends Component {
 
         return (
             <div className="Stats-page">
-                <h1 className='Stats-title'>Custom Listening Insights for {username}</h1>
-                <img src={userIcon} className="Profile-picture" />
+                <div className='Stats-header'>
+                    <h1 className='Stats-title'>hi, {username}! your music looks good🤩</h1>
+                    <figure>
+                        <img src={userIcon} className='Stats-img'/>
+                        <figcaption>and so do you ;)</figcaption>
+                    </figure>
+                    
+                </div>
                 <div className="Stats-button-group">
                     <button className="Stats-button" onClick={this.onShort}>4 weeks</button> 
                     <button className="Stats-button" onClick={this.onMed}>6 months</button>
