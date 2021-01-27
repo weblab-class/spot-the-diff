@@ -99,7 +99,9 @@ class Stats extends Component {
         return (
             <div className="Stats-page">
                 <div className='Stats-sidebar'>
-                    <h1 className='Stats-title'>hi, {username}! your music looks good🤩</h1>
+                    <div className="Stats-spacing"></div>
+                    <h1 className='Stats-title'>hi, {username}!</h1>
+                    <h1 className="Stats-title">your music looks good🤩</h1>
                     <figure>
                         <img src={userIcon} className='Stats-img'/>
                         <figcaption>and so do you ;)</figcaption>

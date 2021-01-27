@@ -20,9 +20,15 @@ class Form extends Component {
 
     addFriend = (userId) => {
         console.log('in correct function!')
-        post("/api/addFriend", {
-            userId: userId
+        get("/api/getUser", {userId}).then((data) => {
+            console.log(data);
+            const friendName = data.display_name;
+            post("/api/addFriend", {
+                userId: userId,
+                friendName: friendName,
+            })
         })
+        
     }
 
     handleChange(event) {

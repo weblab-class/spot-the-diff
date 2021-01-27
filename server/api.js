@@ -338,11 +338,16 @@ router.post('/addFriend', auth.ensureLoggedIn, (req, res) => {
   const query = { userId : targetId };
   console.log('inside api')
 
+  // delete my friends for testing! don't do this at home kids
+  // Friends.deleteMany(query).then(() => {
+  //   console.log('deleted all ur friends u idiot');
+  // })
+
   Friends.findOne(query).then((doc) => {
     // user has an ongoing friends list
     if (doc) { 
       let friends = doc.friendsList;
-      let foundFriend = false
+      let foundFriend = false;
       for (i = 0; i < friends.length; i++) {
         friend = friends[i];
         if (friend.userId === req.body.userId) {
@@ -352,7 +357,7 @@ router.post('/addFriend', auth.ensureLoggedIn, (req, res) => {
         }
       }
       if (foundFriend == false && doc) {
-        doc.friendsList = [...friends, { userId: req.body.userId, rating: 0}]
+        doc.friendsList = [...friends, { userId: req.body.userId, friendName: req.body.friendName, rating: 0}]
         console.log(req.body.userId)
         doc.save();
         console.log('we have fetched your friend list' );
@@ -365,7 +370,7 @@ router.post('/addFriend', auth.ensureLoggedIn, (req, res) => {
       console.log('oop couldnt find your friend')
       const friends = new Friends({
         userId: req.user.spotifyId,
-        friendsList: [{ userId: req.body.userId, rating: 0 }],
+        friendsList: [{ userId: req.body.userId, friendName: req.body.friendName, rating: 0 }],
       });
       friends.save().then(() => {
         console.log('created new friend')
@@ -470,6 +475,10 @@ router.post('/addRating', auth.ensureLoggedIn, (req, res) => {
   //     friend[1] = req.body.rating;
   //     friend.save().then(() => res.send(doc.friendsList))
   //   })});
+    if (!doc) {
+      console.log('couldnt find friends in api/addRating');
+      res.send({});
+    }
 
     let friends = doc.friendsList;
     let friendLoc = null;
@@ -483,6 +492,7 @@ router.post('/addRating', auth.ensureLoggedIn, (req, res) => {
     } 
     // console.log(req.body.rating)
     friends[friendLoc].rating = req.body.rating;
+    friends[friendLoc].friendName = req.body.friendName;
     // console.log(friends)
     friends.sort(compare);
     doc.friendsList = friends
@@ -507,7 +517,13 @@ compare = (a, b) => {
 router.get('/friendRanking', (req, res) => {
   const targetId = req.user.spotifyId;
   const query = { userId: targetId };
-  Friends.findOne(query).then((doc) => res.send(doc.friendsList))
+  Friends.findOne(query).then((doc) => {
+    if (!doc) {
+      console.log('couldnt find friends in api/friendRanking');
+      res.send({});
+    }
+    res.send(doc.friendsList);
+  })
 })
 
 router.post('/user-topArtists', (req, res) => {

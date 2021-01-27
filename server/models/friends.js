@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const FriendsSchema = new mongoose.Schema({
     userId: String,
-    friendsList: [{userId: String, rating: Number}],
+    friendsList: [{userId: String, friendName: String, rating: Number}],
 });
 
 // compile model from schema
