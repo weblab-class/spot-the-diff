@@ -240,7 +240,6 @@ class Friends extends Component {
             <div className="Friends-leftSide">
             {isComparing ? 
             <>
-                <button onClick={this.handleCompare}>get compatibility!</button>
                 <button onClick={this.getPlaylist}>get a custom playlist that both you and {friendName} would like!</button>
                 <h3>your compatibility with {friendName} is: {this.state.compatibility}%</h3> </> :
             <></> }
@@ -264,6 +263,9 @@ class Friends extends Component {
             <div className="Friends-rightSide">
                 <h2>Friends</h2>
                 <div>{this.displayFriends()}</div>
+                <h2>About Compatibility</h2>
+                <div>Compatibility quanitifies you and your friends' shared music taste, as measured by Spot-the-diff's algorithm</div>
+
             </div>
             </div>
         )
