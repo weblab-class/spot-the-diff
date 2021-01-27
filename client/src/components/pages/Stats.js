@@ -111,11 +111,11 @@ class Stats extends Component {
                     <button className="Stats-button" onClick={this.onMed}>6 months</button>
                     <button className="Stats-button" onClick={this.onLong}>all time</button>
                 </div>
-                <h2 className="Stats-center-text"> My Top Tracks</h2>
+                < h2 className = "Stats-title"> My Top Tracks </h2>
                 <div className="Stats-centering-tracks">
                 <TopTracks className="Stats-center-flex" data={topTracks}/>
                 </div>
-                <h2 className="Stats-center-text">My Top Artists</h2>
+                <h2 className="Stats-title">My Top Artists</h2>
                 <div className="Stats-centering-tracks">
                 <TopArtists className="Stats-center-flex" topArtists={topArtists} />
                 </div>
