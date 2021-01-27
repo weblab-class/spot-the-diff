@@ -135,6 +135,7 @@ class Friends extends Component {
             commonTracks: commonTracks,
             commonArtists: commonArtists,
             commonGenres: commonGenres,
+            playlistTracks: undefined,
         });
 
         this.addRating(total_pts.toFixed(2));
