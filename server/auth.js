@@ -88,6 +88,8 @@ const callback = async (req, res, spotifyApi) => {
 //     });
 // }
 
+
+// https://stackoverflow.com/questions/53697124/how-to-log-out-of-spotify-api-authentication-flow-demo
 function logout(req, res, spotifyApi) {
   req.session.user = null;
   spotifyApi.resetAccessToken();

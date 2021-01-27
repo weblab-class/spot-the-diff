@@ -1,47 +1,21 @@
-# Project Skeleton
+Welcome to our project!
 
-## What we provide
+Sources:
+https://developer.spotify.com/documentation/web-api/quick-start/
 
-- Google Auth (Skeleton.js & auth.js)
-  - Disclaimer: Auth isn't being taught until the second week.
-- Socket Infrastructure (client-socket.js & server-socket.js)
-  - Disclaimer: Socket isn't being taught until the second week.
-- User Model (auth.js & user.js)
+https://medium.com/@alvaro.saburido/set-theory-for-arrays-in-es6-eb2f20a61848
 
-## What you need to change
+https://www.tutorialrepublic.com/faq/
 
-- Add a favicon to your website at the path client/dist/favicon.ico
-- Update website title in client/dist/index.html
-- Update this README file ;)
-- Update the package.json file with your app name :) (line 2)
+how-to-check-if-an-array-includes-an-object-in-javascript.php
 
-## Socket stuff
-Note: we'll be getting to this in lecture in week 2, so don't worry if you don't know it yet
+https://stackoverflow.com/questions/53697124/
 
-- If you're not using realtime updating or don't need server->client communication, you can remove socket entirely! (server-socket.js, client-socket.js, and anything that imports them)
-- If you are using socket, consider what you want to do with the FIXME in server-socket.js
+how-to-log-out-of-spotify-api-authentication-flow-demo
 
+https://www.w3schools.com/css/css_positioning.asp
 
-## How to integrate into your own project
+https://www.npmjs.com/package/spotify-web-api-node#usage
 
-On GitHub download this repository as a zip file, then extract the files into your own repository.
-Warning: make sure you copy the hidden files too: .babelrc, .gitignore, .npmrc, and .prettierrc
-
-## don't touch
-
-the following files students do not need to edit. feel free to read them if you would like.
-
-```
-client/src/index.js
-client/src/utilities.js
-client/src/client-socket.js
-server/validator.js
-server/server-socket.js
-.babelrc
-.npmrc
-.prettierrc
-package-lock.json
-webpack.config.js
-```
-
-## Good luck on your project :)
+https://github.com/dansun123/webapp-skeleton/tree/spotify (code skeleton for Spotify 
+Staff gave us at office hours, used in a variety of places)
