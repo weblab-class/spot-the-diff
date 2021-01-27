@@ -9,6 +9,7 @@
     box-shadow: 1px 1px 3px 3px #c0c0c0;
     position: fixed;
     width: 100%;
+    z-index: 2;
 }
 
 .NavBar-text-left {
