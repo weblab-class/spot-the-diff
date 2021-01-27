@@ -56,17 +56,17 @@
 .Home-section1 {
     display: flex;
     flex-direction: column;
-    flex: 1.0;
+    flex: 1.1;
 }
 
 .Home-section2 {
     display: flex;
     flex-direction: column;
-    flex: 1.0;
+    flex: 0.9;
 }
 
 .Home-image {
-    height: 500px;
+    width: 100%;
     position: relative;
     z-index: 0;
 }
@@ -74,6 +74,7 @@
 .Home-title {
     text-align: center;
     font-size: 76px;
+    /* font-size: 5.5vw; */
     /* font-family: 'Playfair Display', serif; */
     font-family: 'Kaushan Script', cursive;
     opacity: 90%;
@@ -83,6 +84,7 @@
 
 .Home-spotify-label {
     color: green;
+    /* font-size: 4.5vw; */
     font-size: 58px;
 }
 
@@ -90,6 +92,7 @@
     /* font-family: 'Playfair Display', serif; */
     font-family: 'Barlow', sans-serif;
     font-size: 20px;
+    /* font-size: 1.4vw; */
     opacity: 80%;
     margin: 10px;
 }
@@ -103,4 +106,10 @@
 .Home-pitch p {
     margin-top: 5px;
     margin-bottom: 5px;
+}
+
+@media only screen and (max-width: 900px) {
+    .Home-section1 {
+        flex: 0;
+    }
 }
