@@ -37,6 +37,7 @@ scopes = ['user-read-private',
 
 require('dotenv').config();
 
+// https://www.npmjs.com/package/spotify-web-api-node#usage
 const spotifyApi = new SpotifyWebApi({
   clientId: process.env.SPOTIFY_API_ID,
   clientSecret: process.env.SPOTIFY_CLIENT_SECRET,

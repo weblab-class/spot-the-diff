@@ -268,9 +268,7 @@ class Friends extends Component {
         try{
              display = this.state.friends.map((friendObj) => (
                 <div key={friendObj._id}>
-                    {/* <div>{friendObj.friendName} [{friendObj.userId}]</div> */}
                     <div><b>{friendObj.friendName}</b> [{friendObj.userId}] | <b>{friendObj.rating}%</b></div> 
-                    {/* <div>{friendObj.rating}%</div> */}
                 </div>
             ))    
         }
