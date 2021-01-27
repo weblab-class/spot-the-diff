@@ -308,7 +308,7 @@ class Friends extends Component {
             <h3 className="Friends-rightSide">To compare your stats with your friends...</h3>
             <ul>
                 <li>make sure they've logged into our website before</li>
-                <li>your spotify ID can be found on the home page, right under the logout button!</li>
+                <li>your spotify ID can be found on the top left of this screen (in brackets)!</li>
                 <li style={{color: '#1DB954' }}>no friends yet? no worries, we'll be your friend! try putting in this ID: llr5ecqygx3g5iqkx9lfnqzmt</li>
             </ul>
             {isComparing ? 
