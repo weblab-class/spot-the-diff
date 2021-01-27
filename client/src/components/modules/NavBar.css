@@ -58,10 +58,6 @@
 
 .NavBar-text {
     transition: color .2s ease;
-    opacity: 60%;
-}
-
-.NavBar-text:hover {
     opacity: 100%;
 }
 

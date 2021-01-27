@@ -6,6 +6,7 @@ import TopTracks from "../modules/TopTracks";
 import TopArtists from "../modules/TopArtists";
 import Card from "../modules/Card";
 import Form from "../modules/Form"
+import Instructions from "../modules/Instructions";
 
 import "./Friends.css";
 
@@ -274,9 +275,15 @@ class Friends extends Component {
         try{
              display = this.state.friends.map((friendObj) => (
                 <div key={friendObj._id}>
+<<<<<<< HEAD
                     <div>{friendObj.friendName} [{friendObj.userId}]</div>
                     {/* <div> {friendObj.friendName} ({friendObj.userId}) {friendObj.rating}</div>  */}
                     <div>{friendObj.rating}%</div>
+=======
+                    {/* <div>{friendObj.friendName} [{friendObj.userId}]</div> */}
+                    <div><b>{friendObj.friendName}</b> [{friendObj.userId}] | <b>{friendObj.rating}</b></div> 
+                    {/* <div>{friendObj.rating}%</div> */}
+>>>>>>> 9987f3c0a9a4dd9e3e0bb8952c4121ac23d0e512
                 </div>
             ))    
         }
@@ -322,7 +329,7 @@ class Friends extends Component {
 
         this.getFriendList();
 
-        return(
+        return (
             <div className="Friends-page">
             <div className="Friends-leftSide">
 
@@ -332,37 +339,30 @@ class Friends extends Component {
                 <button className="Friend-button" onClick={this.makePlaylist}>save and open in spotify!</button>
                 <TopTracks data={this.state.playlistTracks} />
             </> : <></>}
+            
 
-            <h3 className="Friends-rightSide">To compare your stats with your friends...</h3>
-            <ul>
-                <li>make sure they've logged into our website before</li>
-                <li>your spotify ID can be found on the top left of this screen (in brackets)!</li>
-                <li style={{color: '#1DB954' }}>no friends yet? no worries, we'll be your friend! try putting in this ID: llr5ecqygx3g5iqkx9lfnqzmt</li>
-            </ul>
             {isComparing ? 
             <>
                 <h3>your compatibility with {friendName} is: {this.state.compatibility}%. {this.state.compatibilityMessage}</h3> 
-                {/* {this.state.compatibility === "100.00"?
-                    <h3>twins!</h3>
-                    :
-                    <></>
-                } */}
                 <button className ="Friend-button" onClick={this.getPlaylist}>get a custom playlist that both you and {friendName} would like!</button>
-                </> 
-                :
-                <></>
+                </> : <></>
             }
+
             {this._isMounted ?
             <>
-            <Form compareArtists={this.getUserArtists} compareTracks={this.getUserTracks} pickFriend={this.updateSelectedFriend} />
-            {compare} </> : <></>
+            <div className="Friends-forms">
+                <Form compareArtists={this.getUserArtists} compareTracks={this.getUserTracks} pickFriend={this.updateSelectedFriend} className="Friends-form" /> 
+                <Instructions/>
+            </div>
+            {compare} 
+            </> : <></>
             }
             </div>
             <div className="Friends-rightSide">
-                <h2>Friend List</h2>
-                <div>{this.displayFriends()}</div>
-                <h2>About Compatibility</h2>
-                <div>Compatibility quanitifies you and your friends' shared music taste, as measured by Spot-the-diff's algorithm</div>
+                <h2 className="Friends-emphasized-text">Friend List</h2>
+                <div className="Friends-text">{this.displayFriends()}</div>
+                <h2 className="Friends-emphasized-text">About Compatibility</h2>
+                <div className="Friends-text">Compatibility quanitifies you and your friends' shared music taste, as measured by Spot-the-diff's algorithm</div>
             </div>
             </div>
         )
