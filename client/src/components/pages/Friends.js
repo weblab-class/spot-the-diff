@@ -211,12 +211,19 @@ class Friends extends Component {
 
     displayFriends = () => {
         // console.log(this.state.friends)
-        let display = this.state.friends.map((friendObj) => (
-            <div key={friendObj._id}>
-                <div>{friendObj.friendName} [{friendObj.userId}]</div>
-                <div>{friendObj.rating}%</div>
-            </div>
-        ))
+        let display;
+        try{
+             display = this.state.friends.map((friendObj) => (
+                <div key={friendObj._id}>
+                    {/* <div>{friendObj.friendName} [{friendObj.userId}]</div> */}
+                    <div> {friendObj.friendName} ({friendObj.userId}) {friendObj.rating}</div> 
+                    {/* <div>{friendObj.rating}%</div> */}
+                </div>
+            ))    
+        }
+        catch (TypeError) {
+            display = null;
+        }
         return display
     }
 
@@ -278,7 +285,7 @@ class Friends extends Component {
                     :
                     <></>
                 } */}
-                <button onClick={this.getPlaylist}>get a custom playlist that both you and {friendName} would like!</button>
+                <button className ="Friend-button" onClick={this.getPlaylist}>get a custom playlist that both you and {friendName} would like!</button>
                 </> 
                 :
                 <></>
