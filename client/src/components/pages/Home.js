@@ -60,11 +60,12 @@ class Login extends Component {
                   </div>
                   <div className="Home-section2">
                     <h1 className='Home-title'>Spot<span className="Home-spotify-label">(ify)</span> the Diff!</h1>
-                    <i className='Home-pitch'>Founded by a team of three music lovers aiming to revolutionize the Spotify listening experience.</i>
+                    <i className='Home-pitch'>Founded by a team of three music lovers aiming to revolutionize the Spotify social experience.</i>
                     <ul className='Home-pitch'>
-                      <p>➡ Gain custom insights into your Spotify listening trends.</p>
-                      <p>➡ Compare your music history with your friends.</p>
-                      <p>➡ Generate playlists based on you and your friends' shared tastes.</p>
+                    {/* ➡ */}
+                      <p>✨ Gain custom insights into your Spotify listening trends.</p>
+                      <p>✨ Compare your music history with your friends.</p>
+                      <p>✨ Generate playlists based on you and your friends' shared tastes.</p>
                     </ul>
                     {this.props.userId ? 
                       <>

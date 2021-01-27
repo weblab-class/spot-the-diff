@@ -44,7 +44,7 @@ class Friends extends Component {
     componentDidMount() {
         this._isMounted = true;
         get("/api/genreSeeds").then((data) => {
-            console.log(data);
+            // console.log(data);
             this._isMounted && this.setState({
                 genreSeeds: data.genres,
             })
@@ -133,7 +133,7 @@ class Friends extends Component {
 
     handleCompare = () => {
         if (!this.state.friendTracks || !this.state.friendArtists) {
-            console.log('friend tracks & artists not set yet');
+            alert("this person hasn't logged in recently, so their stats are out of date in our database. please enter another user ID.");
             return;
         }
         const tracksA = this.props.topTracks;
@@ -215,7 +215,7 @@ class Friends extends Component {
         }
         else {
             message = "Well this is awkward... this may be a sign that you're not meant to be. \
-            Take this as a long-awaited opportunity (maybe excuse?) to cut off that toxic friend. \
+            Take this as a long-awaited opportunity to cut off that toxic friend. \
             Or not! Maybe you two get along perfectly fine. But one thing's for sure: stay away from the topic of music if you don't want to start a fight!";
         }
 
@@ -392,7 +392,10 @@ class Friends extends Component {
                 <ul className="Friends-text">
                     <li>percent of common top artists</li>
                     <li>percent of common top tracks</li>
-                    <li>and bonus points for...</li>
+                    
+                </ul>
+                <div className="Friends-text">With bonus points for...</div>
+                <ul className="Friends-text">
                     <li>each top track that appears on the same album</li>
                     <li>each top track by the same artist</li>
                     <li>each shared genre</li>
