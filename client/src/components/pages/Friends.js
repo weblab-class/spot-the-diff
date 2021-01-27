@@ -256,18 +256,6 @@ class Friends extends Component {
         return(
             <div className="Friends-page">
             <div className="Friends-leftSide">
-            {isComparing ? 
-            <>
-                <button onClick={this.getPlaylist}>get a custom playlist that both you and {friendName} would like!</button>
-                <h3>your compatibility with {friendName} is: {this.state.compatibility}%</h3> 
-                {this.state.compatibility === "100.00"?
-                    <h3>twins!</h3>
-                    :
-                    <></>
-                }
-                </> 
-                :
-            <></> }
 
             {this.state.playlistTracks ?
             <>
@@ -282,6 +270,19 @@ class Friends extends Component {
                 <li>your spotify ID can be found on the home page, right under the logout button!</li>
                 <li style={{color: '#87CBD4' }}>no friends yet? no worries, we'll be your friend! try putting in this ID: llr5ecqygx3g5iqkx9lfnqzmt</li>
             </ul>
+            {isComparing ? 
+            <>
+                <h3>your compatibility with {friendName} is: {this.state.compatibility}%</h3> 
+                {/* {this.state.compatibility === "100.00"?
+                    <h3>twins!</h3>
+                    :
+                    <></>
+                } */}
+                <button onClick={this.getPlaylist}>get a custom playlist that both you and {friendName} would like!</button>
+                </> 
+                :
+                <></>
+            }
             <Form compareArtists={this.getUserArtists} compareTracks={this.getUserTracks} pickFriend={this.updateSelectedFriend} />
             {compare}
             </div>
