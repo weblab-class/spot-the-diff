@@ -71,7 +71,7 @@ class Stats extends Component {
     render() {
         if (!this.props.userId) return <div>Log in before accessing Stats</div>;
         if (!this.state.user) {
-            return <div> Loading! </div>;
+            return <div> Log in before accessing Stats! </div>;
         }
 
         if (!this.props.topTracks || !this.props.topArtists) {

@@ -21,6 +21,7 @@ import "./Friends.css";
 class Friends extends Component {
     constructor(props) {
         super(props);
+        this._isMounted = false;
         this.state = {
             // can test with 'krishnahibye' or 'helen_hu'
             otherId: null,
@@ -40,19 +41,24 @@ class Friends extends Component {
     }
 
     componentDidMount() {
+        this._isMounted = true;
         get("/api/genreSeeds").then((data) => {
             console.log(data);
-            this.setState({
+            this._isMounted && this.setState({
                 genreSeeds: data.genres,
             })
         })
     }
+    componentWillUnmount() {
+        this._isMounted = false;
+    }
+
     getUserArtists = (userId) => {
         get("/api/user-topArtists", { otherId: userId }).then((data) => {
             console.log("Retrieving friend's favorite artists...")
             console.log(userId, 'top artists: ', data.artists);
             console.log("eyy it worked!")
-                this.setState({ friendArtists: data.artists })
+            this._isMounted && this.setState({ friendArtists: data.artists })
         })
     }
 
@@ -61,7 +67,7 @@ class Friends extends Component {
             console.log("Retrieving friend's favorite tracks...")
             console.log(userId, 'top tracks: ', data.tracks);
             console.log("eyy it worked again!")
-            this.setState({ friendTracks: data.tracks })
+            this._isMounted && this.setState({ friendTracks: data.tracks })
         })
     }
 
@@ -73,7 +79,7 @@ class Friends extends Component {
     updateSelectedFriend = (userId) => {
         get("/api/getUser", {userId}).then((data) => {
             console.log(data);
-            this.setState({ 
+            this._isMounted && this.setState({ 
                 otherId: userId,
                 friendName: data.display_name,
 
@@ -201,7 +207,7 @@ class Friends extends Component {
         console.log(seed);
         get("/api/recommendations", seed).then(data => {
             let tracks = data.tracks;
-            this.setState({
+            this._isMounted && this.setState({
                 playlistTracks: tracks,
             }, (() => {
                 console.log('set tracks state to', this.state.playlistTracks);
@@ -219,7 +225,7 @@ class Friends extends Component {
             get("/api/addToPlaylist", {playlistId: playlist.id, tracks: tracks}).then(newPlaylist => {
                 console.log("my new filled playlist: ", newPlaylist)
             })
-            this.setState({
+            this._isMounted && this.setState({
                 playlistId: playlist.id,
             })
             console.log('url for your playlist: https://open.spotify.com/playlist/' + playlist.id);
@@ -230,7 +236,7 @@ class Friends extends Component {
 
     getFriendList = () => {
         get("/api/friendRanking").then(list => {
-            this.setState({ friends: list })
+            this._isMounted && this.setState({ friends: list })
         })
     }
 
@@ -315,8 +321,11 @@ class Friends extends Component {
                 :
                 <></>
             }
+            {this._isMounted ?
+            <>
             <Form compareArtists={this.getUserArtists} compareTracks={this.getUserTracks} pickFriend={this.updateSelectedFriend} />
-            {compare}
+            {compare} </> : <></>
+            }
             </div>
             <div className="Friends-rightSide">
                 <h2>Friends + Compatibilities</h2>
