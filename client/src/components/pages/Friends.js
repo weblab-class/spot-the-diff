@@ -75,6 +75,7 @@ class Friends extends Component {
             this.setState({ 
                 otherId: userId,
                 friendName: data.display_name,
+
             });
         }).then(() => {
             this.handleCompare();
@@ -126,7 +127,7 @@ class Friends extends Component {
         
         if (total_pts >= 100)
         {
-            total_pts = 100
+            total_pts = 100;
         }
 
         // console.log(total_pts);
@@ -275,7 +276,7 @@ class Friends extends Component {
                 <TopTracks data={this.state.playlistTracks} />
             </> : <></>}
 
-            <h3>To compare your stats with your friends...</h3>
+            <h3 className="Friends-rightSide">To compare your stats with your friends...</h3>
             <ul>
                 <li>make sure they've logged into our website before</li>
                 <li>your spotify ID can be found on the home page, right under the logout button!</li>
