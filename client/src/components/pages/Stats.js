@@ -4,7 +4,6 @@ import { get, post } from "../../utilities";
 import "../../utilities.css";
 import TopTracks from "../modules/TopTracks";
 import TopArtists from "../modules/TopArtists";
-import Card from "../modules/Card";
 import Form from "../modules/Form"
 import Friends from "./Friends";
 

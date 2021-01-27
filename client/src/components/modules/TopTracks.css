@@ -12,11 +12,13 @@
 .TopTracks-text {
     margin: 0 0 0 0;
     opacity: 80%;
+    color: #433f47;
 }
 
 .TopTracks-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
+
     /* grid-gap: 1rem; */
     /* grid-auto-rows: minmax(50px, auto); */
 }

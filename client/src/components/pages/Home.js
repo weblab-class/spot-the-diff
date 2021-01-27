@@ -62,9 +62,9 @@ class Login extends Component {
                     <h1 className='Home-title'>Spot<span className="Home-spotify-label">(ify)</span> the Diff!</h1>
                     <i className='Home-pitch'>Founded by a team of three music lovers aiming to revolutionize the Spotify listening experience.</i>
                       <ul className='Home-pitch'>
-                        <li>See your top tracks and artists.</li>
-                        <li>Generate playlists.</li>
-                        <li>Compare your favorite picks with friends with a compatibility test.</li>
+                        <li>Gain custom insights into your Spotify listening history.</li>
+                        <li>Generate playlists based on you and your friends' shared tastes.</li>
+                        <li>Compare your music history with your friends.</li>
                       </ul>
                     {this.props.userId ? 
                       <>
