@@ -294,7 +294,7 @@ class Friends extends Component {
             {compare}
             </div>
             <div className="Friends-rightSide">
-                <h2>Friends</h2>
+                <h2>Friends + Compatibilities</h2>
                 <div>{this.displayFriends()}</div>
                 <h2>About Compatibility</h2>
                 <div>Compatibility quanitifies you and your friends' shared music taste, as measured by Spot-the-diff's algorithm</div>
