@@ -98,26 +98,29 @@ class Stats extends Component {
 
         return (
             <div className="Stats-page">
-                <div className='Stats-header'>
-                    <h1 className='Stats-title'>hi, {username}! your music looks good🤩</h1>
+                <div className='Stats-sidebar'>
+                    <div className="Stats-spacing"></div>
+                    <h1 className='Stats-title'>hi, {username}!</h1>
+                    <h1 className="Stats-title">your music looks good🤩</h1>
                     <figure>
                         <img src={userIcon} className='Stats-img'/>
                         <figcaption>and so do you ;)</figcaption>
                     </figure>
-                    
+                    <div className="Stats-button-group">
+                        <button className="Stats-button" onClick={this.onShort}>4 weeks</button> 
+                        <button className="Stats-button" onClick={this.onMed}>6 months</button>
+                        <button className="Stats-button" onClick={this.onLong}>all time</button>
+                    </div>
                 </div>
-                <div className="Stats-button-group">
-                    <button className="Stats-button" onClick={this.onShort}>4 weeks</button> 
-                    <button className="Stats-button" onClick={this.onMed}>6 months</button>
-                    <button className="Stats-button" onClick={this.onLong}>all time</button>
-                </div>
-                < h2 className = "Stats-title"> My Top Tracks </h2>
-                <div className="Stats-centering-tracks">
-                <TopTracks className="Stats-center-flex" data={topTracks}/>
-                </div>
-                <h2 className="Stats-title">My Top Artists</h2>
-                <div className="Stats-centering-tracks">
-                <TopArtists className="Stats-center-flex" topArtists={topArtists} />
+                <div className="Stats-content">
+                    <h2 className = "Stats-title"> My Top Tracks </h2>
+                    <div className="Stats-centering-tracks">
+                    <TopTracks className="Stats-center-flex" data={topTracks}/>
+                    </div>
+                    <h2 className="Stats-title">My Top Artists</h2>
+                    <div className="Stats-centering-tracks">
+                    <TopArtists className="Stats-center-flex" topArtists={topArtists} />
+                    </div>
                 </div>
             </div>
         );
