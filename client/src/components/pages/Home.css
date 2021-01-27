@@ -47,6 +47,7 @@
     font-size: 76px;
     /* font-family: 'Playfair Display', serif; */
     font-family: 'Kaushan Script', cursive;
+    opacity: 95%;
 }
 
 .Home-spotify-label {
@@ -58,9 +59,11 @@
     /* font-family: 'Playfair Display', serif; */
     font-family: 'Barlow', sans-serif;
     font-size: 20px;
+    opacity: 80%;
 }
 
 .Home-text {
     display: block;
     text-align: center;
+    opacity: 90%;
 }
