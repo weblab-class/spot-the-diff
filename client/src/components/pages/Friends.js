@@ -75,6 +75,7 @@ class Friends extends Component {
                 otherId: userId,
                 friendName: data.display_name,
             });
+            this.handleCompare();
         })
     }
 
