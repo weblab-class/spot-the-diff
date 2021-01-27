@@ -30,7 +30,8 @@
     /* background-color: #292929; */
     animation: bouncy 5s infinite linear;
     position: relative;
-    background: #1DB954;
+    /* background: #1DB954; */
+    background: green;
 }
 
 .Home-button:hover {
