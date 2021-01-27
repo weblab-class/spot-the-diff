@@ -28,10 +28,17 @@ class Stats extends Component {
             friendTracks: null,
             compatibility: undefined,
             timeRange: 'med',
+            user: null,
         };
     }
 
     componentDidMount() {
+        get("/api/getMe").then((data) => {
+            console.log(data);
+            this.setState({
+                user: data,
+            })
+        });
     }
 
     onShort = () => {
@@ -63,10 +70,16 @@ class Stats extends Component {
 
     render() {
         if (!this.props.userId) return <div>Log in before accessing Stats</div>;
+        if (!this.state.user) {
+            return <div> Loading! </div>;
+        }
 
         if (!this.props.topTracks || !this.props.topArtists) {
             return <div> Loading! </div>;
         }
+
+        const username = this.state.user.display_name;
+        const userIcon = this.state.user.images[0].url;
 
         let topTracks;
         let topArtists;
@@ -85,7 +98,8 @@ class Stats extends Component {
 
         return (
             <div className="Stats-page">
-                <h1 className='Stats-title'>Custom Listening Insights</h1>
+                <h1 className='Stats-title'>Custom Listening Insights for {username}</h1>
+                <img src={userIcon} className="Profile-picture" />
                 <div className="Stats-button-group">
                     <button className="Stats-button" onClick={this.onShort}>4 weeks</button> 
                     <button className="Stats-button" onClick={this.onMed}>6 months</button>
