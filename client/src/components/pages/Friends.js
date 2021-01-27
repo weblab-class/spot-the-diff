@@ -262,11 +262,14 @@ class Friends extends Component {
         if (!this.props.userId) return <div>Log in before accessing Stats</div>;
 
         let friendName;
+        let apostrophe;
         if (!this.state.friendName) {
             friendName = "your friend";
+            apostrophe="";
         }
         else {
             friendName = <span style={{color: '#1DB954' }}>{this.state.friendName}</span>;
+            apostrophe = <span style={{color:'#1DB954'}}>'s</span>
         }
         let compare;
         let isComparing = false;
@@ -280,9 +283,9 @@ class Friends extends Component {
             compare = (
                 <>
                     <div className="flex-column">
-                        <h2>{friendName}'s Top Tracks</h2>
+                        <h2>{friendName}{apostrophe} Top Tracks</h2>
                         <TopTracks data={this.state.friendTracks} />
-                        <h2>{friendName}'s Top Artists</h2>
+                        <h2>{friendName}{apostrophe} Top Artists</h2>
                         <TopArtists topArtists={this.state.friendArtists} />
                     </div>
                 </>
