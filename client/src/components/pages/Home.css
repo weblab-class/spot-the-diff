@@ -86,11 +86,14 @@
     /* font-family: 'Playfair Display', serif; */
     font-family: 'Barlow', sans-serif;
     font-size: 20px;
-    opacity: 80%;
+    text-align: left;
+    opacity: 100%;
 }
 
 .Home-text {
     display: block;
     text-align: center;
-    opacity: 90%;
+    opacity: 100%;
+    color: white;
+
 }
