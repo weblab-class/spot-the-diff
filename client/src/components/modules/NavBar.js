@@ -7,6 +7,8 @@ import "./NavBar.css";
 /**
  * Proptypes
  * @param {string} userId
+ * @param {string} spotifyId
+ * @param {string} myName
  */
 class NavBar extends Component {
     constructor(props) {
@@ -44,22 +46,22 @@ class NavBar extends Component {
 
     render() {
         let title;
-        if (!this.state.isPlaying) {
-            title = 'Start playing a song!';
-        }
-        else {
-            const currentSong = this.state.currentlyPlaying.item.name;
-            const currentArtist = this.state.currentlyPlaying.item.artists[0].name;
-            title = "Currently Playing: " + currentSong + " - " + currentArtist;
-        }
+        // if (!this.state.isPlaying) {
+        //     title = 'Start playing a song!';
+        // }
+        // else {
+        //     const currentSong = this.state.currentlyPlaying.item.name;
+        //     const currentArtist = this.state.currentlyPlaying.item.artists[0].name;
+        //     title = "Currently Playing: " + currentSong + " - " + currentArtist;
+        // }
 
         return (
             <nav className="NavBar-container">
                 {this.props.userId ? 
                     <>
-                    <p className="NavBar-text-left NavBar-left m-text"> {title} </p>
+                    <p className="NavBar-text-left NavBar-left m-text"> Logged in as: {this.props.myName} [{this.props.spotifyId}] </p>
                     {/* TODO: constantly check for playback without button - with socket? */}
-                    <button onClick={this.getCurrentPlayback} className="NavBar-button NavBar-playback">Click for Current Playback</button>
+                    {/* <button onClick={this.getCurrentPlayback} className="NavBar-button NavBar-playback">Click for Current Playback</button> */}
                     </> : <></>
                 }
                 
@@ -67,10 +69,10 @@ class NavBar extends Component {
                     {this.props.userId ? (
                     <>
                         {/* <Link to="/about" className="NavBar-text-left m-text"> About </Link> */}
-                        <Link to="/" className="NavBar-text-left m-text"> Home </Link>
-                        <Link to={`/profile/${this.props.spotifyId}`} className="NavBar-text-left m-text"> Profile </Link>
-                        <Link to={`/stats`} className="NavBar-text-left m-text"> Stats </Link>
-                        <Link to={`/friends/${this.props.spotifyId}`} className="NavBar-text-left m-text"> Friends </Link>
+                        <Link to="/" className="NavBar-text-left m-text"> home </Link>
+                        {/* <Link to={`/profile/${this.props.spotifyId}`} className="NavBar-text-left m-text"> Profile </Link> */}
+                        <Link to={`/stats`} className="NavBar-text-left m-text"> my stats </Link>
+                        <Link to={`/friends/${this.props.spotifyId}`} className="NavBar-text-left m-text"> friends </Link>
                     </>
                     ): (
                     <>
