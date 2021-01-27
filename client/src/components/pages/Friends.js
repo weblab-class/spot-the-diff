@@ -158,24 +158,33 @@ class Friends extends Component {
 
         let message;
         if (total_pts === 100) {
-            message = "hot diggity dog! almost like you two are the same person... 👀"
+            message = "Hot diggity dog! It's almost like you two are the same person... 👀";
         }
-        else if (total_pts >= 75) {
-            message = "You two are destined to be together for life. "
+        else if (total_pts >= 80) {
+            message = "Congrats! You've found your music soulmate🥰 \
+            Now it's time to run happily off into the sunset, singing all your favorite songs from all your favorite albums. \
+            You two are destined to be together, forever.";
         }
-        else if (total_pts >= 50) {
-            message = "Solid above average. ";
+        else if (total_pts >= 60) {
+            message = "This was P/NR, and y'all passed! \
+            You two vibe and get along well. You can count on this person to be there for you when you need them... \
+            even if you don't approve of their music choice for the occasion. ";
         }
-        else if (total_pts >= 35) {
-            message = "opposites attract?";
+        else if (total_pts >= 40) {
+            message = "Eh, just average. \
+            You share a lot of interests, but at the same time there are a few crucial things you disagree on. \
+            Like, idk, whether a hot dog is a sandwich? Whether water is wet? \
+            Regardless, this relationship is shaky, and will take time and effort to maintain!";
         }
-        else if (total_pts >= 10) {
-            message = "";
+        else if (total_pts >= 20) {
+            message = "Uh oh... this could be a red flag. \
+            You two are constantly fighting, not just over the aux, but over every small thing. \
+            Think carefully about what this relationship means to you, and whether it's worth maintaining at this point.";
         }
         else {
-            message = "...this may be a sign that you're not meant to be. \
-            Take this as a long-awaited opportunity to cut off that toxic friend... or not. \
-            Maybe you two get along perfectly fine. But one thing's for sure: stay away from the topic of music if you don't want to start a fight!";
+            message = "Well this is awkward... this may be a sign that you're not meant to be. \
+            Take this as a long-awaited opportunity (maybe excuse?) to cut off that toxic friend. \
+            Or not! Maybe you two get along perfectly fine. But one thing's for sure: stay away from the topic of music if you don't want to start a fight!";
         }
 
         // console.log(total_pts);
