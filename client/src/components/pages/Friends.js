@@ -359,20 +359,23 @@ class Friends extends Component {
             <div className="Friends-page">
             <div className="Friends-leftSide">
 
-            {this.state.playlistTracks ?
-            <>
-                <h3>here's the playlist we made for you! click the button again to refresh the tracklist. we won't get offended ;)</h3>
-                <button className="Friend-button" onClick={this.makePlaylist}>save and open in spotify!</button>
-                <TopTracks data={this.state.playlistTracks} />
-            </> : <></>}
+            
             
 
             {isComparing ? 
             <>
-                <h3>your compatibility with {friendName} is: {this.state.compatibility}%. {this.state.compatibilityMessage}</h3> 
+                <h2>your compatibility with {friendName} is: {this.state.compatibility}%.</h2>
+                <h3>{this.state.compatibilityMessage}</h3> 
                 <button className ="Friend-button" onClick={this.getPlaylist}>get a custom playlist that both you and {friendName} would like!</button>
                 </> : <></>
             }
+
+            {this.state.playlistTracks ?
+            <>
+                <h3>here's the playlist we made for you! click the button above to refresh the tracklist. we won't get offended ;)</h3>
+                <button className="Friend-button" onClick={this.makePlaylist}>save and open in spotify!</button>
+                <TopTracks data={this.state.playlistTracks} />
+            </> : <></>}
 
             {this._isMounted ?
             <>
