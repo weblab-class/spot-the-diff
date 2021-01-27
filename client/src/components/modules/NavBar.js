@@ -76,7 +76,7 @@ class NavBar extends Component {
                     </>
                     ): (
                     <>
-                        <Link to="/" className="NavBar-text-loggedout m-text"> home </Link>
+                        {/* <Link to="/" className="NavBar-text-loggedout m-text"> home </Link> */}
                         {/* <Link to="/about" className="NavBar-text-loggedout m-text"> About </Link> */}
                     </>
                     )}
