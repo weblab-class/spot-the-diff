@@ -34,3 +34,9 @@
     /* grid-gap: 1rem; */
     /* grid-auto-rows: minmax(50px, auto); */
 }
+
+.TopTracks-small-text {
+    opacity: 80%;
+    font-size: 14px;
+    margin: 0 0 0 0;
+}
