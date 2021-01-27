@@ -54,3 +54,37 @@
     height: fit-content;
     font-family: 'Barlow', sans-serif;
 }
+
+.NavBar-text {
+    transition: color .2s ease;
+    opacity: 60%;
+}
+
+.NavBar-text:hover {
+    opacity: 100%;
+}
+
+.NavBar-text::before {
+    transition: 300ms;
+    height: 5px;
+    content: "";
+    position: absolute;
+    background-color: green;
+}
+
+.NavBar-text::before {
+    width: 0%;
+    bottom: 10px;
+}
+
+.NavBar-home:hover::before {
+    width: 44px;
+}
+
+.NavBar-stats:hover::before {
+    width: 62px;
+}
+
+.NavBar-friends:hover::before {
+    width: 80px;
+}
