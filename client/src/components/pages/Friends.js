@@ -29,6 +29,7 @@ class Friends extends Component {
             friendArtists: null,
             friendTracks: null,
             compatibility: undefined,
+            compatibilityMessage: undefined,
             commonTracks: [],
             commonArtists: [],
             commonGenres: [],
@@ -136,9 +137,33 @@ class Friends extends Component {
             total_pts = 100;
         }
 
+        let message;
+
+        if (total_pts === 100)
+        {
+            message = "twins!"
+        }
+        else if (total_pts >= 70)
+        {
+            message = "so similar!"
+        }
+        else if (total_pts >= 40)
+        {
+            message = "average!";
+        }
+        else if (total_pts >= 10)
+        {
+            message = "opposites attract?";
+        }
+        else
+        {
+            message = "polar opposites!";
+        }
+
         // console.log(total_pts);
         this.setState({
             compatibility: total_pts.toFixed(2),
+            compatibilityMessage:message,
             commonTracks: commonTracks,
             commonArtists: commonArtists,
             commonGenres: commonGenres,
@@ -273,7 +298,7 @@ class Friends extends Component {
             {this.state.playlistTracks ?
             <>
                 <h3>here's the playlist we made for you! click the button again to refresh the tracklist. we won't get offended ;)</h3>
-                <button onClick={this.makePlaylist}>save and open in spotify!</button>
+                <button className="Friend-button" onClick={this.makePlaylist}>save and open in spotify!</button>
                 <TopTracks data={this.state.playlistTracks} />
             </> : <></>}
 
@@ -285,7 +310,7 @@ class Friends extends Component {
             </ul>
             {isComparing ? 
             <>
-                <h3>your compatibility with {friendName} is: {this.state.compatibility}%</h3> 
+                <h3>your compatibility with {friendName} is: {this.state.compatibility}%. {this.state.compatibilityMessage}</h3> 
                 {/* {this.state.compatibility === "100.00"?
                     <h3>twins!</h3>
                     :
