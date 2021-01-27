@@ -24,6 +24,7 @@ class App extends Component {
     this.state = {
       userId: undefined,
       spotifyId: undefined,
+      myName: null,
       topTracks: undefined,
       topTracksShort: null,
       topTracksLong: null,
@@ -48,6 +49,7 @@ class App extends Component {
         this.setState({ 
           userId: user._id,
           spotifyId: user.spotifyId,
+          myName: user.name,
         });
       }
     });
@@ -154,6 +156,7 @@ class App extends Component {
         <NavBar 
           userId={this.state.userId}
           spotifyId={this.state.spotifyId}
+          myName={this.state.myName}
         />
         <div className="App-space"></div>
         <Router>
