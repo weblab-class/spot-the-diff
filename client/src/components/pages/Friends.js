@@ -267,7 +267,7 @@ class Friends extends Component {
             {this.state.playlistTracks ?
             <>
                 <h3>here's the playlist we made for you! click the button again to refresh the tracklist. we won't get offended ;)</h3>
-                <button onClick={this.makePlaylist}>save and open in spotify!</button>
+                <button className="Friend-button" onClick={this.makePlaylist}>save and open in spotify!</button>
                 <TopTracks data={this.state.playlistTracks} />
             </> : <></>}
 
