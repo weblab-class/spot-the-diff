@@ -43,7 +43,7 @@ class Form extends Component {
         get("/api/user", {spotifyId: this.state.value}).then((data) => {
             console.log(data);
             if (data.data == 'error') {
-                alert('no user in database');
+                alert(`user "${this.state.value}" not in database`);
             }
             else {
                 isValidUser = true;
