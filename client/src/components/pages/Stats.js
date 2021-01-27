@@ -6,6 +6,8 @@ import TopTracks from "../modules/TopTracks";
 import TopArtists from "../modules/TopArtists";
 import Form from "../modules/Form"
 import Friends from "./Friends";
+import HomeLogo from '../images/home-page.svg';
+
 
 import "./Stats.css";
 /**
@@ -78,8 +80,27 @@ class Stats extends Component {
         }
 
         const username = this.state.user.display_name;
-        const userIcon = this.state.user.images[0].url;
+        // if (this.state.user.images[0].url!=undefined)
+        // {
+        // const userIcon = this.state.user.images[0].url;
+        // }
+        // else{
+        // try{
+        //     const userIcon = this.state.user.images[0].url;
+        // }
 
+        // finally{
+
+        // }
+
+        // if (this.state.user.images!=undefined)
+        // {
+        //     const userIcon = this.state.user.images[0].url;
+        // }
+        // else
+        //     {const userIcon = HomeLogo;}
+ 
+        const userIcon = HomeLogo;
         let topTracks;
         let topArtists;
         if (this.state.timeRange === 'short') {
@@ -101,10 +122,18 @@ class Stats extends Component {
                     <div className="Stats-spacing"></div>
                     <h1 className='Stats-title'>hi, {username}!</h1>
                     <h1 className="Stats-title">your music looks good🤩</h1>
-                    <figure>
-                        <img src={userIcon} className='Stats-img'/>
-                        <figcaption>and so do you :)</figcaption>
-                    </figure>
+                    try{
+                        <>
+                            <figure>   
+                            <img src={userIcon} className='Stats-img'/>
+                            <figcaption>and so do you :)</figcaption>
+                            </figure>
+                        </>
+    }               )
+                    catch{
+
+                    }
+    
                     <div className="Stats-button-group">
                         <button className="Stats-button Stats-button1" onClick={this.onShort}>4 weeks</button> 
                         <button className="Stats-button Stats-button2" onClick={this.onMed}>6 months</button>

@@ -21,3 +21,5 @@ https://github.com/dansun123/webapp-skeleton/tree/spotify (code skeleton for Spo
 Staff gave us at office hours, used in a variety of places)
 
 https://www.sitepoint.com/community/t/space-between-links-in-navbar/7949/3
+
+https://stackoverflow.com/questions/6243070/css-text-align-center-is-not-centering-things
