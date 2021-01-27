@@ -73,7 +73,10 @@ class Friends extends Component {
 
     addRating = (score) => {
         console.log("in addRating function")
-        post("/api/addRating", { userId: this.state.otherId, friendName: this.state.friendName, rating: score })
+        console.log(this.state.otherId, this.state.friendName, score);
+        post("/api/addRating", { userId: this.state.otherId, friendName: this.state.friendName, rating: score }).catch(err => {
+            console.log('error in addRating in Friends.js', err);
+        })
     }
 
     updateSelectedFriend = (userId) => {
@@ -101,7 +104,7 @@ class Friends extends Component {
 
     handleCompare = () => {
         const tracksA = this.props.topTracks;
-        const tracksB = this.state.friendTracks;
+        let tracksB = this.state.friendTracks;
         const totalTracks = tracksA.length + tracksB.length;
 
         const artistsA = this.props.topArtists;
@@ -117,11 +120,28 @@ class Friends extends Component {
         const commonTrackAlbums = this.intersect(this.props.getTrackAlbums(tracksA), this.props.getTrackAlbums(tracksB));
         const commonTrackArtists = this.intersect(this.props.getTrackArtists(tracksA), this.props.getTrackArtists(tracksB));
 
-        console.log('common tracks: ', commonTracks);
-        console.log('common artists: ', commonArtists);
-        console.log('common genres: ', commonGenres);
-        console.log('common track albums: ', commonTrackAlbums);
-        console.log('common track artists: ', commonTrackArtists);
+        // console.log('common tracks: ', commonTracks);
+        // console.log('common artists: ', commonArtists);
+        // console.log('common genres: ', commonGenres);
+        // console.log('common track albums: ', commonTrackAlbums);
+        // console.log('common track artists: ', commonTrackArtists);
+
+        // console.log(tracksB);
+        for (let track of tracksB) {
+            if (commonTracks.some(t => t.id === track.id)) {
+                track.isCommon = true;
+                // console.log(track)
+            }
+        }
+        console.log(tracksB);
+
+        for (let artist of artistsB) {
+            if (commonArtists.some(a => a.id === artist.id)) {
+                artist.isCommon = true;
+                // console.log(track)
+            }
+        }
+        console.log(artistsB);
 
         const tracks_pts = 100 * 2*commonTracks.length / totalTracks;
         const artists_pts = 100 * 2*commonArtists.length / (artistsA + artistsB);
@@ -168,6 +188,8 @@ class Friends extends Component {
             commonArtists: commonArtists,
             commonGenres: commonGenres,
             playlistTracks: undefined,
+            friendTracks: tracksB,
+            friendArtists: artistsB,
         });
 
         this.addRating(total_pts.toFixed(2));
@@ -237,6 +259,8 @@ class Friends extends Component {
     getFriendList = () => {
         get("/api/friendRanking").then(list => {
             this._isMounted && this.setState({ friends: list })
+        }).catch(err => {
+            console.log(err);
         })
     }
 

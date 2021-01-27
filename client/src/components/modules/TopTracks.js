@@ -13,7 +13,17 @@ class TopTracks extends Component {
         this.state = {};
     }
 
-
+    mapTracks = (trackObj) => {
+        return (
+            <Card key={trackObj.id} isCommon={trackObj.isCommon}>
+                <div className="TopTracks-div">
+                    <img className="TopTracks-image" src={trackObj.album.images[0].url}/>
+                    <p className="TopTracks-text">{trackObj.name}</p>
+                    <p className="TopTracks-text">{trackObj.artists.map((artist) => artist.name).join(', ')}</p>
+                </div>
+            </Card>
+        )
+    }
     render() {
         // console.log(this.props.data[1])
         if (!this.props.data) {
@@ -22,15 +32,7 @@ class TopTracks extends Component {
 
         return (
             <div className="TopTracks-grid">
-            {this.props.data.map((trackObj) => (
-                <Card key={trackObj.id}>
-                    <div className="TopTracks-div">
-                        <img className="TopTracks-image" src={trackObj.album.images[0].url}/>
-                        <p className="TopTracks-text">{trackObj.name}</p>
-                        <p className="TopTracks-text">{trackObj.artists.map((artist) => artist.name).join(', ')}</p>
-                    </div>
-                </Card>
-            ))}
+            {this.props.data.map(this.mapTracks)}
             </div>
         );
     }

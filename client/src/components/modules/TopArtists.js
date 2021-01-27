@@ -23,7 +23,7 @@ class TopArtists extends Component {
         return (
             <div className="TopArtists-grid">
             {this.props.topArtists.map((artistObj) => (
-                <Card key={artistObj.id}>
+                <Card key={artistObj.id} isCommon={artistObj.isCommon}>
                     <div className="TopArtists-div">
                         <img className="TopArtists-image" src={artistObj.images[0].url}/>
                         <p className="TopArtists-text">{artistObj.name}</p>

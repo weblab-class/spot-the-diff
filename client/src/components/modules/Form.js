@@ -26,9 +26,12 @@ class Form extends Component {
             post("/api/addFriend", {
                 userId: userId,
                 friendName: friendName,
+            }).catch(err => {
+                console.log(err);
             })
-        })
-        
+        }).catch(err => {
+            console.log('error in addFriend in Form.js: ', err);
+        }) 
     }
 
     handleChange(event) {
@@ -71,6 +74,8 @@ class Form extends Component {
                 console.log('handlesubmit')
                 
             }
+        }).catch(err => {
+            console.log(err);
         })
         
         
