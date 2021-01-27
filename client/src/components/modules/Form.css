@@ -1,10 +1,19 @@
 .Form-input {
-    border: 0px;
-    box-shadow: 1px 1px 1px 1px #bbb;
-    border-radius: 20px;
-    height: 30px;
-    width: 200px;
-    padding-left: 20px;
+    border: 0;
+    border-bottom: 1px solid #555;
+    background: transparent;
+    width: 20%;
+    padding: 8px 0 5px 0;
+    font-size: 16px;
+    color: #fff;
+    outline: none;
+    transition: all 0.5s ease-in-out;
+}
+
+.Form-input:focus {
+    border: none;
+    outline: none;
+    border-bottom: 1px solid green;
 }
 
 .Form-submit {
