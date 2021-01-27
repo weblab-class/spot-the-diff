@@ -346,8 +346,16 @@ class Friends extends Component {
             <div className="Friends-rightSide">
                 <h2 className="Friends-emphasized-text">Friend List</h2>
                 <div className="Friends-text">{this.displayFriends()}</div>
-                <h2 className="Friends-emphasized-text">About Compatibility</h2>
-                <div className="Friends-text">Compatibility quanitifies you and your friends' shared music taste, as measured by Spot-the-diff's algorithm</div>
+                <h2 className="Friends-emphasized-text">How do we calculate compatibility?</h2>
+                <div className="Friends-text">Our all-knowing algorithm compares you and your friend's music tastes, and assigns a score based on the following:</div>
+                <ul className="Friends-text">
+                    <li>percent of common top artists</li>
+                    <li>percent of common top tracks</li>
+                    <li>and bonus points for...</li>
+                    <li>each top track that appears on the same album</li>
+                    <li>each top track by the same artist</li>
+                    <li>each shared genre</li>
+                </ul>
             </div>
             </div>
         )
