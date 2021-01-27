@@ -65,7 +65,7 @@ class Friends extends Component {
 
     addRating = (score) => {
         console.log("in addRating function")
-        post("/api/addRating", { userId: this.state.otherId, rating: score })
+        post("/api/addRating", { userId: this.state.otherId, friendName: this.state.friendName, rating: score })
     }
 
     updateSelectedFriend = (userId) => {
@@ -194,9 +194,11 @@ class Friends extends Component {
     }
 
     displayFriends = () => {
+        // console.log(this.state.friends)
         let display = this.state.friends.map((friendObj) => (
             <div key={friendObj._id}>
-                <p><b>{friendObj.userId}</b> {friendObj.rating}</p>
+                <div>{friendObj.friendName} [{friendObj.userId}]</div>
+                <div>{friendObj.rating}%</div>
             </div>
         ))
         return display
