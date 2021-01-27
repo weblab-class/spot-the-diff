@@ -26,7 +26,7 @@ class TopArtists extends Component {
                 <Card key={artistObj.id} isCommon={artistObj.isCommon}>
                     <div className="TopArtists-div">
                         <img className="TopArtists-image" src={artistObj.images[0].url}/>
-                        <p className="TopArtists-text">{artistObj.name}</p>
+                        <p className="TopArtists-text"><b>{artistObj.name}</b></p>
                     </div>
                 </Card>
             ))}

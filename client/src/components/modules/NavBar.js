@@ -59,7 +59,7 @@ class NavBar extends Component {
             <nav className="NavBar-container">
                 {this.props.userId ? 
                     <>
-                    <p className="NavBar-text-left NavBar-left m-text"> Logged in as: {this.props.myName} [{this.props.spotifyId}] </p>
+                    <p className="NavBar-text-left NavBar-left m-text .NavBar-text"> Logged in as: {this.props.myName} [{this.props.spotifyId}] </p>
                     {/* TODO: constantly check for playback without button - with socket? */}
                     {/* <button onClick={this.getCurrentPlayback} className="NavBar-button NavBar-playback">Click for Current Playback</button> */}
                     </> : <></>

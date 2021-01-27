@@ -61,6 +61,11 @@ class Login extends Component {
                   <div className="Home-section2">
                     <h1 className='Home-title'>Spot<span className="Home-spotify-label">(ify)</span> the Diff!</h1>
                     <i className='Home-pitch'>Founded by a team of three music lovers aiming to revolutionize the Spotify listening experience.</i>
+                    <ul className='Home-pitch'>
+                      <p>➡ Gain custom insights into your Spotify listening trends.</p>
+                      <p>➡ Compare your music history with your friends.</p>
+                      <p>➡ Generate playlists based on you and your friends' shared tastes.</p>
+                    </ul>
                     {this.props.userId ? 
                       <>
                       {/* <h1 className='u-centertext l-text'>checkout your listening info below!</h1>
@@ -71,14 +76,8 @@ class Login extends Component {
                       <h2 className = "Home-text" > Happy Listening! </h2>
                       <button onClick={this.props.handleLogout} className="Home-button"><b>Logout</b></button></> :
                       <>
-                      <h2 className = "Home-text" > Login to Spotify below to get started! </h2>
+                      <h2 className = "Home-text">Login to Spotify below to get started. Happy listening!</h2>
                       <button onClick={this.props.handleLogin} className="Home-button"><b>Login</b></button> </>}
-
-                      <ul className='Home-pitch'>
-                        <p>Gain custom insights into your Spotify listening history.</p>
-                        <p>Generate playlists based on you and your friends' shared tastes.</p>
-                        <p>Compare your music history with your friends.</p>
-                      </ul>
                       {/* {this.props.userId ? <div>check your console log and explore the object there for user {this.props.userId}</div> : <div></div>} */}
                   </div>
                 </div>

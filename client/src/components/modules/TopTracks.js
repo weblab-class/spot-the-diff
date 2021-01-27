@@ -18,8 +18,8 @@ class TopTracks extends Component {
             <Card key={trackObj.id} isCommon={trackObj.isCommon}>
                 <div className="TopTracks-div">
                     <img className="TopTracks-image" src={trackObj.album.images[0].url}/>
-                    <p className="TopTracks-text">{trackObj.name}</p>
-                    <p className="TopTracks-text">{trackObj.artists.map((artist) => artist.name).join(', ')}</p>
+                    <p className="TopTracks-text"><b>{trackObj.name}</b></p>
+                    <p className="TopTracks-text-small">{trackObj.artists.map((artist) => artist.name).join(', ')}</p>
                 </div>
             </Card>
         )
