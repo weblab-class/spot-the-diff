@@ -211,10 +211,10 @@ class Friends extends Component {
         else if (total_pts >= 20) {
             message = "Uh oh... this could be a red flag. \
             You two are constantly fighting, not just over the aux, but over every small thing. \
-            Think carefully about what this relationship means to you, and whether it's worth maintaining at this point.";
+            Think carefully about where this relationship is headed, and whether it's worth maintaining in the long run.";
         }
         else {
-            message = "Well this is awkward... this may be a sign that you're not meant to be. \
+            message = "Well... this is awkward. This may be a sign that you're not meant to be. \
             Take this as a long-awaited opportunity to cut off that toxic friend. \
             Or not! Maybe you two get along perfectly fine. But one thing's for sure: stay away from the topic of music if you don't want to start a fight!";
         }

@@ -72,14 +72,15 @@ class Stats extends Component {
     render() {
         if (!this.props.userId) return <div>Log in before accessing Stats</div>;
         if (!this.state.user) {
-            return <div> Log in before accessing Stats! </div>;
+            return <div> Loading your user data! </div>;
         }
 
         if (!this.props.topTracks || !this.props.topArtists) {
-            return <div> Loading! </div>;
+            return <div> Loading your top tracks and artists! </div>;
         }
 
         const username = this.state.user.display_name;
+<<<<<<< Updated upstream
         // if (this.state.user.images[0].url!=undefined)
         // {
         // const userIcon = this.state.user.images[0].url;
@@ -92,6 +93,9 @@ class Stats extends Component {
         // finally{
 
         // }
+=======
+        const userIcon = this.state.user.images[0] ? this.state.user.images[0].url : "../../../../user.svg";
+>>>>>>> Stashed changes
 
         // if (this.state.user.images!=undefined)
         // {
