@@ -107,9 +107,9 @@ class Stats extends Component {
                         <figcaption>and so do you ;)</figcaption>
                     </figure>
                     <div className="Stats-button-group">
-                        <button className="Stats-button" onClick={this.onShort}>4 weeks</button> 
-                        <button className="Stats-button" onClick={this.onMed}>6 months</button>
-                        <button className="Stats-button" onClick={this.onLong}>all time</button>
+                        <button className="Stats-button Stats-button1" onClick={this.onShort}>4 weeks</button> 
+                        <button className="Stats-button Stats-button2" onClick={this.onMed}>6 months</button>
+                        <button className="Stats-button Stats-button3" onClick={this.onLong}>all time</button>
                     </div>
                 </div>
                 <div className="Stats-content">
