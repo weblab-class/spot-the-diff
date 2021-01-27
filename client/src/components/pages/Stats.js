@@ -80,22 +80,7 @@ class Stats extends Component {
         }
 
         const username = this.state.user.display_name;
-<<<<<<< Updated upstream
-        // if (this.state.user.images[0].url!=undefined)
-        // {
-        // const userIcon = this.state.user.images[0].url;
-        // }
-        // else{
-        // try{
-        //     const userIcon = this.state.user.images[0].url;
-        // }
-
-        // finally{
-
-        // }
-=======
-        const userIcon = this.state.user.images[0] ? this.state.user.images[0].url : "../../../../user.svg";
->>>>>>> Stashed changes
+        const userIcon = this.state.user.images[0] ? this.state.user.images[0].url : HomeLogo;
 
         // if (this.state.user.images!=undefined)
         // {
@@ -104,7 +89,7 @@ class Stats extends Component {
         // else
         //     {const userIcon = HomeLogo;}
  
-        const userIcon = HomeLogo;
+        // const userIcon = HomeLogo;
         let topTracks;
         let topArtists;
         if (this.state.timeRange === 'short') {
