@@ -125,7 +125,7 @@ class App extends Component {
             }
         })
     })
-    console.log(artistGenres);
+    // console.log(artistGenres);
     return artistGenres;
   }
   getTrackArtists = (trackList) => {
@@ -147,7 +147,7 @@ class App extends Component {
               trackAlbums.push(track.album.name);
           }
       })
-      console.log(trackAlbums);
+      // console.log(trackAlbums);
       return trackAlbums;
   }
 

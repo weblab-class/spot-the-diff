@@ -316,7 +316,7 @@ router.get('/user-topArtists', (req, res) => {
   // get top artists from a specific user
   const targetId = req.query.otherId;
   console.log(targetId);
-  const query = { userId: targetId };
+  const query = { userId: targetId, timeRange: "medium_term" };
 
   TopArtists.findOne(query).then((data) => {
     console.log('fetching other top artists');
@@ -332,7 +332,7 @@ router.get('/user-topTracks', (req, res) => {
   // get top tracks from a specific user
   const targetId = req.query.otherId;
   console.log('target id: ', targetId);
-  const query = { userId: targetId };
+  const query = { userId: targetId, timeRange: "medium_term" };
 
   TopTracks.findOne(query).then((data) => {
     console.log('fetching other top tracks');

@@ -93,6 +93,34 @@ class Friends extends Component {
         })
     }
 
+    // new function that chains all the others together: getUserArtists, getUserTracks, updateSelectedFriend, then handleCompare
+    onFormSubmit = (userId) => {
+        get("/api/user-topArtists", { otherId: userId }).then((data) => {
+            console.log("Retrieving friend's favorite artists...")
+            console.log(userId, 'top artists: ', data.artists);
+            console.log("eyy it worked!")
+            this._isMounted && this.setState({ friendArtists: data.artists })
+        }).then(() => {
+            get("/api/user-topTracks", { otherId: userId }).then((data) => {
+                console.log("Retrieving friend's favorite tracks...")
+                console.log(userId, 'top tracks: ', data.tracks);
+                console.log("eyy it worked again!")
+                this._isMounted && this.setState({ friendTracks: data.tracks })
+            }).then(() => {
+                get("/api/getUser", {userId}).then((data) => {
+                    console.log(data);
+                    this._isMounted && this.setState({ 
+                        otherId: userId,
+                        friendName: data.display_name,
+        
+                    });
+                }).then(() => {
+                    this.handleCompare();
+                })
+            })
+        })
+    }
+
     intersect_id = (arrA, arrB) => {
         // returns the elements with same ids
         return arrA.filter(eleA => arrB.some(eleB => eleB.id === eleA.id));
@@ -104,6 +132,10 @@ class Friends extends Component {
     }
 
     handleCompare = () => {
+        if (!this.state.friendTracks || !this.state.friendArtists) {
+            console.log('friend tracks & artists not set yet');
+            return;
+        }
         const tracksA = this.props.topTracks;
         let tracksB = this.state.friendTracks;
         const totalTracks = tracksA.length + tracksB.length;
@@ -199,7 +231,7 @@ class Friends extends Component {
             friendArtists: artistsB,
         });
 
-        this.addRating(total_pts);
+        this.addRating(total_pts); 
     }
 
     getPlaylist = () => {
@@ -345,7 +377,7 @@ class Friends extends Component {
             {this._isMounted ?
             <>
             <div className="Friends-forms">
-                <Form compareArtists={this.getUserArtists} compareTracks={this.getUserTracks} pickFriend={this.updateSelectedFriend} className="Friends-form" /> 
+                <Form onSubmit={this.onFormSubmit} compareArtists={this.getUserArtists} compareTracks={this.getUserTracks} pickFriend={this.updateSelectedFriend} className="Friends-form" /> 
                 <Instructions/>
             </div>
             {compare} 
