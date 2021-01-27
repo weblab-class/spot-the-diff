@@ -38,13 +38,42 @@ class Form extends Component {
     handleSubmit(event) {
         // alert('A name was submitted: ' + this.state.value);
         event.preventDefault();
-        this.props.compareArtists(this.state.value)
-            this.props.compareTracks(this.state.value);
- 
-            this.props.pickFriend(this.state.value);
+
+        let isValidUser = false;
+        get("/api/user", {spotifyId: this.state.value}).then((data) => {
+            console.log(data);
+            if (data.data == 'error') {
+                alert('no user in database');
+            }
+            else {
+                isValidUser = true;
+            }
+        }
+            // function (user) { 
+            //     console.log('successful', user);
+            //     isValidUser = true; 
+            // },
+            // function (err) { 
+            //     console.log('error: ', err);
+            //     alert('no user in database');
+            // }
+        ).then(() => {
+            if (isValidUser == false) {
+                return;
+            }
+            else {
+                console.log('here')
+                this.props.compareArtists(this.state.value)
+                this.props.compareTracks(this.state.value);
+                this.addFriend(this.state.value);
+                this.props.pickFriend(this.state.value);
+    
+                console.log('handlesubmit')
+                
+            }
+        })
         
-        console.log('handlesubmit')
-        this.addFriend(this.state.value)
+        
     }
 
 render() {

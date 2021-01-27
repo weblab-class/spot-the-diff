@@ -85,8 +85,18 @@ router.get('/callback', async (req,res) => {
 
 // do we need something like this where we pull it from mongo?? is tihs the same thing as /getMe???
 router.get("/user", (req, res) => {
-  User.findById(req.query.userid).then((user) => {
-    res.send(user);
+  const query = { spotifyId: req.query.spotifyId }
+  User.findOne(query).then((user) => {
+    if (user) {
+      res.send({data: user});
+    }
+    else {
+      res.send({data: 'error'})
+    }
+  // }).catch((err) => {
+  //   console.log('error in api/user', err);
+  //   res.status(400).send({data: 'error'})
+    // res.status(400).send({ err });
   });
 });
 
@@ -458,7 +468,7 @@ router.get('/getUser', (req, res) => {
   spotifyApi.getUser(req.query.userId).then((data) => {
     res.send(data.body);
   }).catch(err => {
-    console.log('something went wrong in /api/getUser')
+    console.log('something went wrong in /api/getUser!', err);
     res.send({})
   });
 })
@@ -475,32 +485,38 @@ router.post('/addRating', auth.ensureLoggedIn, (req, res) => {
   //     friend[1] = req.body.rating;
   //     friend.save().then(() => res.send(doc.friendsList))
   //   })});
-    if (!doc) {
+    if (doc) {
+      let friends = doc.friendsList;
+      let friendLoc = null;
+      for (i = 0; i < friends.length; i++) {
+        friend = friends[i];
+        if (friend.userId === req.body.userId)  {
+          friendLoc = i;
+          console.log('found friend');
+          break;
+        }
+        if (i === friends.length - 1) {
+          console.log('didnt find friend');
+        }
+      } 
+      // console.log(req.body.rating)
+      friends[friendLoc].rating = req.body.rating;
+      friends[friendLoc].friendName = req.body.friendName;
+      // console.log(friends)
+      friends.sort(compare);
+      doc.friendsList = friends
+      doc.save().then((doc) => {
+        console.log(doc)
+        console.log(doc.friendsList[friendLoc].rating)
+        res.send(friends)
+      })
+    }
+    else {
       console.log('couldnt find friends in api/addRating');
-      res.send({});
+      return res.send({});
     }
 
-    let friends = doc.friendsList;
-    let friendLoc = null;
-    for (i = 0; i < friends.length; i++) {
-      friend = friends[i];
-      if (friend.userId === req.body.userId)  {
-        friendLoc = i;
-        console.log('found friend');
-        break;
-      }
-    } 
-    // console.log(req.body.rating)
-    friends[friendLoc].rating = req.body.rating;
-    friends[friendLoc].friendName = req.body.friendName;
-    // console.log(friends)
-    friends.sort(compare);
-    doc.friendsList = friends
-    doc.save().then((doc) => {
-      console.log(doc)
-      console.log(doc.friendsList[friendLoc].rating)
-      res.send(friends)
-    })
+    
   })
 })
 
