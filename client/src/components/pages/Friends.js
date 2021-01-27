@@ -34,6 +34,7 @@ class Friends extends Component {
             genreSeeds: [],
             playlistTracks: undefined,
             friends: [],
+            playlistId: '',
         };
     }
 
@@ -177,13 +178,19 @@ class Friends extends Component {
     makePlaylist = () => {
         // if user wants to create playlist
         get("/api/createPlaylist", {friendName: this.state.friendName, score: this.state.compatibility}).then(playlist => {
-            // console.log('my new playlist: ', playlist)
+            console.log('my new playlist: ', playlist)
             let tracks = this.state.playlistTracks;
             tracks = JSON.stringify(tracks.map(x => x.uri));
             // console.log(tracks);
             get("/api/addToPlaylist", {playlistId: playlist.id, tracks: tracks}).then(newPlaylist => {
                 console.log("my new filled playlist: ", newPlaylist)
             })
+            this.setState({
+                playlistId: playlist.id,
+            })
+            console.log('url for your playlist: https://open.spotify.com/playlist/' + playlist.id);
+            const playlistUrl = 'https://open.spotify.com/playlist/' + playlist.id;
+            window.open(playlistUrl, '_blank');
         })
     }
 
@@ -250,7 +257,7 @@ class Friends extends Component {
             {this.state.playlistTracks ?
             <>
                 <h3>here's the playlist we made for you! click the button again to refresh the tracklist. we won't get offended ;)</h3>
-                <button onClick={this.makePlaylist}>click here to save this to your spotify!</button>
+                <button onClick={this.makePlaylist}>save and open in spotify!</button>
                 <TopTracks data={this.state.playlistTracks} />
             </> : <></>}
 
