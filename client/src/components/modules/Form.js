@@ -50,7 +50,7 @@ render() {
     return (
         <form onSubmit={this.handleSubmit}>
             <label htmlFor="fname">Enter a friend's spotify ID:</label><br/>
-            <div>
+            <div className="Form-div">
                 <input type="text" id="fname" name="fname" className="Form-input" value={this.state.value} onChange={this.handleChange} /><br/>
                 <input type="submit" className="Form-submit" value="Enter"></input>
             </div>

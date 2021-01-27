@@ -11,19 +11,41 @@
 }
 
 .Home-button {
-    height: 40px;
-    border: 0px;
-    width: 240px;
-    border-radius: 10px;
-    transition: 0.25s;
-    background-color: #1DB954;
     display: block;
     margin-left: auto;
     margin-right: auto;
+    height: 40px;
+    width: 240px;
+    display:inline-block;
+    padding:0.35em 1.2em;
+    border:0.1em solid #FFFFFF;
+    border-radius: 5px;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-family:'Roboto', sans-serif;
+    font-weight:300;
+    color:#FFFFFF;
+    text-align:center;
+    transition: all 0.2s;
+    background-color: #292929;
+    animation: bouncy 5s infinite linear;
+    position: relative;
 }
 
 .Home-button:hover {
-    background-color: rgb(212, 212, 212);
+    /* background-color: rgb(212, 212, 212); */
+    color: #000000;
+    background-color: #FFFFFF;
+}
+
+@keyframes bouncy {
+    0%{top:0em}
+    40%{top:0em}
+    43%{top:-0.9em}
+    46%{top:0em}
+    48%{top:-0.4em}
+    50%{top:0em}
+    100%{top:0em;}
 }
 
 .Home-section1 {
