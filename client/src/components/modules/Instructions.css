@@ -58,4 +58,5 @@ dialog {
     max-width: 500px;
     top: 25vh;
     right: 25vh;
+    z-index: 20;
 }

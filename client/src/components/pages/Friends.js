@@ -343,7 +343,7 @@ class Friends extends Component {
             isComparing = true;
             compare = (
                 <>
-                    <div className="flex-column">
+                    <div className="flex-column Friends-results">
                         <h2>{friendName}{apostrophe} Top Tracks</h2>
                         <TopTracks data={this.state.friendTracks} />
                         <h2>{friendName}{apostrophe} Top Artists</h2>
