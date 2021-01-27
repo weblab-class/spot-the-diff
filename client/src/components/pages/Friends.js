@@ -76,6 +76,7 @@ class Friends extends Component {
                 otherId: userId,
                 friendName: data.display_name,
             });
+        }).then(() => {
             this.handleCompare();
         })
     }
@@ -275,7 +276,6 @@ class Friends extends Component {
                 <div>{this.displayFriends()}</div>
                 <h2>About Compatibility</h2>
                 <div>Compatibility quanitifies you and your friends' shared music taste, as measured by Spot-the-diff's algorithm</div>
-
             </div>
             </div>
         )

@@ -27,6 +27,7 @@ class TopTracks extends Component {
                     <div className="TopTracks-div">
                         <img className="TopTracks-image" src={trackObj.album.images[0].url}/>
                         <p className="TopTracks-text">{trackObj.name}</p>
+                        <p className="TopTracks-text">{trackObj.artists.map((artist) => artist.name).join(', ')}</p>
                     </div>
                 </Card>
             ))}

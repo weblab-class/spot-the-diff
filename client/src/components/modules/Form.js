@@ -36,11 +36,13 @@ class Form extends Component {
     }
 
     handleSubmit(event) {
-        alert('A name was submitted: ' + this.state.value);
+        // alert('A name was submitted: ' + this.state.value);
         event.preventDefault();
-        this.props.compareArtists(this.state.value);
-        this.props.compareTracks(this.state.value);
-        this.props.pickFriend(this.state.value);
+        this.props.compareArtists(this.state.value)
+            this.props.compareTracks(this.state.value);
+ 
+            this.props.pickFriend(this.state.value);
+        
         console.log('handlesubmit')
         this.addFriend(this.state.value)
     }
