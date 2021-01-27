@@ -155,6 +155,7 @@ class App extends Component {
           userId={this.state.userId}
           spotifyId={this.state.spotifyId}
         />
+        <div className="App-space"></div>
         <Router>
           <Home 
             path="/" 

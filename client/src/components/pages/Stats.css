@@ -1,3 +1,5 @@
+
+
 .flex-row {
     display: flex;
     flex-direction: row;
@@ -36,4 +38,45 @@
 .Stats-space-evenly {
     display: flex;
     justify-content: space-evenly;
+}
+
+.Stats-button {
+    /* width: 80px;
+    height: 30px;
+    margin: 10px;
+    border-radius: 10px;
+    border: 0px; */
+    display:inline-block;
+    padding:0.35em 1.2em;
+    border:0.1em solid #FFFFFF;
+    margin:0 0.3em 0.3em 0;
+    border-radius: 5px;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-family:'Roboto',
+    sans-serif;
+    font-weight:300;
+    color:#0a0a0a;
+    text-align:center;
+    transition: all 0.2s;
+}
+
+.Stats-button:hover {
+    color: #000000;
+    background-color: #FFFFFF;
+}
+
+.Stats-button-group {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+}
+
+.Stats-title {
+    text-align: center;
+}
+
+.Stats-page {
+    align-items: center;
 }

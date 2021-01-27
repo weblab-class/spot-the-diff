@@ -84,22 +84,21 @@ class Stats extends Component {
         }
 
         return (
-            <div>
-                <button onClick={this.onShort}>4 weeks</button> 
-                <button onClick={this.onMed}>6 months</button>
-                <button onClick={this.onLong}>all time</button>
-                <h1 className='u-centertext .xl-text'>Custom Listening Insights</h1>
-                {
-                    <>
-                    <h2 className="Stats-center-text"> My Top Tracks</h2>
-                    <div className="Stats-centering-tracks">
-                    <TopTracks className="Stats-center-flex" data={topTracks}/>
-                    </div>
-                    <h2 className="Stats-center-text">My Top Artists</h2>
-                    <div className="Stats-centering-tracks">
-                    <TopArtists className="Stats-center-flex" topArtists={topArtists} />
-                    </div>
-                    </>}
+            <div className="Stats-page">
+                <h1 className='Stats-title'>Custom Listening Insights</h1>
+                <div className="Stats-button-group">
+                    <button className="Stats-button" onClick={this.onShort}>4 weeks</button> 
+                    <button className="Stats-button" onClick={this.onMed}>6 months</button>
+                    <button className="Stats-button" onClick={this.onLong}>all time</button>
+                </div>
+                <h2 className="Stats-center-text"> My Top Tracks</h2>
+                <div className="Stats-centering-tracks">
+                <TopTracks className="Stats-center-flex" data={topTracks}/>
+                </div>
+                <h2 className="Stats-center-text">My Top Artists</h2>
+                <div className="Stats-centering-tracks">
+                <TopArtists className="Stats-center-flex" topArtists={topArtists} />
+                </div>
             </div>
         );
     }  

@@ -75,7 +75,7 @@ class Login extends Component {
                       <h2 className="Home-text">Your Spotify ID: {this.props.spotifyId}</h2>
                       <button onClick={this.props.handleLogout} className="Home-button"><b>Logout</b></button></> :
                       <>
-                      < h2 className = "Home-text" > Login to Spotify below to get started! < /h2>
+                      <h2 className = "Home-text" > Login to Spotify below to get started! </h2>
                       <button onClick={this.props.handleLogin} className="Home-button"><b>Login</b></button> </>}
                       {/* {this.props.userId ? <div>check your console log and explore the object there for user {this.props.userId}</div> : <div></div>} */}
                   </div>

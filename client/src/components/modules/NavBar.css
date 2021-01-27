@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow&display=swap');
+
 .NavBar-container {
     background-color: #36393B;
     margin-top: 0px;
@@ -5,6 +7,8 @@
     display: flex;
     flex-direction: row;
     box-shadow: 1px 1px 3px 3px #c0c0c0;
+    position: fixed;
+    width: 100%;
 }
 
 .NavBar-text-left {
@@ -48,4 +52,5 @@
     margin-bottom: auto;
     padding: 5px 3px 5px 3px;
     height: fit-content;
+    font-family: 'Barlow', sans-serif;
 }
