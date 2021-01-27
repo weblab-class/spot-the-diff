@@ -104,7 +104,7 @@ class Stats extends Component {
                     <h1 className="Stats-title">your music looks good🤩</h1>
                     <figure>
                         <img src={userIcon} className='Stats-img'/>
-                        <figcaption>and so do you ;)</figcaption>
+                        <figcaption>and so do you :)</figcaption>
                     </figure>
                     <div className="Stats-button-group">
                         <button className="Stats-button Stats-button1" onClick={this.onShort}>4 weeks</button> 

@@ -21,4 +21,10 @@
 
 .Friend-button {
     background: white;
-}
+    font-family: var(--text-family);
+    font-style: var(--text-style);
+    font-weight: var(--text-weight);
+    font-size: 14px;
+    line-height: 18px;
+    color: var(--text-color);
+  }
