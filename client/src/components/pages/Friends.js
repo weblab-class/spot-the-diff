@@ -161,23 +161,27 @@ class Friends extends Component {
 
         if (total_pts === 100)
         {
-            message = "twins!"
+            message = "hot diggity dog! almost like you two are the same person... 👀"
         }
-        else if (total_pts >= 70)
+        else if (total_pts >= 75)
         {
-            message = "so similar!"
+            message = "You two are destined to be together for life. "
         }
-        else if (total_pts >= 40)
+        else if (total_pts >= 50)
         {
-            message = "average!";
+            message = "Solid above average. ";
         }
-        else if (total_pts >= 10)
+        else if (total_pts >= 35)
         {
             message = "opposites attract?";
         }
-        else
-        {
-            message = "polar opposites!";
+        else if (total_pts >= 10) {
+            message = "";
+        }
+        else {
+            message = "...this may be a sign that you're not meant to be. \
+            Take this as a long-awaited opportunity to cut off that toxic friend... or not. \
+            Maybe you two get along perfectly fine. But one thing's for sure: stay away from the topic of music if you don't want to start a fight!";
         }
 
         // console.log(total_pts);
@@ -270,9 +274,9 @@ class Friends extends Component {
         try{
              display = this.state.friends.map((friendObj) => (
                 <div key={friendObj._id}>
-                    {/* <div>{friendObj.friendName} [{friendObj.userId}]</div> */}
-                    <div> {friendObj.friendName} ({friendObj.userId}) {friendObj.rating}</div> 
-                    {/* <div>{friendObj.rating}%</div> */}
+                    <div>{friendObj.friendName} [{friendObj.userId}]</div>
+                    {/* <div> {friendObj.friendName} ({friendObj.userId}) {friendObj.rating}</div>  */}
+                    <div>{friendObj.rating}%</div>
                 </div>
             ))    
         }

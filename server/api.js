@@ -369,11 +369,15 @@ router.post('/addFriend', auth.ensureLoggedIn, (req, res) => {
       if (foundFriend == false && doc) {
         doc.friendsList = [...friends, { userId: req.body.userId, friendName: req.body.friendName, rating: 0}]
         console.log(req.body.userId)
-        doc.save();
-        console.log('we have fetched your friend list' );
+        doc.save().then(() => {
+          res.send({});
+          console.log('we have fetched your friend list' );
+        });
+        
       } else { 
         // friend already exists in user's list 
         console.log('do nothing')
+        res.send({});
       }
     } else {
       // user doesn't't have a friends list
@@ -383,11 +387,13 @@ router.post('/addFriend', auth.ensureLoggedIn, (req, res) => {
         friendsList: [{ userId: req.body.userId, friendName: req.body.friendName, rating: 0 }],
       });
       friends.save().then(() => {
-        console.log('created new friend')
+        console.log('created new friend');
+        res.send({})
       });
     }
   }).catch(err => {
     console.log('error in /api/addFriend: ', err);
+    res.send({})
   })
 })
 

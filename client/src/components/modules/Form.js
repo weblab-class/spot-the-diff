@@ -26,6 +26,8 @@ class Form extends Component {
             post("/api/addFriend", {
                 userId: userId,
                 friendName: friendName,
+            }).then((data) => {
+                console.log(data);
             }).catch(err => {
                 console.log(err);
             })

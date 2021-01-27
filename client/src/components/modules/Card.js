@@ -7,9 +7,9 @@ class Card extends Component {
     }
 
 render() {
-    const color = this.props.isCommon ? "Card-common" : "Card-color"
+    const color = this.props.isCommon ? "Card-common" : "Card-color";
     return (
-      <div className={`Card-shape Card-color ${color}`}>
+      <div className={`Card-shape Card-text ${color}`}>
         {this.props.children}
       </div>
     )
