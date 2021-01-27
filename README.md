@@ -19,3 +19,5 @@ https://www.npmjs.com/package/spotify-web-api-node#usage
 
 https://github.com/dansun123/webapp-skeleton/tree/spotify (code skeleton for Spotify 
 Staff gave us at office hours, used in a variety of places)
+
+https://www.sitepoint.com/community/t/space-between-links-in-navbar/7949/3
