@@ -67,16 +67,14 @@ class Form extends Component {
                 return;
             }
             else {
+                this.addFriend(this.state.value);
                 this.props.onSubmit(this.state.value);
-                console.log('here')
-                // this.addFriend(this.state.value);
 
                 // this.props.compareArtists(this.state.value);
                 // this.props.compareTracks(this.state.value);
                 // this.props.pickFriend(this.state.value);
     
                 console.log('handlesubmit')
-                
             }
         }).catch(err => {
             console.log(err);
