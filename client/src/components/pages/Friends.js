@@ -266,7 +266,7 @@ class Friends extends Component {
             friendName = "your friend";
         }
         else {
-            friendName = <span style={{color: '#B7E1CD' }}>{this.state.friendName}</span>;
+            friendName = <span style={{color: '#1DB954' }}>{this.state.friendName}</span>;
         }
         let compare;
         let isComparing = false;
