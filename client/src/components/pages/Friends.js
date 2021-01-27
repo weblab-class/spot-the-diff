@@ -118,11 +118,16 @@ class Friends extends Component {
         const tracks_pts = 100 * 2*commonTracks.length / totalTracks;
         const artists_pts = 100 * 2*commonArtists.length / (artistsA + artistsB);
 
-        const total_pts = 1 * 100*2*commonTracks.length/totalTracks
+        let total_pts = 1 * 100*2*commonTracks.length/totalTracks
                         + 1 * 100*2*commonArtists.length/totalArtists
                         + 4 * commonTrackAlbums.length 
                         + 3 * commonTrackArtists.length
                         + 2 * commonGenres.length;
+        
+        if (total_pts >= 100)
+        {
+            total_pts = 100
+        }
 
         // console.log(total_pts);
         this.setState({
@@ -252,7 +257,14 @@ class Friends extends Component {
             {isComparing ? 
             <>
                 <button onClick={this.getPlaylist}>get a custom playlist that both you and {friendName} would like!</button>
-                <h3>your compatibility with {friendName} is: {this.state.compatibility}%</h3> </> :
+                <h3>your compatibility with {friendName} is: {this.state.compatibility}%</h3> 
+                {this.state.compatibility === "100.00"?
+                    <h3>twins!</h3>
+                    :
+                    <></>
+                }
+                </> 
+                :
             <></> }
 
             {this.state.playlistTracks ?
