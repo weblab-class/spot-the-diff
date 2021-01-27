@@ -21,7 +21,29 @@
 }
 
 .Friend-button {
-    background: white;
+    height: 30px;
+    width: fit-content;
+    border-radius: 10px;
+    display:inline-block;
+    padding:0.35em 1.2em;
+    border:0.1em solid #FFFFFF;
+    margin-left: 10px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-family:'Roboto',
+    sans-serif;
+    font-weight:300;
+    color:#FFFFFF;
+    text-align:center;
+    transition: all 0.2s;
+    background-color: #292929;
+    animation: bouncy 5s infinite linear;
+    position: relative;
+}
+
+.Friend-button:hover {
+    background-color: rgb(231, 231, 231);
 }
 
 .Friends-emphasized-text {
