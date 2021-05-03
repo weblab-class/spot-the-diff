@@ -1,6 +1,6 @@
 # Spot-The-Diff
 
-Spot the Diff is a website that analyzes you and your friends’ music history to provide custom listening insights. Spot the Diff generates a compatibility score quantifying the similarities between you and your friends music tastes as well as playlists customized to both friends. Finally, Spot the Diff highlights you and your friends’ top artists and top tracks.
+Spot the Diff is a website that analyzes you and your friends’ music history to provide custom listening insights. Spot the Diff generates a compatibility score quantifying the similarities between you and your friends music tastes as well as playlists customized to both friends. Finally, Spot the Diff highlights you and your friends’ top artists and top tracks. Check it out here: https://spot-the-diff.herokuapp.com/
 
 
 ## Sources:
